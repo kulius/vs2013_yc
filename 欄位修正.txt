@@ -1,0 +1,3974 @@
+
+/*2015/03/28 */
+alter table 出貨單項目檔 add 二次加工廠代號 nvarchar(10) NULL 
+alter table 進貨單主檔 add CK脫碳層 nvarchar(10) NULL 
+alter table 進貨單主檔 add CK滲碳層2值 nvarchar(10) NULL 
+alter table 進貨單主檔 add CK華司硬度 nvarchar(10) NULL 
+alter table 進貨單主檔 add 華司硬度規格 nvarchar(10) NULL 
+
+alter table 過磅單主檔 add 進貨次數 float NULL 
+alter table 過磅單主檔 add 出貨次數 float NULL 
+
+alter table 進貨單主檔 add 完爐日期 nvarchar(10) NULL
+
+/*2015/04/04 */
+alter table 進貨單主檔 add 完爐時間 nvarchar(10) NULL
+alter table 進貨單主檔 alter column 客戶批號 nvarchar(20) NULL
+
+/*2015/04/05 */
+update s_一層代碼檔
+set 參數1=0
+where 類別='S03N0011'
+
+
+alter table 製造單項目檔 add 空桶重 float NULL 
+alter table 製造單項目檔 add 單位 nvarchar(10) NULL 
+alter table 製造單項目檔 add 生料重 float NULL 
+alter table 製造單項目檔 add 生料淨重 float NULL
+alter table 製造單項目檔 add 入料人員 nvarchar(10) NULL 
+alter table 製造單項目檔 add 磅後重 float NULL
+alter table 製造單項目檔 add 磅後淨重 float NULL
+alter table 製造單項目檔 add 收料人員 nvarchar(10) NULL 
+
+
+/*2015/04/18 */
+alter table 製造單項目檔 add 重量差 float NULL 
+
+alter table 進貨單主檔 add 入料桶數 float NULL  
+alter table 進貨單主檔 add 入料總重 float NULL 
+
+/*2015/04/22 */ 
+alter table 應收帳款主檔 alter column 憑單號碼 nvarchar(20) NULL
+alter table 應收帳款主檔 add 所屬年月 nvarchar(10) NULL 
+
+alter table 應收帳款主檔 add 收款日期 nvarchar(10) NULL
+alter table 應收帳款主檔 add 本期應收帳款 float NULL 
+alter table 應收帳款主檔 add 預收金額 float NULL 
+alter table 應收帳款主檔 add 扣款 float NULL 
+alter table 應收帳款主檔 add 折讓 float NULL 
+alter table 應收帳款主檔 add 現金 float NULL 
+alter table 應收帳款主檔 add 票據 float NULL 
+alter table 應收帳款主檔 add 郵票 float NULL 
+alter table 應收帳款主檔 add 未收餘額 float NULL 
+alter table 應收帳款主檔 add 前期累計帳款 float NULL  
+
+
+/*2015/04/26 */ 
+alter table 製造單項目檔 add 收料單位 nvarchar(10) NULL 
+alter table 製造單項目檔 add 收料空桶重 float NULL
+
+
+/*2015/04/28 */ 
+alter table 應收帳款項目檔 add 總重量 float NULL
+
+alter table 應收帳款主檔 add 總重量 float NULL
+
+/*2015/05/01 */ 
+alter table 報價通用規格檔 add 規格數值起 float NULL
+alter table 報價通用規格檔 add 規格數值迄 float NULL
+
+alter table 報價通用尺寸檔 add 規格數值起 float NULL
+alter table 報價通用尺寸檔 add 規格數值迄 float NULL
+
+alter table 報價通用尺寸檔 add 尺寸數值起 float NULL
+alter table 報價通用尺寸檔 add 尺寸數值迄 float NULL
+
+
+/*2015/05/17  */ 
+alter table 出貨單項目檔 add 排序 int NULL 
+
+/*2015/05/17 轉檔需要 */ 
+alter table 過磅單主檔 add 載貨員 nvarchar(10) NULL 
+alter table 過磅單主檔 add 備註 nvarchar(200) NULL 
+alter table 過磅單主檔 alter column 建立人員 nvarchar(10) NULL
+alter table 過磅單主檔 alter column 建立日期 nvarchar(10) NULL
+alter table 過磅單主檔 alter column 修改人員 nvarchar(10) NULL
+alter table 過磅單主檔 alter column 修改日期 nvarchar(10) NULL
+
+alter table 進貨單主檔 add 產品名稱 nvarchar(100) NULL
+alter table 進貨單主檔 add 對照 float NULL
+alter table 進貨單主檔 add 出貨桶數 float NULL
+alter table 進貨單主檔 add 出貨重量 float NULL
+
+alter table 進貨單主檔 add 斷面收縮率值起迄 nvarchar(20) NULL
+alter table 進貨單主檔 add 安全負荷值起迄 nvarchar(20) NULL
+
+alter table 出貨單主檔 add 總金額 float  NULL 
+alter table 出貨單主檔 add 關聯序號 nvarchar(20) NULL 
+alter table 出貨單項目檔 add 關聯序號 nvarchar(20) NULL 
+alter table 出貨單項目檔 add 明細關聯 nvarchar(20) NULL 
+alter table 出貨單項目檔 add 客戶批號 nvarchar(20) NULL 
+
+alter table 過磅單項目檔 alter column 客戶代號 nvarchar(10) NULL
+alter table 過磅單項目檔 alter column 加工廠代號 nvarchar(10) NULL
+
+alter table 進貨單主檔 add CK頭部敲擊 nvarchar(10) NULL 
+alter table 進貨單主檔 add CK彎曲度 nvarchar(10) NULL 
+
+/*2015/06/18 */
+
+alter table 進貨單主檔 add CK最大負荷 nvarchar(10) NULL 
+alter table 進貨單主檔 add 最大負荷 nvarchar(10) NULL 
+alter table 過磅單主檔 add 其他重量1 float NULL 
+
+/*2015/07/05 */
+
+alter table 過磅單主檔 add 所屬工廠 nvarchar(10) NULL 
+alter table 進貨單主檔 add 所屬工廠 nvarchar(10) NULL 
+alter table 出貨單主檔 add 所屬工廠 nvarchar(10) NULL 
+
+
+/*2015/08/01 */
+
+alter table 進貨單主檔 add CK扭力強度 nvarchar(10) NULL 
+alter table 進貨單主檔 add 扭力強度 nvarchar(20) NULL 
+
+
+
+/*2015/08/05 */
+
+alter table 進貨單主檔 add CK華司硬度1值 nvarchar(10) NULL 
+alter table 進貨單主檔 add CK華司硬度2值 nvarchar(20) NULL 
+alter table 進貨單主檔 add 華司硬度2值1 nvarchar(20) NULL
+alter table 進貨單主檔 add 華司硬度2值2 nvarchar(20) NULL 
+alter table 進貨單主檔 add 華司硬度2值3 nvarchar(20) NULL 
+alter table 進貨單主檔 add 華司硬度2值4 nvarchar(20) NULL 
+alter table 進貨單主檔 add 華司硬度2值5 nvarchar(20) NULL 
+alter table 進貨單主檔 add 華司硬度2值6 nvarchar(20) NULL 
+alter table 進貨單主檔 add 華司硬度2值7 nvarchar(20) NULL 
+alter table 進貨單主檔 add 華司硬度2值8 nvarchar(20) NULL 
+
+
+/*2016/01/14 */
+
+alter table 進貨單主檔 add 頭部敲擊7 nvarchar(10) NULL 
+alter table 進貨單主檔 add 頭部敲擊30 nvarchar(20) NULL 
+alter table 進貨單主檔 add 彎曲度30 nvarchar(20) NULL
+
+
+
+
+
+
+
+
+
+declare @tableName nvarchar(40) = '66500060'
+select * from TBBUS
+where 1= (CASE WHEN @tableName IS NULL THEN 1
+    WHEN @tableName = CODE THEN 1
+    ELSE 0 END)
+
+select * from 過磅單項目檔 where 客戶代號='A0E55'
+select * from 過磅單項目檔 where 客戶代號='AE055'
+
+select * from 進貨單主檔 where 客戶代號='A0E55'
+select * from 進貨單主檔 where 客戶代號='AE055'
+
+select * from 出貨單主檔 where 客戶代號='A0E55'
+select * from 出貨單主檔 where 客戶代號='AE055'
+
+select * from 應收帳款主檔 where 客戶代號='A0E55'
+select * from 應收帳款主檔 where 客戶代號='AE055'
+
+
+/*2015/05/17 SQL 刪除語法  */ 
+delete from 過磅單主檔
+delete from 過磅單項目檔
+
+delete from 進貨單主檔
+delete from 製造單項目檔
+delete from 出貨單主檔
+delete from 出貨單項目檔
+
+
+delete from 應收帳款主檔
+delete from 應收帳款項目檔
+
+delete from 客戶主檔 where 客戶代號 like 'ZZ%'
+delete from 加工廠主檔 where 加工廠代號 like 'ZZ%'
+delete from 加工廠主檔 where 加工廠代號 like 'ZY%'
+
+/*2015/05/17 ACCESS 刪除語法  */ 
+delete from inorder WHERE 進貨日期<=#12/31/2013#;
+delete from 過磅單 WHERE 日期<=#12/31/2014#;
+delete from 出貨主檔 WHERE 出貨日期<=#12/31/2013#;
+delete from 出貨明細 where 關聯序號 not in (select 關聯序號 from 出貨主檔)
+
+delete from 應收帳款 WHERE 請款日期<=#12/31/2014#;
+delete from 應收帳款明細 where 關聯序號 not in (select 關聯序號 from 應收帳款)
+
+/* */ 
+insert into 製造單項目檔 (工令號碼,桶號,重量,空桶重,生料重,生料淨重,磅後重,磅後淨重,收料空桶重,重量差)
+select 進貨序號,桶號,重量,0,重量,重量,重量,重量,0,0
+from 桶數明細
+where 進貨序號 is not null
+
+
+
+select * from 過磅單項目檔 where 客戶代號 not  LIKE '[A-Z]%'
+
+UPDATE          過磅單項目檔 SET 加工廠代號 = '' WHERE   (加工廠代號 NOT LIKE '[A-Z]%')
+
+UPDATE          過磅單項目檔 SET  客戶代號 = '' WHERE    (客戶代號 NOT LIKE '[A-Z]%')
+
+
+
+
+
+
+
+
+
+
+[OUTDET]
+O_TRSNO=0,cbsNone
+O_MONEY=1,cbsNone
+O_BUSNO=2,cbsEllipsis
+O_BUSNAME=3,cbsEllipsis
+O_REMARK=4,cbsEllipsis
+O_BILLNUM=5,cbsEllipsis
+O_EXPORTGROUP=6,cbsAuto
+O_FEE=7,cbsNone
+O_PAYBANK_NO=8,cbsNone
+O_PAYBANK_ACCOUNT=9,cbsNone
+O_MEMO=10,cbsNone
+O_OUTGROUP=11,cbsAuto
+O_BK=12,cbsEllipsis
+O_CTTNO=13,cbsEllipsis
+O_CTTNAME=14,cbsEllipsis
+O_FROM=15,cbsNone
+O_ACCOUNTNO=16,cbsNone
+O_DEP=17,cbsNone
+O_DEPNAME=18,cbsNone
+O_TRSSERNO=19,cbsNone
+O_FORMNO=20,cbsNone
+O_SERNO=21,cbsNone
+/*
+
+delete from tbtrs where trsdate >='2005/08/01'
+
+delete from tbtrsact where trsdate >='2005/08/01'
+
+update tbtrsact
+set trsdate = (select trsdate from tbtrs where tbtrsact.trsno=tbtrs.trsno)
+
+update tbtrs
+set REMARK = (select top 1 REMARK from tbtrsact where tbtrsact.trsno=tbtrs.trsno)
+
+insert into ITSTATUS values('0','填寫中')
+insert into ITSTATUS values('9','已完成')
+insert into ITSTATUS values('-1','作廢')
+
+alter table TBTRSACT alter column FORMNO varchar(30) null
+alter table TBACC drop constraint DF_TBACC_ISBOTTOM 
+
+drop procedure usp_more_budgetI
+create procedure usp_more_budget
+
+/* 930810增加TBPARA中的CLOSEDATE
+insert into TBPARA values('77-CLOSETRSDATE','關帳日期','93/07/01',1,NULL)
+alter table ITSCHOOLDEP add PD_MONEY dollar null
+go
+ */
+
+/* 940301增加參數設定檔*/
+alter table TBPARA drop constraint DF__TBPARA__CANSEE__0BC6C43E 
+alter table TBPARA alter column CANSEE varchar(2)
+
+delete from TBPARA
+
+insert into TBPARA values('AbortBasc','----------------------------------------','------------------------------',10,'-------------------------------------------------------------------')
+insert into TBPARA values('SchoolName','學校名稱','先傑電腦','11',NULL)
+insert into TBPARA values('ReadYear','目前會計年度','93','12',NULL)
+insert into TBPARA values('BudgetYear','預算年度','93','13',NULL)
+insert into TBPARA values('BThis','年度起始日','93/08/01','14',NULL)
+insert into TBPARA values('EThis','年度結束日','94/07/31','15',NULL)
+insert into TBPARA values('CloseTrsDate','傳票關帳日期','93/12/31','16',NULL)
+insert into TBPARA values('DepLen','部門長度','3','17',NULL)
+insert into TBPARA values('ShowTrsDate','傳票顯示日期','93/08/01','18',NULL)
+insert into TBPARA values('OUTCASH','出納庫存現金預設科目','1112','19',NULL)
+insert into TBPARA values('CloseInOutDate','出納關帳日期','95/08/01','1A',NULL)
+insert into TBPARA values('BeginInOutDate','出納開帳日期','98/02/01','1B',NULL)
+insert into TBPARA values('ShowTrsBorDate','傳票瀏灠日期','93/08/01','18',NULL)
+
+insert into TBPARA values('AbortDisplay','----------------------------------------','------------------------------',20,'-------------------------------------------------------------------')
+insert into TBPARA values('DateMask','日期編輯顯示格式','!99/00/00','21',NULL)
+insert into TBPARA values('MonthMask','年月編輯顯示格式','!99/00','21',NULL)
+insert into TBPARA values('ShortDate','短日期格式','ee/mm/dd','22',NULL)
+insert into TBPARA values('CurrDisplay','貨幣顯示格式','#,##0','23',NULL)
+insert into TBPARA values('CurrEdit','貨幣編輯顯示格式','#','24',NULL)
+insert into TBPARA values('BudUseAcc','預算會計維護採用會計年度','Y','25','預算資料維護中的會計科目採用會計年度或是預算年度')
+
+insert into TBPARA values('AbortOtherBasc','----------------------------------------','------------------------------',30,'-------------------------------------------------------------------')
+insert into TBPARA values('BANKIDNO','匯款人身份證','06479492','31',NULL)
+insert into TBPARA values('BANKTEL','匯款人電話號碼','06-2785123','32',NULL)
+insert into TBPARA values('BANKNAME','匯款人姓名','長榮大學','33',NULL)
+insert into TBPARA values('AddInOut','累積餘絀','3210','34',NULL)
+insert into TBPARA values('InOut','本期餘絀','3220','35',NULL)
+insert into TBPARA values('VoucherPrint','傳票列印是否採用FR3','N','36',NULL)
+insert into TBPARA values('BANKEDI','匯款人EDI代碼','','37',NULL)
+insert into TBPARA values('BANKEDIKIND','手續費負擔別預設','','38',NULL)
+insert into TBPARA values('PrintClosePreview','列印後是否直接關閉預覽視窗','N','39',NULL)
+insert into TBPARA values('EXPORTBANKVIEW','匯款磁片製作顯示代號','','3A',NULL)
+insert into TBPARA values('ENNOTEVIEW','票據銷帳顯示銷帳格式匯入代號','','3B',NULL)
+insert into TBPARA values('PrintShowDL','關閉預覽視窗是否顯示條件視窗','N','3C','Y-關閉列印畫面後，會顯示條件視窗，N-不會')
+
+insert into TBPARA values('AbortNo','----------------------------------------','------------------------------','40','-------------------------------------------------------------------')
+insert into TBPARA values('ITNOAUTO','簽証編號是否為自動編號','Y','41','簽証資料維護中的簽証單號是否採用自動編號')
+insert into TBPARA values('ITNOCODEDATE','簽証編號前置日期格式','eemmdd','42',NULL)
+insert into TBPARA values('ITNOCODE','簽証編號中前置代號','N','43',NULL)
+insert into TBPARA values('ITNOCODELEN','簽証編號長度','3','44',NULL)
+insert into TBPARA values('TRSAUTO','傳票編號是否為自動編號','Y','45','')
+insert into TBPARA values('TRSCODEDATE','傳票編號前置日期格式','eemmdd','46',NULL)
+insert into TBPARA values('TRSECODE','傳票編號轉帳中前置代號','E','47',NULL)
+insert into TBPARA values('TRSFCODE','傳票編號現轉中前置代號','F','48',NULL)
+insert into TBPARA values('TRSCCODE','傳票編號收入中前置代號','C','49',NULL)
+insert into TBPARA values('TRSDCODE','傳票編號支出中前置代號','D','4A',NULL)
+insert into TBPARA values('TRSCODELEN','傳票編號長度','3','4B',NULL)
+insert into TBPARA values('TRSNOTCODE','傳票編號是否不加前置元','Y','4B',NULL)
+insert into TBPARA values('TRSSERAUTO','傳票總號是否為自動編號','Y','4C','簽証資料維護中的簽証單號是否採用自動編號')
+insert into TBPARA values('TRSSERCODEDATE','傳票總號前置日期格式','ee','4D',NULL)
+insert into TBPARA values('TRSSERECODE','傳票總號轉帳中前置代號','轉','4E',NULL)
+insert into TBPARA values('TRSSERFCODE','傳票總號現轉中前置代號','現','4F',NULL)
+insert into TBPARA values('TRSSERCCODE','傳票總號收入中前置代號','收','4G',NULL)
+insert into TBPARA values('TRSSERDCODE','傳票總號支出中前置代號','支','4H',NULL)
+insert into TBPARA values('TRSSERCODELEN','傳票總號編號長度','3','4I',NULL)
+insert into TBPARA values('TRSSERNOTCODE','傳票總號不加前置元','N','4J',NULL)
+
+insert into TBPARA values('OUTAUTO','支出編號是否為自動編號','Y','4K','支出資料維護中的支出單號是否採用自動編號')
+insert into TBPARA values('OUTCODEDATE','支出編號前置日期格式','eemmdd','4L',NULL)
+insert into TBPARA values('OUTCODE','支出編號中前置代號','O','4M',NULL)
+insert into TBPARA values('OUTCODELEN','支出編號長度','3','4O',NULL)
+insert into TBPARA values('OUTNOTCODE','支出編號不加前置元','N','4N',NULL)
+
+insert into TBPARA values('INAUTO','收入編號是否為自動編號','Y','4P','收入資料維護中的收入單號是否採用自動編號')
+insert into TBPARA values('INCODEDATE','收入編號前置日期格式','eemmdd','4Q',NULL)
+insert into TBPARA values('INCODE','收入編號中前置代號','O','4R',NULL)
+insert into TBPARA values('INCODELEN','收入編號長度','3','4S',NULL)
+insert into TBPARA values('INNOTCODE','收入編號不加前置元','N','4T',NULL)
+insert into TBPARA values('OUTNOTENOAUTO','支出票據是否自動編號','N','4U',NULL)
+insert into TBPARA values('GROUPINTOACC','轉入會計時是否群組轉入','N','4V',NULL)
+insert into TBPARA values('VOUCHERCOMBO','一進入傳票的顯示方式','3','4W','0-本月，1-本日，2-前二月，3-本學年度')
+
+
+insert into TBPARA values('AbortFun','----------------------------------------','------------------------------','50','-------------------------------------------------------------------')
+insert into TBPARA values('TRSOVER','是否採用過帳','Y','51',null)
+insert into TBPARA values('VITVOUCHER','是否採用萬能傳票','Y','52',null)
+insert into TBPARA values('ITBUDCONTROL','簽証是否控制預算','Y','54',null)
+insert into TBPARA values('TRSBUDCONTROL','傳票是否控制預算','Y','55',null)
+insert into TBPARA values('TRSITCONTROL','傳票是否控制簽証','Y','56',null)
+insert into TBPARA values('TBOUTSHOWBANK','支出是否SHOW出原存金額','Y','57',null)
+insert into TBPARA values('CKTRSDATE','是否控制傳票日期不能小於傳票最近日','Y','58',null)
+insert into TBPARA values('WASHREM','沖帳時摘要顯示欄位格式','1','59',null)
+insert into TBPARA values('TRSBUS','是否從電子表單轉入廠商資料','N','5A',null)
+insert into TBPARA values('TRANASS','是否將傳票編號回寫至財產','0','5B','0-不回寫,1-寫回傳票編號,2-寫回傳票總號')
+insert into TBPARA values('BuildITCredit','轉入表單時是否自動建立傳票貸方','N','5C',null)
+insert into TBPARA values('BuildITCreditSubno','轉入表單時貸方預設會計科目','2123','5D',null)
+insert into TBPARA values('BuildITCreditBus','轉入表單時貸方是否帶入廠商','Y','5E',null)
+insert into TBPARA values('ITREM','轉表單時摘要顯示欄位格式','REMARK','5F',null)
+insert into TBPARA values('DELITSTATUS','刪除有簽証的表單時，表單的狀態','0','5G',null)
+insert into TBPARA values('BUDTRANMOVE','預算使用流用的方式','0','5H',null)
+insert into TBPARA values('WASHDEL','立沖帳是否可以刪除','N','5I',null)
+insert into TBPARA values('TRSINOUTMU','收入支出傳票是否可多筆輸入','N','5J',null)
+insert into TBPARA values('BUDFORWARD','預算結轉方式','0','5K','0-扣轉票金額不扣請購,1-扣傳票金額+扣請購金額')
+insert into TBPARA values('TBTRSACTORDER','傳票明細排序設定','0','5L','0-排序不依會計科目,1-排序依會計科目')
+insert into TBPARA values('TBTRSACTROUND','傳票四捨五入設定','0','5m','0-不四捨五入,1-四捨五入')
+insert into TBPARA values('BUDNOLEN','預算編號長度','2','5n','長度')
+insert into TBPARA values('TRANASSNO','是否將財產回寫至會計ASSNO','0','5P','0-不回寫,1-回寫')
+insert into TBPARA values('BUSTOTRS','是否修改廠商名稱時帶入傳票摘要','0','5Q','0-不回寫,1-回寫')
+insert into TBPARA values('BUDMONEYCHANGE','預算申請作業時修正單位數位影響欄位','0','5R','0-改變預算金額,1-改變預算及核定,2-改變預算核定及申請')
+insert into TBPARA values('PLANBUDSHOW','是否在預算申請作業顯餘額','1','5S','0-不顯示,1-顯示')
+insert into TBPARA values('CANEXPOERKEY','是否在銀行匯款磁片製作中輸入資料','0','5T','0-不輸入,1-輸入')
+insert into TBPARA values('TRANITGETBUDDEP','傳票轉表單時抓取的部門方式','0','5U','0-請購部門,1-預算部門')
+insert into TBPARA values('GROUPKEYBUSACC','限制群組不能變更廠商銀行資料','','5V','空白表示不設定')
+insert into TBPARA values('TRANITFORMKIND','傳票轉表單的預設表單類別','1','5W','1.請購,2.報損,3.修繕,4.動支')
+insert into TBPARA values('BuildITHICredit','傳票轉表單帶入二代健保','','5X','未輸入代表不轉入-請輸入二代健保會計科目')
+insert into TBPARA values('BuildITHICredit1','傳票轉表單帶入二代健保雇主負擔','','5Y','未輸入代表不轉入-請輸入二代健保雇主負擔會計科目')
+insert into TBPARA values('TRSBUDCONTFORM','傳票有預算時一定要有請購單單號','N','5Z','Y-一定要有簽証號碼，N-不控制')
+
+insert into TBPARA values('AbortInOut','----------------------------------------','------------------------------',60,'-------------------------------------------------------------------')
+insert into TBPARA values('SHOWPRICE','是否在輸入收入時要SHOW出單價數量','N','61',NULL)
+insert into TBPARA values('INDEFBANK','收入預設帳號','','62',NULL)
+insert into TBPARA values('OUTDEFBANK1','開票支出預設帳號','','63',NULL)
+insert into TBPARA values('OUTDEFBANK2','銀行支出預設帳號','','64',NULL)
+insert into TBPARA values('CHECKSUBNO','限制開票支出轉傳票會計科目','','65',NULL)
+insert into TBPARA values('CHINDATE','是否可修改收入日期','Y','66',NULL)
+insert into TBPARA values('INNOTESUBNO','應收票據轉入傳票時科目','1141','67',NULL)
+insert into TBPARA values('FEEMONEY','預設手續費','30','68',NULL)
+insert into TBPARA values('AUTOPLACEDATE','自動帶出兌現日','Y','69',NULL)
+insert into TBPARA values('NOTEDEFSUBNO','票據預設科目','2121','6A',NULL)
+insert into TBPARA values('BANKOUTBUS','是否在銀行支出控制廠商銀行資料','N','6B',NULL)
+insert into TBPARA values('CASHANLAGE','是否採用現金基礎制','N','6C',NULL)
+insert into TBPARA values('CHOUTDATE','是否可修改支出日期','Y','6D',NULL)
+insert into TBPARA values('USEPICKUP','是否使用小額收費轉入會計','N','6E',NULL)
+insert into TBPARA values('DAYEXPORT','銀行支出轉磁片是否以日期區分','Y','6F',NULL)
+insert into TBPARA values('BANKFEE','手續費計算規則','0','6G','0-一般,1-朝陽')
+insert into TBPARA values('OUTTRANREMIT','支出選出匯款磁片方式','0','6H','0-一般,1-朝陽')
+insert into TBPARA values('CONINTRAN','是否控制收入移送會計後不能更改','N','6I','是否控制收入移送會計後不能更改')
+insert into TBPARA values('CHECKACC','是否檢查帳戶餘額是否為負','N','6J','是否檢查帳戶餘額是否為負')
+insert into TBPARA values('BACKTRSMONEY','已開票不列帳之支票是否歸還金額','N','6K','CSA流程專用')
+
+insert into TBPARA values('AbortBUD','----------------------------------------','------------------------------','70','-------------------------------------------------------------------')
+insert into TBPARA values('USEPRJBUD','是否採用專案預算控制','N','71',NULL)
+insert into TBPARA values('ITFORMNOTCON','簽証是否控制預算代號為必填','N','72',NULL)
+insert into TBPARA values('USEPDDATEBUD','是否採用計劃執行區間控制預算','N','73',NULL)
+
+
+/* 940327 更新tbno 正常如崑山*/
+drop procedure usp_upd_tbno
+CREATE procedure usp_upd_tbno
+  @FORMIDLEN smallint,
+  @FORMIDCODE varchar(10),
+  @FORMIDCODELEN smallint,
+
+  @TRSLEN smallint,
+  @TRSCODELEN smallint,
+
+  @TRSSERLEN smallint,
+  @TRSSERCODELEN smallint,
+
+  @OUTNOLEN smallint,
+  @OUTNOCODE varchar(10),
+  @OUTNOCODELEN smallint,
+
+  @INNOLEN smallint,
+  @INNOCODE varchar(10),
+  @INNOCODELEN smallint
+as
+delete from tbno 
+
+INSERT INTO TBNO
+select substring(FORMID,1,@FORMIDLEN),@FORMIDCODE,CAST(substring(MAX(FORMID),@FORMIDLEN+1,@FORMIDCODELEN) as int )+1 as num
+from ITFORM
+group by substring(FORMID,1,@FORMIDLEN)
+
+INSERT INTO TBNO
+select substring(OUTNO,1,@OUTNOLEN),@OUTNOCODE,CAST(substring(MAX(OUTNO),@OUTNOLEN+1,@OUTNOCODELEN) as int )+1 as num
+from TBOUT
+group by substring(OUTNO,1,@OUTNOLEN)
+
+INSERT INTO TBNO
+select substring(INNO,1,@INNOLEN),@INNOCODE,CAST(substring(MAX(INNO),@INNOLEN+1,@INNOCODELEN) as int )+1 as num
+from TBIN
+group by substring(INNO,1,@INNOLEN)
+
+INSERT INTO TBNO
+select substring(TRSNO,1,@TRSLEN),TRSKIND,CAST(substring(MAX(TRSNO),@TRSLEN+1,@TRSCODELEN) as int )+1 as num from TBTRS
+group by substring(TRSNO,1,@TRSLEN),TRSKIND
+
+INSERT INTO TBNO
+select substring(TRSSERNO,1,@TRSSERLEN),TRSKIND,CAST(substring(MAX(TRSSERNO),@TRSSERLEN+1,@TRSSERCODELEN) as int )+1 as num from TBTRS where TRSSERNO is not null
+group by substring(TRSSERNO,1,@TRSSERLEN),TRSKIND
+
+INSERT INTO TBNO
+select substring(ASSNO,1,7),'A',CAST(substring(MAX(ASSNO),8,3) as int )+1 as num from TBTRSASS
+group by substring(ASSNO,1,7)
+
+GO
+
+/* 940327 更新tbno 長榮*/
+drop procedure usp_upd_tbno
+CREATE procedure usp_upd_tbno
+  @FORMIDLEN smallint,
+  @FORMIDCODE varchar(10),
+  @FORMIDCODELEN smallint,
+
+  @TRSLEN smallint,
+  @TRSCODELEN smallint,
+
+  @TRSSERLEN smallint,
+  @TRSSERCODELEN smallint,
+
+  @OUTNOLEN smallint,
+  @OUTNOCODE varchar(10),
+  @OUTNOCODELEN smallint,
+
+  @INNOLEN smallint,
+  @INNOCODE varchar(10),
+  @INNOCODELEN smallint
+as
+delete from tbno 
+
+INSERT INTO TBNO
+select substring(FORMID,1,@FORMIDLEN),@FORMIDCODE,CAST(substring(MAX(FORMID),@FORMIDLEN+1,@FORMIDCODELEN) as int )+1 as num
+from ITFORM
+group by substring(FORMID,1,@FORMIDLEN)
+
+INSERT INTO TBNO
+select substring(OUTNO,1,@OUTNOLEN),@OUTNOCODE,CAST(substring(MAX(OUTNO),@OUTNOLEN+1,@OUTNOCODELEN) as int )+1 as num
+from TBOUT
+group by substring(OUTNO,1,@OUTNOLEN)
+
+INSERT INTO TBNO
+select substring(INNO,1,@INNOLEN),@INNOCODE,CAST(substring(MAX(INNO),@INNOLEN+1,@INNOCODELEN) as int )+1 as num
+from TBIN
+group by substring(INNO,1,@INNOLEN)
+
+INSERT INTO TBNO
+select substring(TRSNO,1,4),'V',CAST(substring(MAX(TRSNO),5,4) as int )+1 as num from TBTRS
+group by substring(TRSNO,1,4)
+
+INSERT INTO TBNO
+select substring(TRSSERNO,1,4),TRSKIND,CAST(substring(MAX(TRSSERNO),5,4) as int )+1 as num from TBTRS where TRSSERNO is not null
+group by substring(TRSSERNO,1,4),TRSKIND
+
+GO
+
+
+
+alter table TBNO drop constraint PK_TBNO
+
+alter table TBNO alter column KIND nvarchar(4) not null
+
+alter table TBNO add constraint PK_TBNO primary key (TYPE,KIND)
+
+/* 940327 更新 getno */
+drop procedure usp_get_no
+create procedure usp_get_no
+	@type varchar(7),
+	@kind varchar(4) ,
+	@no smallint output
+as
+  if not exists(select NO from TBNO where TYPE = @type and KIND = @kind)
+    insert TBNO(TYPE, KIND) values(@type, @kind)
+  select @no = NO from TBNO where TYPE = @type and KIND = @kind
+  update TBNO set NO = NO + 1 where TYPE = @type and KIND = @kind
+
+GO
+
+
+
+
+
+/* 940322增加TBDEP ISBOTTOM欄位*/
+alter table TBDEP add ISBOTTOM  bit  null
+alter table TBDEP add ISSHARE  bit  null
+
+/* 940322增加TBPLAN ISBOTTOM欄位*/
+alter table TBPLAN add ISBOTTOM  bit  null
+
+/* 940322增加TBBUDDET BUDGETNO BUDGETNAME CODE欄位*/
+alter table TBBUDDET add BUDGETNO  nvarchar(10) DEFAULT '' not null
+
+Update TBBUDDET
+set BUDGETNO=DEP
+
+alter table TBBUDDET drop constraint PK_TBBUDDET
+
+alter table dbo.TBBUDDET add constraint PK_TBBUDDET primary key (YEARS,SUBNO,BUDGETNO)
+
+alter table TBBUDDET drop constraint FK_TBBUDDET_TBBUD 
+
+
+
+/* 注意各單位部門長度
+Update TBBUDDET
+set DEP=SUBSTRING(BUDGETNO,1,3)
+
+更新TBTRSACT DEP的欄位
+
+Update TBTRSACT
+set BUDGETNO=DEP
+
+Update TBTRSACT
+set DEP=SUBSTRING(BUDGETNO,1,3)
+*/
+
+/* 940322增加TBTRSACT TRSDATE欄位*/
+alter table TBTRSACT add TRSDATE  days
+
+Update TBTRSACT
+set TRSDATE=(select TRSDATE from TBTRS where TBTRS.TRSNO=TBTRSACT.TRSNO)
+
+/* 940326 整理預算checkBudget的預存程序*/
+drop procedure usp_check_budget
+
+create procedure usp_check_budget
+  @years smallint,
+  @bDate DateTime,
+  @eDate DateTime
+as
+
+update TBBUDDET
+set PAYTOTN= (select ISNULL(SUM(DEBIT),0)-ISNULL(SUM(CREDIT),0) from TBTRSACT where TRSDATE>=@bDate and TRSDATE <= @eDate and TBTRSACT.BUDGETNO=TBBUDDET.BUDGETNO)
+where YEARS=@years
+
+update TBBUDDET
+set NOTETOT= (select SUM(MONEY) from ITFORM_DETIAL where years=@years and ITFORM_DETIAL.BUDGETNO=TBBUDDET.BUDGETNO and DOC_ID  not in (select DISTINCT(NOTENO)   from TBTRSACT where TRSDATE >=@bDate and TRSDATE <=@eDate and NOTENO is not NULL))
+where YEARS=@years
+
+update ITFORM_DETIAL
+set TRSNO=null
+where YEARS=@years
+
+update ITFORM_DETIAL
+set TRSNO= (select Top 1 TRSNO   from TBTRSACT where TRSDATE>=@bDate and TRSDATE <= @eDate and  TBTRSACT.NOTENO=ITFORM_DETIAL.DOC_ID),
+MONEYOFF=(select ISNULL(SUM(DEBIT),0)+ISNULL(SUM(CREDIT),0)   from TBTRSACT where  TRSDATE>=@bDate and TRSDATE <= @eDate and TBTRSACT.NOTENO=ITFORM_DETIAL.DOC_ID)
+where YEARS=@years
+
+GO
+
+/* 940326重新建立ITFORM的KEY*/
+alter table ITFORM drop constraint PK_ITFORM
+
+alter table ITFORM alter column FORMID nvarchar(20)  not null
+
+alter table dbo.ITFORM add constraint PK_ITFORM primary key (FORMID)
+
+/* select formid from ITFORM group by formid having count(formid) >1*/
+
+
+/* 940327增加TBTRSACT BUS欄位 並將FLAG2 COPY 至BUS欄位*/
+alter table TBTRSACT add FLAG3  nvarchar(20)  null
+alter table TBTRSACT add NOTENUM  nvarchar(20)  null
+
+alter table TBTRSACT add WASHSERIAL int  null
+
+Update TBTRSACT
+set DEBIT=null
+where DEBIT=0
+
+Update TBTRSACT
+set CREDIT=null
+where CREDIT=0
+
+
+Update TBTRSACT
+set WASHSERIAL=WASHNO
+where WASHNO <>'立'  and WASHNO is not null
+
+Update TBTRSACT
+set WASHSERIAL=null
+where WASHSERIAL =0
+
+/* 931004增加沖帳檔*/
+
+drop table dbo.TBWASH
+create table dbo.TBWASH (
+  [TRAN] bit null,
+  TRSNO varchar(12)  not null ,
+  TRSSERIAL int  not null ,
+  TRSSERNO varchar(12)  null,
+  TRSKIND char(1) not null,
+  TRSDATE days  not null ,
+  SUBNO varchar(14) not null ,
+  REMARK varchar(255) null ,
+  DEBIT dollar  null,
+  CREDIT dollar  null, 
+  FDEBIT dollar  null,
+  FCREDIT dollar  null,
+  MEMO varchar(255) null ,
+ 
+)
+go
+
+alter table dbo.TBWASH add constraint PK_TBWASH primary key (TRSNO,TRSSERIAL);
+go
+
+INSERT INTO TBWASH (TRSKIND,TRSDATE,TRSNO,TRSSERIAL,SUBNO,REMARK,DEBIT,CREDIT,TRSSERNO)
+select a.TRSKIND,a.TRSDATE,a.TRSNO,a.SERIAL,a.SUBNO,a.REMARK,a.DEBIT,a.CREDIT,b.TRSSERNO
+from TBTRSACT a,TBTRS b
+where a.WASHNO='立' and a.TRSNO=b.TRSNO
+
+Update TBWASH
+set FCREDIT = (select sum(CREDIT) from TBTRSACT where TBWASH.trsserial=TBTRSACT.washserial),
+FDEBIT=(select sum(DEBIT) from TBTRSACT where TBWASH.trsserial=TBTRSACT.washserial)
+
+
+/* 940331增加電子表單的長度*/
+
+alter table ITSCHOOLDEP alter column PD_NAME nvarchar(100) null
+alter table ITSCHOOLDEP alter column PD_BENEFIT nvarchar(500) null
+alter table ITSCHOOLDEP alter column PD_CONTENTS nvarchar(500) null
+alter table ITSCHOOLDEPBUDGET alter column DB_GOODSNAME nvarchar(255) null
+alter table ITSCHOOLDEPBUDGET alter column DB_STANDARDS nvarchar(500) null
+alter table ITSCHOOLDEPBUDGET alter column DB_CONTEINTS nvarchar(500) null
+
+/* 出納相關*/
+
+
+/* 940413增加出納相關欄位 欄位*/
+alter table TBACC add ISINOUT  bit  null
+alter table TBTRSACT add ISINOUT  bit  null
+
+alter table TBTRSACT add OUTNO  varchar(10) null
+alter table TBTRSACT add OUTSERIAL  int  null
+alter table TBTRSACT add INNO  varchar(10)  null
+alter table TBTRSACT add INSERIAL  int  null
+alter table TBTRSACT add BUSNAME  varchar(50) null
+
+Update TBTRSACT
+set BUSNAME=(select NAME  from TBBUS where TBBUS.CODE=TBTRSACT.FLAG2)
+
+/* 930520增加TBINOUT,移送出納支出清單*/
+
+drop table dbo.TBOUTWASH
+create table dbo.TBOUTWASH (
+                  /*轉入 */
+                   TRANS bit null,
+                  /*自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*傳票移出日期*/
+	DATE days not  null ,
+	/*傳票編號 */
+	TRSNO varchar(12) not  null, 
+	/*傳票明細編號 */
+	TRSSERIAL int not  null, 
+	/*傳票日期 */
+	TRSDATE days not  null ,
+	/*會計科目 */
+	SUBNO varchar(12) not  null, 
+	/*沖帳 */
+	WASHNO varchar(20)  null, 
+	/*金額 */
+	MONEY dollar null default 0,
+	/*已轉金額 */
+	FMONEY dollar null default 0,
+	/*餘額*/
+	TMONEY dollar null default 0,
+	/*廠商編號*/
+	BUSNO varchar(10)  null,
+	/*廠商名稱*/
+	BUSNAME varchar(50)  null,
+	/*傳票摘要*/
+	REMARK varchar(160)  null
+)
+go
+
+alter table dbo.TBOUTWASH add constraint PK_TBOUTWASH primary key ( SERIAL);
+go
+
+
+
+/* 930621增加TBOUT,支出登錄*/
+
+drop table dbo.TBOUT
+create table dbo.TBOUT (
+	/*狀態 */
+	STATUS varchar(10)  null,
+	/*支出編號 */
+	OUTNO varchar(10) not null ,
+	/*支出日期 */
+	OUTDATE days not  null ,
+	/* 支出類別 */
+	OUTKIND varchar(10) not  null ,
+	/*支出總金額金額 */
+	SUMMONEY dollar null default 0,
+	/*帳戶代號 */
+	BANKNO varchar(10)  null,
+	/*會計科目 */
+	SUBNO varchar(14)  null,  
+	/*付款對象 */
+	BUSNO varchar(10)  null,
+	/*廠商名稱*/
+	BUSNAME varchar(50)  null,
+	/*票據號碼 */
+	NOTENO varchar(17)  null ,
+	/*開期日 */
+	OPENDATE days null ,
+	/*到期日 */
+	DUYDATE days null ,
+	/*兌現日*/
+	PLACEDATE days null ,
+	/*領票日*/
+	RECEIVEDATE days null ,
+	/*摘要*/
+	REMARK varchar(255)  null ,
+	/*備註*/
+	MEMO varchar(255)  null 
+)
+
+go
+
+alter table dbo.TBOUT add constraint PK_TBOUT primary key ( OUTNO);
+go
+
+
+
+drop table dbo.TBOUTDETAIL
+create table dbo.TBOUTDETAIL (
+                  /*支出自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*支出編號 */
+	OUTNO varchar(10) not null ,
+	/* 支出類別 */
+	OUTKIND varchar(10) not  null ,
+	/*收入金額 */
+	MONEY dollar null default 0,
+	/*付款對象 */
+	BUSNO varchar(10)  null,
+	/*廠商名稱*/
+	BUSNAME varchar(50)  null,
+	/*摘要*/
+	REMARK varchar(255)  null ,
+	/*備註*/
+	MEMO varchar(255)  null ,
+	/*轉出*/
+	TRANS bit  null ,
+	/*轉出日期*/
+	TRANSDATE days  null ,
+
+                  /*移入傳票編號*/
+                  TRSNO varchar(12)  null,
+	/*移入立帳編號*/
+	WASHNO varchar(20)  null,
+	/*移入傳票序號*/
+	TRSSERIAL  int null,
+
+                  /*轉出傳票編號*/
+                  TRANTRSNO varchar(12)  null,
+
+                  /*票據移入傳票編號*/
+                  NOTETRSNO varchar(12)  null,
+	/*票據移入立帳編號*/
+	NOTEWASHNO varchar(20)  null,
+	/*票據移入傳票序號*/
+	NOTETRSSERIAL  int null,
+
+                  /*票據兌現傳票編號*/
+                  NOTETRANTRSNO varchar(12)  null
+
+
+)
+go
+
+alter table dbo.TBOUTDETAIL add constraint PK_TBOUTDETAIL primary key ( SERIAL);
+go
+
+drop table dbo.TBIN
+create table dbo.TBIN (
+	/*狀態 */
+	STATUS varchar(10)  null,
+	/*收入編號 */
+	INNO varchar(10) not null ,
+	/*領據編號 */
+	RECNO varchar(10) null ,
+	/*收入日期 */
+	INDATE days not  null ,
+	/* 收入類別 */
+	INKIND varchar(10) not  null ,
+	/*收入金額 */
+	MONEY dollar null default 0,
+	/*收款對象 */
+	BUSNO varchar(10)  null,
+	/*收款名稱*/
+	BUSNAME varchar(50)  null,
+	/*摘要*/
+	REMARK varchar(255)  null ,
+	/*備註*/
+	MEMO varchar(255)  null ,
+
+	/*帳戶代號 */
+	BANKNO varchar(10)  null,
+	/*會計科目 */
+	SUBNO varchar(14)  null,  
+	/*票據號碼 */
+	NOTENO varchar(17)  null ,
+	/*到期日 */
+	DUYDATE days null ,
+	/*兌現日*/
+	PLACEDATE days null ,
+
+	/*轉出*/
+	TRANS bit  null ,
+	/*轉出日期*/
+	TRANSDATE days  null ,
+
+                  /*轉出傳票編號*/
+                  TRANTRSNO varchar(12)  null,
+
+                  /*票據移入傳票編號*/
+                  NOTETRSNO varchar(12)  null,
+	/*票據移入立帳編號*/
+	NOTEWASHNO varchar(20)  null,
+	/*票據移入傳票序號*/
+	NOTETRSSERIAL  int null,
+
+                  /*票據兌現傳票編號*/
+                  NOTETRANTRSNO varchar(12)  null
+
+
+)
+go
+
+alter table dbo.TBIN add constraint PK_TBIN primary key ( INNO);
+go
+
+/*5/2*/
+
+drop table dbo.TBINDETAIL
+create table dbo.TBINDETAIL (
+                  /*收入自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*收入編號 */
+	INNO varchar(10) not null ,
+	/*收入金額 */
+	MONEY dollar null default 0,
+	/*摘要*/
+	REMARK varchar(255)  null ,
+	/*備註*/
+	MEMO varchar(255)  null ,
+
+	/*轉出*/
+	TRANS bit  null ,
+	/*轉出日期*/
+	TRANSDATE days  null ,
+
+                  /*轉出傳票編號*/
+                  TRANTRSNO varchar(12)  null,
+
+                  /*票據移入傳票編號*/
+                  NOTETRSNO varchar(12)  null,
+	/*票據移入立帳編號*/
+	NOTEWASHNO varchar(20)  null,
+	/*票據移入傳票序號*/
+	NOTETRSSERIAL  int null,
+
+                  /*票據兌現傳票編號*/
+                  NOTETRANTRSNO varchar(12)  null
+
+
+)
+go
+
+alter table dbo.TBINDETAIL add constraint PK_TBINDETAIL primary key (SERIAL);
+go
+
+drop table dbo.TBINOUTMARK
+create table dbo.TBINOUTMARK (
+                  /*摘要自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*收入編號 */
+	REMARK nvarchar(200)  null 
+
+)
+go
+
+alter table dbo.TBINOUTMARK add constraint PK_TBINOUTMARK primary key (SERIAL);
+go
+
+/*5/3 改善匯出無法匯出*/
+drop procedure dbo.usp_upd_tbwash
+
+drop procedure dbo.usp_year_finish
+CREATE procedure dbo.usp_year_finish
+	@years smallint,
+	@bdate datetime,
+	@edate datetime,
+	@subno varchar(14),
+	@addsubno varchar(14)
+as
+declare
+  @money dollar
+
+  delete from  TBACC  
+  where YEARS = @years+1
+
+  insert into TBACC  
+  select @years + 1, SUBNO, SUBJECT, DEBIT, LEVEL,ISDEP,ISWASH,ISBOTTOM,ISNOTE,NSUBNO,ISINOUT from TBACC where YEARS = @years
+  select @years = @years + 1
+  
+  update TBACC set TBACC.DEBIT = TBACC.DEBIT + 
+  (select IsNull(sum(TBTRSACT.DEBIT), 0) - IsNull(sum(TBTRSACT.CREDIT), 0)
+    from TBTRS, TBTRSACT
+   where TBTRS.TRSDATE >= @bdate and TBTRS.TRSDATE <= @edate and 
+         TBTRS.TRSNO = TBTRSACT.TRSNO and TBACC.SUBNO = TBTRSACT.SUBNO)
+   from TBACC, TBTRSACT
+  where TBACC.YEARS = @years and TBACC.SUBNO < '4' and TBACC.SUBNO <> @addsubno 
+  select @money = (select IsNull(sum(b.DEBIT), 0) - IsNull(sum(b.CREDIT), 0) from TBTRS a, TBTRSACT b
+          where a.TRSDATE >= @bdate and a.TRSDATE <= @edate and 
+                a.TRSNO = b.TRSNO and b.SUBNO >= '4')
+  update TBACC set DEBIT = DEBIT + @money         
+   where YEARS = @years and SUBNO = @addsubno
+  update TBACC set DEBIT = @money         
+   where YEARS = @years and SUBNO = @subno
+
+
+
+GO
+
+
+/* 940505增加ITFORM_DETAIL MONEYBAL 簽証餘額欄位*/
+alter table ITFORM_DETIAL add MONEYBAL  dollar null
+
+Update ITFORM_DETIAL
+set MONEYBAL=MONEY-MONEYOFF
+
+alter table TBMARK drop constraint PK_TBMARK
+alter table TBMARK alter column MARKNO nvarchar(20) not null
+alter table TBMARK alter column MARK nvarchar(255) null
+alter table dbo.TBMARK add constraint PK_TBMARK primary key (MARKNO)
+
+
+
+/* 940511增加TBDEP 區分行政教學*/
+ alter table TBDEP add ISGOV  bit  null
+ alter table TBDEP add ISTUI  bit  null
+
+
+alter table TBDEP alter column UNIT nvarchar(255) null
+alter table TBBUDDET alter column REMARK nvarchar(255) null
+
+alter table TBBUDDET alter column REMARK nvarchar(255) null
+
+/* 940511增加ITSTATUS 顯示*/
+/* 940326 整理預算checkBudget的預存程序*/
+drop procedure usp_check_itstatus
+
+create procedure usp_check_itstatus
+  @years smallint
+as
+
+update ITFORM
+set STATUS='9'
+where formid in (select formno from tbtrsact) and YEARS=@years 
+
+update ITFORM
+set STATUS='0'
+where ISNULL(formid,'') not in (select ISNULL(formno,'') from tbtrsact) and YEARS=@years
+
+GO
+
+drop procedure usp_Change_trsno
+
+CREATE procedure usp_Change_trsno
+ @btrsno varchar(14),
+ @etrsno varchar(14),
+ @bDate days,
+ @eDate days,
+ @status int output
+as
+declare
+  @calcB int,
+  @calcE int
+   select @calcB = IsNull(count(*), 0) from TBTRS where  TRSNO = @btrsno
+   select @calcE = IsNull(count(*), 0) from TBTRS where  TRSNO = @Etrsno
+  set  @status = 0
+  if @calcB >0 and @calcE = 0 
+  begin
+     update TBTRS set TRSNO =@Etrsno,TrsDate=@EDate  where TRSNO= @Btrsno
+     update TBTRSACT set TRSNO =@Etrsno,TRSDATE=@EDate  where TRSNO= @Btrsno
+     set  @status = 3
+  end
+  else
+  begin
+  if @calcB = 0
+   set  @status =1
+  if @calcE >0
+   set  @status = 2
+  end
+
+GO
+
+/* 940524增加TBBUS  簽証餘額欄位*/
+alter table TBBUS add BANK  nvarchar(50) null
+alter table TBBUS add BANKNAME  nvarchar(100) null
+alter table TBBUS add EMAIL  nvarchar(100) null
+alter table TBBUS add FAX  nvarchar(20) null
+
+/* 940527增加ITFORM  簽証附件*/
+alter table ITFORM add FILE_NAME  nvarchar(255) null
+alter table ITFORM add FILE_TYPE  nvarchar(255) null
+alter table ITFORM add FILE_SIZE  int null
+alter table ITFORM add FILE_DATA  text null
+
+/* 940604增加TBTRSASS  總價*/
+alter table TBTRSASS add MONEY  dollar null
+alter table TBTRSASS add REMARK  nvarchar(255) null
+
+/* TBINDETAIL 單價,數量 總價*/
+alter table TBINDETAIL add QTY  dollar null
+alter table TBINDETAIL add PRICE  dollar null
+
+alter table TBTRSASS alter column CODE nvarchar(20) null
+
+/* TBDEP 匯出*/
+alter table TBDEP drop constraint PK_TBDEP
+alter table TBDEP alter column DEP nvarchar(20) not null
+alter table dbo.TBDEP add constraint PK_TBDEP primary key (YEARS,DEP)
+
+
+alter table TBBUDDET drop constraint PK_TBBUDDET
+alter table TBBUDDET alter column BUDGETNO nvarchar(20) not null
+alter table dbo.TBBUDDET add constraint PK_TBBUDDET primary key (YEARS,SUBNO,BUDGETNO)
+
+
+drop procedure  usp_bud_move
+
+CREATE procedure usp_bud_move
+	@years smallint,
+	@movedate datetime,
+	@ssubno varchar(14),
+	@sbudgetno varchar(10),
+	@dsubno varchar(14),
+	@dbudgetno varchar(14),
+                   @moveuser varchar(10),
+	@movemoney dollar,
+                   @status int output
+as
+declare
+  @smoney1 dollar,
+  @smoney2 dollar,
+  @dmoney1 dollar,
+  @dmoney2 dollar
+
+  select @smoney1=IsNull(DB_MONEY,0) from ITSCHOOLDEPBUDGET where YEARS=@years and DB_SUBNO=@ssubno and DB_ID=@sbudgetno
+  select @dmoney1=IsNull(DB_MONEY, 0) from ITSCHOOLDEPBUDGET where YEARS=@years and DB_SUBNO=@dsubno and DB_ID=@dbudgetno
+
+  select @smoney2 = IsNull(@smoney1, 0) - @movemoney
+  select @dmoney2 = IsNull(@dmoney1, 0)+ @movemoney
+
+  set  @status = 0
+
+  if @smoney2 >=0 and @smoney1 >0
+  begin
+
+    update ITSCHOOLDEPBUDGET  set DB_MONEY=@smoney2 where YEARS=@years and DB_SUBNO=@ssubno and DB_ID=@sbudgetno
+    update ITSCHOOLDEPBUDGET  set DB_MONEY=@dmoney2 where YEARS=@years and DB_SUBNO=@dsubno and DB_ID=@dbudgetno
+
+    insert into TBBUDMOVE(YEARS,MOVEDATE,MOVEUSER,SSUBNO,SBUDGETNO,SMONEY1,SMONEY2,DSUBNO,DBUDGETNO,DMONEY1,DMONEY2,MOVEMONEY)
+    values (@years,@movedate,@moveuser,@ssubno,@sbudgetno,@smoney1,@smoney2,@dsubno,@dbudgetno,@dmoney1,@dmoney2,@movemoney)  
+
+     set  @status = 3
+  end
+  else
+  begin
+     set  @status = 2
+  end
+
+
+
+GO
+
+/*應因預算專案需求*/
+/* ITSCHOOLDEP 單價,數量 總價*/
+alter table ITSCHOOLDEP add PD_PRJID  nvarchar(50) null
+alter table ITSCHOOLDEP add PD_KIND   nvarchar(20) null
+alter table ITSCHOOLDEP add PD_DATE  datetime null
+alter table ITSCHOOLDEP add APPRDEP   nvarchar(20) null
+alter table ITSCHOOLDEP add TEANAME   nvarchar(20) null
+alter table ITSCHOOLDEP add APPR  nvarchar(50) null
+alter table ITSCHOOLDEP add TEAID   nvarchar(20) null
+
+alter table ITSCHOOLDEPBUDGET add DB_SOURCE   nvarchar(20) null
+alter table ITSCHOOLDEPBUDGET add DB_POSTMONEY   dollar null
+alter table ITSCHOOLDEPBUDGET add DB_APPRMONEY   dollar null
+
+alter table ITFORM_DETIAL alter column FIELD01 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD02 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD03 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD04 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD05 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD06 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD07 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD08 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD09 nvarchar(100) null
+alter table ITFORM_DETIAL alter column FIELD10 nvarchar(100) null
+
+
+
+/*94/06/28出納整批匯款*/
+/* TBBANK,TBBUS,TBBANKEXPORT*/
+
+alter table TBBANK add ACCOUNTNO  nvarchar(7) null
+alter table TBBUS add ACCOUNTNAME  nvarchar(100) null
+
+drop table dbo.TBEXPORT
+create table dbo.TBEXPORT (
+                  /*匯出自動編號 */
+                   AUTONO int identity (1, 1) not null ,
+	/*轉入支出起始日期 */
+	BEGINDATE days not  null ,
+	/*轉入支出結束日期 */
+	ENDDATE days not  null ,
+	/* 轉入支出銀行代號*/
+	BANKNO varchar(10)  null,
+	/* 轉入支出銀行名稱*/
+	BANKNAME varchar(50)  null,
+	/* 匯出銀行*/
+	EXPORTBANK varchar(20)  null,
+	/*匯出金額 */
+	MONEY dollar null default 0,
+	/*匯出日期*/
+	EXPORTDATE days not  null ,
+	/*摘要*/
+	REMARK varchar(255)  null ,
+	/*備註*/
+	MEMO varchar(255)  null ,
+
+	/*銀行局號 */
+	ACCOUNTNO varchar(7)  null,
+	/*銀行帳號 */
+	ACCOUNT varchar(17)  null,  
+	/*銀行戶名 */
+	ACCOUNTNAME varchar(30)  null ,
+	/*付款對象 */
+	EXPORTTEL varchar(20)  null,
+	/*匯款人名稱*/
+	EXPORTNAME varchar(50)  null,
+	/*匯款人身份證字號*/
+	EXPORTIDNO varchar(20)  null,
+
+
+)
+go
+
+alter table dbo.TBEXPORT add constraint PK_TBEXPORT primary key (AUTONO);
+go
+
+
+drop table dbo.TBEXPORTDETAIL
+create table dbo.TBEXPORTDETAIL (
+                  /*匯出明細自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*匯出編號 */
+	AUTONO int not null ,
+	/*支出金額 */
+	MONEY dollar null default 0,
+	/*摘要*/
+	REMARK varchar(255)  null ,
+	/*備註*/
+	MEMO varchar(255)  null ,
+	/*付款對象 */
+	BUSNO varchar(10)  null,
+	/*廠商名稱*/
+	BUSNAME varchar(50)  null,
+	/*廠商身份證字號*/
+	BUSIDNO varchar(20)  null,
+	/*廠商銀行局號*/
+	ACCOUNTNO varchar(7)  null,
+	/*廠商銀行帳號 */
+	ACCOUNT varchar(17)  null,  
+	/*廠商銀行戶名 */
+	ACCOUNTNAME varchar(30)  null ,
+
+
+)
+go
+
+alter table dbo.TBEXPORTDETAIL add constraint PK_TBEXPORTDETAIL primary key (SERIAL);
+go
+
+update tbbus
+set ACCOUNTNAME=NAME
+
+insert into ITSTATUS values('0','填寫中')
+insert into ITSTATUS values('9','已完成')
+insert into ITSTATUS values('-1','作廢')
+
+drop table dbo.BAKTRS
+create table dbo.BAKTRS (
+                   AUTONO int identity (1, 1) not null ,
+                   TRSNO varchar(12)  null,
+                   TRSSERNO varchar(12)  null,
+                   TRSKIND char (1)   NULL,
+                   NUM smallint   NULL,
+                   TRSDATE days   null ,
+	REMARK varchar(255)  null ,
+	DEBIT dollar null ,
+	CREDIT dollar null ,
+	USENAME varchar(20)  null,
+                   USEDATE days  null ,
+)
+go
+
+alter table dbo.BAKTRS add constraint PK_BAKTRS primary key (AUTONO);
+go
+
+
+drop table dbo.BAKTRSACT
+create table dbo.BAKTRSACT (
+                   DSERIAL int identity (1, 1) not null ,
+	AUTONO int not null ,
+                   TRSNO varchar(12)  null,
+                   SUBNO varchar(14)  null,
+                   TRSKIND char (1)   NULL,
+                   TRSDATE days   null ,
+	DEBIT dollar null ,
+	CREDIT dollar null ,
+	REMARK varchar(255)  null ,
+                   TAX varchar(5)  null,
+                   NOTENO varchar(12)  null,
+                   ACTNO varchar(12)  null,
+                   PAYNO varchar(12)  null,
+                   FLAG varchar(10)  null,
+                   FLAG1 varchar(10)  null,
+                   DEP varchar(10)  null,
+                   FLAG2 varchar(10)  null,
+                   OTHER varchar(10)  null,
+                   NAME varchar(8)  null,
+                   WASHNO varchar(20)  null,
+                   FormKind smallint  null,
+                   FormNo varchar(30)  null,
+                   BudgetNo varchar(30)  null,
+                   INNO varchar(20)  null,
+                   WASHNUM varchar(20)  null,
+                   OUTNO varchar(10)  null,
+                   FLAG3 varchar(20)  null,
+                   NOTENUM varchar(20)  null,
+                   WASHSERIAL int  null,
+                   OUTSERIAL int  null,
+                   INSERIAL int  null,
+                   BUSNAME varchar(50)  null,
+)
+go
+
+alter table dbo.BAKTRSACT add constraint PK_BAKTRSACT primary key (DSERIAL);
+go
+
+/*7/8為預算報表*/
+alter table TBBUDDET add BUDGETNAME  nvarchar(255) null
+alter table TBBUDDET add UNIT  nvarchar(10) null
+alter table TBBUDDET add AMOUNT dollar null
+alter table TBBUDDET add PRICE dollar null
+alter table TBBUD add REMARK  nvarchar(255) null
+
+alter table TBBUDPRE add REMARK  nvarchar(255) null
+alter table TBBUDPRE alter column MEMOS nvarchar(255) null
+
+/*7/12修正預算計劃合計金額*/
+update ITSCHOOLDEP
+set PD_MONEY=(select sum(DB_MONEY) from ITSCHOOLDEPBUDGET where ITSCHOOLDEPBUDGET.PD_ID=ITSCHOOLDEP.PD_ID)
+
+/*7/12長榮出納修正事項*/
+alter table TBBUS alter column REMARK nvarchar(255) null
+
+/*7/18南亞修正事項*/
+alter table ITSCHOOLDEP add MEMO1  nvarchar(255) null
+alter table ITSCHOOLDEP add MEMO2  nvarchar(255) null
+alter table ITSCHOOLDEP add MEMO3  nvarchar(255) null
+alter table ITSCHOOLDEP add MEMO4  nvarchar(255) null
+alter table ITSCHOOLDEP add MEMO5  nvarchar(255) null
+
+alter table ITSCHOOLDEP add FILE_NAME  nvarchar(255) null
+alter table ITSCHOOLDEP add FILE_TYPE  nvarchar(255) null
+alter table ITSCHOOLDEP add FILE_SIZE  int null
+alter table ITSCHOOLDEP add FILE_DATA  text null
+
+
+
+drop table dbo.ITOTHERDATA
+create table dbo.ITOTHERDATA (
+                   AUTONO int identity (1, 1) not null ,
+                   KIND nvarchar(2) not  null,
+                   KINDNAME nvarchar(20)  null,
+                   NO nvarchar(2) not  null,
+                   NAME nvarchar (100)   NULL,
+)
+go
+
+alter table dbo.ITOTHERDATA add constraint PK_ITOTHERDATA primary key (AUTONO);
+go
+
+drop table dbo.ITSCHOOLDEPPEL
+create table dbo.ITSCHOOLDEPPEL (
+                   AUTONO int identity (1, 1) not null ,
+                   YEARS nvarchar(4)  null,
+                   PD_ID nvarchar(20)  null,
+                   TEAKIND nvarchar(20)  null,
+                   TEANAME nvarchar(20)  null,
+                   DATE1 days   null ,
+                   DATE2 days   null ,
+                   MEMO1 nvarchar(255)  null,
+                   REMARK nvarchar(255)  null,
+	MONEY dollar null ,
+
+)
+go
+
+alter table dbo.ITSCHOOLDEPPEL add constraint PK_ITSCHOOLDEPPEL primary key (AUTONO);
+go
+
+drop table dbo.ITSCHOOLDEPCOST
+create table dbo.ITSCHOOLDEPCOST (
+                   AUTONO int identity (1, 1) not null ,
+                   YEARS nvarchar(4)  null,
+                   PD_ID nvarchar(20)  null,
+                   COSTKIND nvarchar(20)  null,
+                   COSTNAME nvarchar(20)  null,
+                   COSTDATE days   null ,
+                   MEMO1 nvarchar(255)  null,
+                   REMARK nvarchar(255)  null,
+	MONEY dollar null ,
+)
+go
+
+alter table dbo.ITSCHOOLDEPCOST add constraint PK_ITSCHOOLDEPCOST primary key (AUTONO);
+go
+
+/*7/25崑山修正事項*/
+alter table ITSCHOOLDEPBUDGET add DB_CODE  nvarchar(50) null
+alter table TBCODE add PRJID  nvarchar(50) null
+
+
+/*7/27和春簽核修正事項*/
+
+alter table ITFORM add SIGN_STATUS  char(8) null  /*呈閱、決行、退文*/
+alter table ITFORM add FILE_NAME  nvarchar(100) null /*檔案型態*/
+alter table ITFORM add FILE_TYPE  nvarchar(100) null  /*檔案名稱*/
+alter table ITFORM add FILE_SIZE  int null /* 檔案大小*/
+alter table ITFORM add FILE_DATA  text null /*檔案內容*/
+
+drop table dbo.GRANT_SIGN
+create table dbo.GRANT_SIGN (
+	CLASS char(1) not null ,
+                   U_NO char(20) not null ,
+                   ADD_SIGN char(1)  null,
+	EDIT_COMMENT char(1)  null,
+	EXECUTE_FLAG char(1)  null
+)
+go
+
+alter table dbo.GRANT_SIGN add constraint PK_GRANT_SIGN primary key (CLASS,U_NO);
+go
+
+
+drop table dbo.EXSIGN
+create table dbo.EXSIGN (
+	UNI_NO char(13) not null ,
+                   USER_U_NO char(20)  null ,
+                   TITLE varchar(100)  null,
+	 STEP numeric    null, 
+	U_NO char(20)  null ,
+                   STATUS char(40)     null,	
+                   ADD_SIGN char(1)   null, 	
+                   EDIT_COMMENT char(1)   null,
+                   DEADLINE numeric    null	
+)
+go
+
+alter table dbo.EXSIGN add constraint PK_EXSIGN primary key (UNI_NO);
+go
+
+
+drop table dbo.WORK_AGENT
+create table dbo.WORK_AGENT (
+                   UNI_NO char(13) not null ,
+                   U_NO char(20)  null,
+                   AGENT_U_NO char(20)   null,
+                   START_DATE days   null ,
+                   END_DATE days   null 
+)
+go
+
+alter table dbo.WORK_AGENT add constraint PK_WORK_AGENT primary key (UNI_NO);
+go
+
+drop table dbo.SIGN
+create table dbo.SIGN (
+                   UNI_NO char(13)    not null,	
+                   TYPE char(40)  null ,	 
+                   ID char(20) null, 		
+                   STEP numeric    null, 		
+                   U_NO char(20)       null , 	
+                   U_NAME char(20)       null , 
+                   U_POSITION char(40)       null , 
+                   DEP char(20)     null , 		
+                   SIGN_TIME datetime   null, 	
+                   STATUS char(40)     null,	
+                   ADD_SIGN char(1)   null, 	
+                   EDIT_COMMENT char(1)   null,
+                   OPINION text  null,		
+                   ADD_U_NO char(20)  null, 	
+                   SIGN_U_NO char(20)   null, 	
+	SIGN_U_NAME char(20)   null, 
+	SIGN_U_POSITION char(20)   null, 
+                   VIEW_TIME datetime  null, 	
+                   DEADLINE numeric    null,	
+                   MODE char(8)  null,		
+	SIGN_STATUS char(8)  null
+)
+go
+
+alter table dbo.SIGN add constraint PK_SIGN primary key (UNI_NO);
+go
+
+drop table dbo.USUALLY_TEXT
+create table dbo.USUALLY_TEXT (
+                   UNI_NO char(13)   not  null,
+                   U_NO char(20)       null , 	
+                   WORDING text     null 		
+)
+go
+
+alter table dbo.USUALLY_TEXT add constraint PK_USUALLY_TEXT primary key (UNI_NO);
+go
+
+
+/*7/28萬能報表*/
+
+update tbtrs set subno=null
+
+update tbtrs 
+set subno = (select TOP 1 SUBNO from TBTRSACT where CREDIT >0 and  tbtrs.TRSNO=TBTRSACT.TRSNO )
+where trskind='D'
+
+update tbtrs 
+set subno = (select TOP 1 SUBNO from TBTRSACT where DEBIT >0 and  tbtrs.TRSNO=TBTRSACT.TRSNO )
+where trskind='C'
+
+update ITFORM 
+set STATUS = 0
+where STATUS is null
+
+alter table ITFORM add ISTEA  bit default 0 null
+
+/*8/10大同*/
+Update TBTRSACT
+set BUSNAME=MEMO2
+
+/*8/17
+增加電子表單優先序及來源
+及傳票轉入金額
+*/
+alter table ITFORM_DETIAL add [DB_ORDER] varchar(10) null  
+alter table ITFORM_DETIAL add [DB_SOURCE] varchar(20) null
+alter table ITFORM_DETIAL add [DB_PRJ] varchar(30) null
+alter table ITFORM_DETIAL add [DB_PRJNAME] varchar(50) null
+alter table ITFORM_DETIAL add [ASSPLACE] varchar(50) null
+alter table ITFORM_DETIAL add [MONEYVOU] dollar null
+
+alter table ITFORM add [ASSPEO] varchar(20) null  
+
+
+/* 940817 整理預算itform的預存程序*/
+drop procedure usp_check_itstatus
+
+create procedure usp_check_itstatus
+  @years smallint
+as
+
+update ITFORM
+set STATUS='9'
+where formid in (select formno from tbtrsact) and YEARS=@years and STATUS >=0
+
+GO
+
+/*8/30
+增加電子表單總務處議價金額
+*/
+alter table ITFORM_DETIAL add [MONEYSTE] dollar null  
+
+/*9/08增加銀行存款餘額
+*/
+alter table TBBANK add [BANKMONEY] dollar null  
+alter table TBBANK add [NOTEMONEY] dollar null  
+
+/*9/09增加TBOUT銀行存款金額金額
+*/
+alter table TBOUT add [NOTEMONEY] dollar null  
+alter table TBOUT add [SUMDATEMONEY] dollar null  
+alter table TBOUT add [BALMONEY] dollar null  
+alter table TBOUT add [ADDMONEY] dollar null  
+
+/*9/13增加ITFORM_DETAIL銀行存款金額金額*/
+alter table ITFORM_DETIAL add [BUSTEL] varchar(20) null
+
+/*11/01增加專案系統欄位*/
+alter table ITOTHERDATA add [BANK_NO] varchar(20) null  
+
+alter table ITSCHOOLDEP add [BANK_NO] varchar(20) null  
+alter table ITSCHOOLDEP add [MEMO1] varchar(255) null  
+alter table ITSCHOOLDEP add [MEMO2] varchar(255) null  
+alter table ITSCHOOLDEP add [MEMO3] varchar(255) null  
+alter table ITSCHOOLDEP add [MEMO4] varchar(255) null  
+alter table ITSCHOOLDEP add [MEMO5] varchar(255) null  
+alter table ITSCHOOLDEP add [DATE1]  days  null
+alter table ITSCHOOLDEP add [DATE2]  days  null
+
+alter table ITSCHOOLDEPCOST add [INCOME_DATE]  days  null
+alter table ITSCHOOLDEPCOST add [CHECK_NO] varchar(20) null  
+alter table ITSCHOOLDEPCOST add [ENTER_DATE]  days  null
+
+
+drop table dbo.ITSCHOOLDEPBILL
+create table dbo.ITSCHOOLDEPBILL (
+                   AUTONO int identity (1, 1) not null ,
+	/*年度 */
+	YEARS varchar(4) not null ,
+	/*專案代號*/
+	PD_ID varchar(20) not  null ,
+	/**/
+	BILL_TYPE varchar(20) not  null ,
+	/*金額 */
+	AMOUNT dollar null default 0,
+	/*繳款人 */
+	PAYER varchar(100)  null,
+	/*處理狀態 */
+	STATUS varchar(1)  null,
+	/*申請日期 */
+	APPL_DATE days null ,
+	/*備註 */
+	REMARK text  null
+
+)
+
+go
+
+alter table dbo.ITSCHOOLDEPBILL add constraint PK_ITSCHOOLDEPBILL primary key ( AUTONO);
+go
+
+
+/*11/18 修正ITSCHOOLDEPBUDGET MONEY 使其可以統計*/
+alter table ITSCHOOLDEPBUDGET alter column DB_MONEY dollar  null
+
+update tbacc set subno = rtrim(subno)
+
+update tbtrsact set subno = rtrim(subno)
+
+
+/*03/15/03 修正TBTRSASS 增長財產名稱欄位*/
+
+alter table TBTRSASS alter column ASSNAME nvarchar(100) null
+
+
+
+/*96/06/08 修正ITSCHOOLDEP 專案欄位*/
+
+alter table ITSCHOOLDEP  add	[MAIN_FUNDS] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[SUB_FUNDS1] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[SUB_FUNDS2] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[SUB_FUNDS3] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[MANAGE_EXP] [dollar] NULL 
+alter table ITSCHOOLDEP  add	[FACTORY_EXP] [dollar] NULL 
+alter table ITSCHOOLDEP  add	[TEC_GRANT] [dollar] NULL 
+alter table ITSCHOOLDEP  add	[ACCEPT_ORG] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[INTER_TRUST] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[OVER_TRUST] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[INTER_COOPER] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[OVER_COOPER] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[FIELD11] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[FIELD12] [nvarchar] (50)   NULL 
+alter table ITSCHOOLDEP  add	[FIELD13] [nvarchar] (50)   NULL 
+
+/*96/06/08 修正ITSCHOOLDEPBUDGEG 專案欄位*/
+
+alter table ITSCHOOLDEPBUDGET  add [DB_REAL_ORDER] [nvarchar] (6)  NULL 
+alter table ITSCHOOLDEPBUDGET  add [DB_EQUKIND] [nvarchar] (20)  NULL 
+alter table ITSCHOOLDEPBUDGET  add [DB_PURPOSE] [text]  NULL
+
+
+/*96/06/12 專案table*/
+
+drop table dbo.PRJ_OTHERDATA
+CREATE TABLE [dbo].[PRJ_OTHERDATA] (
+	[AUTONO] [int] IDENTITY (1, 1) NOT NULL ,
+	[KIND] [nvarchar] (2)     NOT NULL ,
+	[KINDNAME] [nvarchar] (20)     NULL ,
+	[NO] [nvarchar] (6)     NOT NULL ,
+	[NAME] [nvarchar] (100)     NULL ,
+	[BANK_NO] [varchar] (20)     NULL ,
+	[PROMOTER] [nvarchar] (100)     NULL ,
+	[PROMOTER_NO] [nvarchar] (50)     NULL ,
+	[PROMOTER_NAME] [nvarchar] (100)     NULL 
+) ON [PRIMARY]
+GO
+
+alter table dbo.PRJ_OTHERDATA add constraint PK_PRJ_OTHERDATA primary key (AUTONO);
+go
+
+drop table dbo.PRJ_BEFORE
+CREATE TABLE [dbo].[PRJ_BEFORE] (
+	[BILL_NO] [nvarchar] (10)     NULL ,
+	[YEARS] [nvarchar] (4)     NULL ,
+	[PD_ID] [nvarchar] (20)     NULL ,
+	[APP_DATE] [datetime] NULL ,
+	[SUM_AMT] [dollar] NULL 
+) ON [PRIMARY]
+GO
+
+drop table dbo.PRJ_BEFORE_SUB
+CREATE TABLE [dbo].[PRJ_BEFORE_SUB] (
+	[AUTONO] [int] IDENTITY (1, 1) NOT NULL ,
+	[BILL_NO] [nvarchar] (10)     NULL ,
+	[PRJ_NO] [nvarchar] (50)     NULL ,
+	[APP_DATE] [datetime] NULL ,
+	[REAL_AMT] [dollar] NULL ,
+	[REMARK] [text]     NULL ,
+	[STATE] [nvarchar] (50)     NULL ,
+	[SUBPOEN_NO] [nvarchar] (50)     NULL ,
+	[FUND_ITEM] [nvarchar] (100)     NULL ,
+	[EXCERPT] [nvarchar] (50)     NULL ,
+	[BUDGET] [dollar] NULL ,
+	[DB_ID] [nvarchar] (50)     NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+drop table dbo.PRJ_BILL
+CREATE TABLE [dbo].[PRJ_BILL] (
+	[AUTONO] [int] IDENTITY (1, 1) NOT NULL ,
+	[YEARS] [varchar] (4)     NOT NULL ,
+	[PD_ID] [varchar] (20)     NOT NULL ,
+	[BILL_TYPE] [varchar] (20)     NOT NULL ,
+	[AMOUNT] [money] NULL ,
+	[PAYER] [varchar] (100)     NULL ,
+	[STATUS] [varchar] (1)     NULL ,
+	[APPL_DATE] [datetime] NULL ,
+	[REMARK] [text]     NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+alter table dbo.PRJ_BILL add constraint PK_PRJ_BILL primary key (AUTONO);
+go
+
+drop table dbo.PRJ_COST
+CREATE TABLE [dbo].[PRJ_COST] (
+	[AUTONO] [int] IDENTITY (1, 1) NOT NULL ,
+	[YEARS] [nvarchar] (4)     NULL ,
+	[PD_ID] [nvarchar] (20)     NULL ,
+	[COSTKIND] [nvarchar] (20)     NULL ,
+	[MEMO1] [nvarchar] (255)     NULL ,
+	[REMARK] [nvarchar] (255)     NULL ,
+	[MONEY] [dollar] NULL ,
+	[INCOME_DATE] [days] NULL ,
+	[CHECK_NO] [varchar] (20)     NULL ,
+	[ENTER_DATE] [days] NULL 
+) ON [PRIMARY]
+GO
+
+alter table dbo.PRJ_COST add constraint PK_PRJ_COST primary key (AUTONO);
+go
+
+drop table dbo.PRJ_POSIT
+CREATE TABLE [dbo].[PRJ_POSIT] (
+	[AUTONO] [int] IDENTITY (1, 1) NOT NULL ,
+	[YEARS] [nvarchar] (4)     NULL ,
+	[PD_ID] [nvarchar] (20)     NULL ,
+	[PRJ_NO] [nvarchar] (50)     NULL ,
+	[APP_DATE] [datetime] NULL ,
+	[PER_KIND] [nvarchar] (50)     NULL ,
+	[TYPE] [nvarchar] (50)     NULL ,
+	[AMOUNT] [dollar] NULL ,
+	[COLL_DATE] [datetime] NULL ,
+	[CHECK_NO] [nvarchar] (50)     NULL ,
+	[DEP_NO] [nvarchar] (50)     NULL ,
+	[DEP_DATE] [datetime] NULL ,
+	[DEP_AMT] [dollar] NULL ,
+	[BANK_NO] [nvarchar] (50)     NULL ,
+	[SUBPOEN_NO] [nvarchar] (50)     NULL 
+) ON [PRIMARY]
+GO
+
+alter table dbo.PRJ_POSIT add constraint PK_PRJ_POSIT primary key (AUTONO);
+go
+
+
+drop table dbo.PRJ_PEL
+CREATE TABLE [dbo].[PRJ_PEL] (
+	[AUTONO] [int] IDENTITY (1, 1) NOT NULL ,
+	[YEARS] [nvarchar] (4)     NULL ,
+	[PD_ID] [nvarchar] (20)     NULL ,
+	[TEAKIND] [nvarchar] (20)     NULL ,
+	[TEANAME] [nvarchar] (20)     NULL ,
+	[DATE1] [days] NULL ,
+	[DATE2] [days] NULL ,
+	[MEMO1] [nvarchar] (255)     NULL ,
+	[REMARK] [nvarchar] (255)     NULL ,
+	[MONEY] [dollar] NULL 
+) ON [PRIMARY]
+GO
+
+alter table dbo.PRJ_PEL add constraint PK_PRJ_PEL primary key (AUTONO);
+go
+
+
+drop table dbo.PRJ_BUD
+CREATE TABLE [dbo].[PRJ_BUD] (
+	[DOC_ID] [int] NULL ,
+	[BAKTYPE] [int] NULL ,
+	[WRDATE] [datetime] NULL ,
+	[WRTIME] [nvarchar] (20)   NULL ,
+	[LWRDATE] [datetime] NULL ,
+	[LWRTIME] [nvarchar] (20)   NULL ,
+	[WRID] [nvarchar] (10)   NULL ,
+	[WRDEP] [nvarchar] (10)   NULL ,
+	[LWRID] [nvarchar] (10)   NULL ,
+	[YEARS] [nvarchar] (4)   NOT NULL ,
+	[DEP] [nvarchar] (10)   NULL ,
+	[SK_ID] [nvarchar] (20)   NULL ,
+	[PD_ID] [nvarchar] (20)   NOT NULL ,
+	[PD_NAME] [nvarchar] (100)   NULL ,
+	[PD_LEVEL1] [nvarchar] (20)   NULL ,
+	[PD_LEVEL2] [nvarchar] (20)   NULL ,
+	[PD_LEVEL3] [nvarchar] (20)   NULL ,
+	[PD_BENEFIT] [nvarchar] (500)   NULL ,
+	[PD_CONTENTS] [nvarchar] (500)   NULL ,
+	[PD_YEARS] [nvarchar] (20)   NULL ,
+	[FIELD01] [nvarchar] (50)   NULL ,
+	[FIELD02] [nvarchar] (50)   NULL ,
+	[FIELD03] [nvarchar] (50)   NULL ,
+	[FIELD04] [nvarchar] (50)   NULL ,
+	[FIELD05] [nvarchar] (50)   NULL ,
+	[FIELD06] [nvarchar] (50)   NULL ,
+	[FIELD07] [nvarchar] (50)   NULL ,
+	[FIELD08] [nvarchar] (50)   NULL ,
+	[FIELD09] [nvarchar] (50)   NULL ,
+	[FIELD10] [nvarchar] (50)   NULL ,
+	[PD_MONEY] [money] NULL ,
+	[PD_PRJID] [nvarchar] (50)   NULL ,
+	[PD_KIND] [nvarchar] (20)   NULL ,
+	[PD_DATE] [datetime] NULL ,
+	[APPRDEP] [nvarchar] (20)   NULL ,
+	[TEANAME] [nvarchar] (20)   NULL ,
+	[APPR] [nvarchar] (50)   NULL ,
+	[TEAID] [nvarchar] (20)   NULL ,
+	[FILE_NAME] [nvarchar] (255)   NULL ,
+	[FILE_TYPE] [nvarchar] (255)   NULL ,
+	[FILE_SIZE] [int] NULL ,
+	[FILE_DATA] [text]   NULL ,
+	[BANK_NO] [varchar] (20)   NULL ,
+	[MEMO1] [varchar] (255)   NULL ,
+	[MEMO2] [varchar] (255)   NULL ,
+	[MEMO3] [varchar] (255)   NULL ,
+	[MEMO4] [varchar] (255)   NULL ,
+	[MEMO5] [varchar] (255)   NULL ,
+	[DATE1] [days] NULL ,
+	[DATE2] [days] NULL ,
+	[MAIN_FUNDS] [nvarchar] (50)   NULL ,
+	[SUB_FUNDS1] [nvarchar] (50)   NULL ,
+	[SUB_FUNDS2] [nvarchar] (50)   NULL ,
+	[SUB_FUNDS3] [nvarchar] (50)   NULL ,
+	[MANAGE_EXP] [dollar] NULL ,
+	[FACTORY_EXP] [dollar] NULL ,
+	[TEC_GRANT] [dollar] NULL ,
+	[ACCEPT_ORG] [nvarchar] (50)   NULL ,
+	[INTER_TRUST] [nvarchar] (50)   NULL ,
+	[OVER_TRUST] [nvarchar] (50)   NULL ,
+	[INTER_COOPER] [nvarchar] (50)   NULL ,
+	[OVER_COOPER] [nvarchar] (50)   NULL ,
+	[FIELD11] [nvarchar] (50)   NULL ,
+	[FIELD12] [nvarchar] (50)   NULL ,
+	[FIELD13] [nvarchar] (50)   NULL , 
+	REJ_REASON [nvarchar] (50)   NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+alter table dbo.PRJ_BUD add constraint PK_PRJ_BUD primary key (YEARS,PD_ID);
+go
+
+drop table dbo.PRJ_BUD_DET
+CREATE TABLE [dbo].[PRJ_BUD_DET] (
+	[DOC_ID] [int] NULL ,
+	[BAKTYPE] [int] NULL ,
+	[WRDATE] [datetime] NULL ,
+	[WRTIME] [nvarchar] (20)   NULL ,
+	[LWRDATE] [datetime] NULL ,
+	[LWRTIME] [nvarchar] (20)   NULL ,
+	[WRID] [nvarchar] (10)   NULL ,
+	[WRDEP] [nvarchar] (10)   NULL ,
+	[LWRID] [nvarchar] (10)   NULL ,
+	[YEARS] [nvarchar] (4)   NOT NULL ,
+	[DEP] [nvarchar] (10)   NOT NULL ,
+	[PD_ID] [nvarchar] (20)   NOT NULL ,
+	[DB_ID] [nvarchar] (20)   NOT NULL ,
+	[DB_NAME] [nvarchar] (40)   NULL ,
+	[DB_SUBNO] [nvarchar] (20)   NULL ,
+	[DB_SUBJECT] [nvarchar] (30)   NULL ,
+	[DB_GOODSNAME] [nvarchar] (255)   NULL ,
+	[DB_STANDARDS] [nvarchar] (500)   NULL ,
+	[DB_PRICE] [int] NULL ,
+	[DB_AMOUNT] [int] NULL ,
+	[DB_UNIT] [nvarchar] (10)   NULL ,
+	[DB_MONEY] [dollar] NULL ,
+	[DB_FIXED] [nvarchar] (2)   NULL ,
+	[DB_ORDER] [nvarchar] (2)   NULL ,
+	[DB_CONTEINTS] [nvarchar] (500)   NULL ,
+	[DB_SERIALNUM] [nvarchar] (20)   NULL ,
+	[FIELD01] [nvarchar] (50)   NULL ,
+	[FIELD02] [nvarchar] (50)   NULL ,
+	[FIELD03] [nvarchar] (50)   NULL ,
+	[FIELD04] [nvarchar] (50)   NULL ,
+	[FIELD05] [nvarchar] (50)   NULL ,
+	[DATE1] [datetime] NULL ,
+	[DATE2] [datetime] NULL ,
+	[DB_SOURCE] [nvarchar] (20)   NULL ,
+	[DB_POSTMONEY] [dollar] NULL ,
+	[DB_APPRMONEY] [dollar] NULL ,
+	[DB_CODE] [nvarchar] (50)   NULL ,
+	[DB_REAL_ORDER] [nvarchar] (6)   NULL ,
+	[DB_EQUKIND] [nvarchar] (20)   NULL ,
+	[DB_PURPOSE] [text]   NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+alter table dbo.PRJ_BUD_DET add constraint PK_PRJ_BUD_DET primary key (YEARS,PD_ID,DEP,DB_ID);
+go
+
+
+
+/*95/06/22支出增加一點選欄位*/
+alter table TBOUT  add TRANS bit null
+
+
+/*95/06/28 支出加入總票總號*/
+
+alter table TBOUTWASH  add TRSSERNO varchar(12)  null
+alter table TBOUTDETAIL  add TRSSERNO varchar(12)  null
+
+/*95/06/30 專案預算增加一點選欄位*/
+alter table PRJ_BUD  add TRANS bit null
+
+/*95/08/02 手續費*/
+
+alter table TBOUTDETAIL  add FEE dollar null default 0
+
+/*95/08/04 修正TBBUS 增長廠商欄位*/
+
+alter table TBBUS alter column SIMPLE nvarchar(20) null
+alter table TBBUS alter column TEL nvarchar(20) null
+alter table TBBUS alter column BIGPHONE nvarchar(20) null
+alter table TBBUS alter column ADDR nvarchar(100) null
+alter table TBBUS alter column BANK_ACCOUNT nvarchar(20) null
+
+/*95/08/04 修正TBOUTDETAIL 發票號碼*/
+alter table TBOUTDETAIL  add BILLNUM  nvarchar(50) null 
+
+
+/*95/08/04 修正TBOUTDETAIL 發票號碼*/
+alter table TBEXPORTDETAIL  add BILLNUM  nvarchar(50) null 
+alter table TBEXPORTDETAIL  add FEE dollar null default 0
+
+/*95/08/04 修TBIN 發票號碼*/
+alter table TBOUT  alter column STATUS  nvarchar(20) null 
+
+/*95/08/11 新增銀行對轉table*/
+drop table TBBANKINOUT
+create table TBBANKINOUT (
+                  /*互轉自動編號 */
+                   AUTONO int identity (1, 1) not null ,
+
+	INOUTDATE days not  null ,
+
+	/*轉入帳戶代號 */
+	INBANKNO varchar(10)  null,
+	/*轉入金額 */
+	INMONEY dollar null default 0,
+
+	/*轉出帳戶代號 */
+	OUTBANKNO varchar(10)  null,
+	/*轉出金額 */
+	OUTMONEY dollar null default 0,
+	/*摘要*/
+	REMARK varchar(100)  null ,
+	/*備註*/
+	MEMO varchar(100)  null 
+)
+
+go
+
+alter table TBBANKINOUT add constraint PK_TBBANKINOUT primary key (AUTONO);
+go
+
+/*95/08/04 修正IFORM 移送日期*/
+alter table ITFORM  add EVOKEDATE days  null 
+alter table ITFORM  add BUSIDNO nvarchar(20) null
+alter table ITFORM  add BUSNAME nvarchar(50) null
+alter table ITFORM  add EVOKENO nvarchar(50) null
+alter table ITFORM  add EVOKENAME nvarchar(50) null
+
+/*95/09/11 增加IFORM 採購日,驗收日*/
+alter table ITFORM  add CHECKDATE days  null 
+
+CREATE TABLE [TBEXPORTDETAILDET] (
+	[SERIAL] [int] IDENTITY (1, 1) NOT NULL ,
+	[AUTONO] [int] NOT NULL ,
+	[MONEY] [dollar] NULL ,
+	[REMARK] [varchar] (255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[MEMO] [varchar] (255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[BUSNO] [varchar] (10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[BUSNAME] [varchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[BUSIDNO] [varchar] (20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[ACCOUNTNO] [varchar] (7) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[ACCOUNT] [varchar] (17) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[ACCOUNTNAME] [varchar] (30) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[BILLNUM] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[FEE] [dollar] NULL ,
+)
+GO
+
+alter table TBEXPORTDETAILDET add constraint PK_TBEXPORTDETAILDET primary key (SERIAL);
+go
+
+
+
+/*TBOUT 增加銷帳日期*/
+alter table TBOUT add CHECKDATE  days  null
+
+/*匯款磁片增加傳票編號,傳票總號及支出明細編號*/
+
+alter table TBEXPORTDETAIL add TRSNO varchar(12)  null
+alter table TBEXPORTDETAIL add TRSSERNO varchar(12)  null
+alter table TBEXPORTDETAIL add OUTSERIAL int  null
+
+alter table TBEXPORTDETAILDET add TRSNO varchar(12)  null
+alter table TBEXPORTDETAILDET add TRSSERNO varchar(12)  null
+
+/*簽核mail功能*/
+alter table sysuser add mail varchar(50)  null
+alter table sysuser add position varchar(40)  null
+
+/*崑山採購*/
+alter table ITFORM add BUSTEL varchar(20)  null
+
+alter table ITFORM_DETIAL add BUSIDNO varchar(20)  null
+alter table ITFORM_DETIAL add BUSNAME varchar(50)  null
+
+/*放置地點 保管人*/
+alter table ITFORM_DETIAL add LOCNO varchar(30)  null 
+alter table ITFORM_DETIAL add LOCNAME varchar(50)  null
+alter table ITFORM_DETIAL add CLKNO varchar(20)  null
+alter table ITFORM_DETIAL add CLKNAME varchar(20)  null
+
+
+/*採購案號*/
+alter table ITFORM add BUYNO varchar(20)  null
+
+alter table ITFORM add ASSPEONO varchar(20)  null
+alter table ITFORM add ASSPEONAME varchar(20)  null
+alter table ITFORM add ASSPEOEVOKEDATE days  null
+
+/*流用作業*/
+alter table TBBUDMOVE  alter column SBUDGETNO  nvarchar(20) null 
+alter table TBBUDMOVE  alter column DBUDGETNO  nvarchar(20) null 
+
+/*驗收編號*/
+alter table ITFORM add CHECKNO varchar(20)  null
+alter table ITFORM_DETIAL add CHECKNO varchar(20)  null 
+
+/*接案日期*/
+alter table ITFORM add ACCEPTDATE days  null
+
+/*相關驗收日期*/
+alter table ITFORM add CHECK_DATE1 days  null
+alter table ITFORM add CHECK_DATE2 days  null
+alter table ITFORM add CHECK_DATE3 days  null
+alter table ITFORM add CHECK_DATE4 days  null
+alter table ITFORM add CHECK_DATE5 days  null
+alter table ITFORM add CHECK_DATE6 days  null
+
+alter table ITFORM_DETIAL add ASSETNO varchar(20)  null
+
+
+drop table TBPENNY
+create table TBPENNY (
+	/*小額收費編號 */
+	PENNYNO varchar(20) not null ,
+	/*登錄日期 */
+	PENNYDATE days not null,
+
+	/*金額 */
+	MONEY dollar null default 0,
+
+	/*收費類別 */
+	KIND varchar(10)  null,
+	/*會計科目 */
+	KINDNAME varchar(40)  null,  
+
+	/*收款對象 */
+	BUSNO varchar(20)  null,
+	/*收款名稱*/
+	BUSNAME varchar(50)  null,
+
+	REMARK varchar(100)  null, 
+
+	/*收款人代號 */
+	PICKID varchar(20)  null,
+	/*收款姓名 */
+	PICKNAME varchar(20)  null,
+	/*收款人部門 */
+	DEP varchar(20)  null
+)
+
+go
+
+alter table TBPENNY add constraint PK_TBPENNY primary key (PENNYNO);
+go
+
+drop table TBPENNYKIND
+create table TBPENNYKIND (
+
+	/*收費類別 */
+	KIND varchar(10)  not null,
+	/*會計科目 */
+	KINDNAME varchar(40)  null,  
+	/*金額 */
+	MONEY dollar null default 0,
+	DEP varchar(100)  null,
+	REMARK varchar(100)  null 
+)
+
+go
+
+alter table TBPENNYKIND add constraint PK_TBPENNYKIND primary key (KIND);
+go
+
+
+
+/* 950521增加專案代號的長度*/
+alter table TBCODE drop constraint PK_TBCODE
+alter table TBCODE drop constraint DF_TBCODE_n_CODE
+alter table TBCODE alter column CODE nvarchar(20) not  null
+alter table TBCODE add constraint PK_TBCODE primary key (CODE)
+
+alter table TBTRSACT alter column FLAG varchar(20)  null
+alter table TBTRSACT alter column FLAG1 varchar(20)  null
+alter table TBTRSACT alter column FLAG2 varchar(20)  null
+alter table TBTRSACT alter column FLAG3 varchar(20)  null
+
+
+/* 950521增加預算開閉*/
+alter table ITSCHOOLDEP add BUDCLOSE bit  default 0 null
+alter table ITSCHOOLDEPBUDGET add BUDCLOSE bit default 0 null
+
+update ITSCHOOLDEP set BUDCLOSE=0
+update ITSCHOOLDEPBUDGET set BUDCLOSE=0
+
+/* 960611增加表單經費來源*/
+alter table ITFORM add DB_SOURCE varchar(20)  null
+
+alter table ITFORM add BUSADDR varchar(100)  null
+alter table ITFORM_DETIAL add BUSADDR varchar(100)  null
+
+
+/* 960611增加表單移送編號*/
+alter table ITFORM add DEVOLVENO varchar(20)  null 
+
+/* 960612增長 廠商電話長度*/
+alter table ITFORM alter column BUSTEL varchar(100)  null
+
+/* 960614增加 承辦人*/
+alter table ITFORM add ACCEPTPEONO varchar(20)  null 
+alter table ITFORM add ACCEPTPEONAME varchar(20)  null 
+
+/* 960614增加 主單編號*/
+alter table ITFORM add SUBFORMID varchar(20)  null 
+
+alter table ITFORM add BUDGETNO varchar(50)  null 
+alter table ITFORM add BUDGETNAME varchar(50)  null 
+alter table ITFORM add SUBNO varchar(10)  null 
+
+/* 9606增加 預算目錄頁數及總頁數*/
+alter table TBREPCON add TPAGE int  null default 0
+alter table TBREPCON add APAGE int  null default 0
+
+/* 960704增加 專案代號 補助款 配合款判斷*/
+alter table TBCODE add ISFLAG bit  null default 0
+alter table TBCODE add ISFLAG1 bit  null default 0
+
+update TBCODE set ISFLAG=0
+update TBCODE set ISFLAG1=0
+
+
+/* 960705增加 決算TABLE*/
+drop table TBAUDIT
+create table TBAUDIT (
+	/*決算年度 */
+	YEARS smallint not null ,
+	/*會計科目 */
+	SUBNO varchar(14)  not null,  
+	SUBJECT varchar(100) null,
+
+	/*決算金額 */
+	ADDMONEY dollar null default 0,
+	/*去年決算金額 */
+	BADDMONEY dollar null default 0,
+	/*決算減少金額 */
+	DELMONEY dollar null default 0,
+	/*預算金額 */
+	BUDMONEY dollar null default 0,
+	/*預算減少金額 */
+	BUDDELMONEY dollar null default 0,
+
+
+	REMARK varchar(100)  null
+
+)
+
+go
+
+alter table TBAUDIT add constraint PK_TBAUDIT primary key (YEARS,SUBNO);
+go
+
+
+
+
+/* 960705增加 廠商押標金*/
+drop table [dbo].[ITPRESSURE]
+
+CREATE TABLE [dbo].[ITPRESSURE] (
+	[FORMID] [nvarchar] (20) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL ,
+	[WRID] [nvarchar] (10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[WRNAME] [nvarchar] (10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[WRDATE] [datetime] NULL ,
+	[MPRESSURE] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[MPERFORMANCE] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[MWARRANTY] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[REMARK] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[MEMO] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL 
+) ON [PRIMARY]
+GO
+
+alter table ITPRESSURE add constraint PK_ITPRESSURE primary key (FORMID);
+go
+
+
+/* 960715增加 人事印領清冊*/
+drop table ITFORM_PEOSAL
+create table ITFORM_PEOSAL (
+                  /*自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*表單編號 */
+	FORMID varchar(20)  not null,  
+	/*計劃職稱 */
+	BILLET varchar(14)  not null,  
+	/*班級 */
+	CLASS varchar(100) null,
+	/*姓名 */
+	NAME varchar(14)  not null,  
+	/*身份證 */
+	IDNO varchar(100) null,
+	/*學號 */
+	SIDNO varchar(14)  not null,  
+	/*所得類號 */
+	SALKIND varchar(100) null,
+	/*給付年月 */
+	YYMMDD varchar(14)  not null,  
+	/*單位數 */
+	UNIT varchar(100) null,
+	/*戶藉地址 */
+	ADDR varchar(100) null,
+	/*扣繳率 */
+	SALPCT varchar(100) null,
+
+	/*給付總額 */
+	SALMONEY dollar null default 0,
+	/*所得稅 */
+	SAL1 dollar null default 0,
+	/*勞保費 */
+	SAL2 dollar null default 0,
+	/*健保費 */
+	SAL3 dollar null default 0,
+	/*給付金額 */
+	MONEY dollar null default 0,
+	/*摘要 */
+	REMARK varchar(100)  null,
+	/*銀行局號 */
+	BANK_NO varchar(20)  null,
+	/*銀行帳號 */
+	BANK_ACC varchar(40)  null,
+	/*銀行戶名 */
+	BANK_ACCNAME varchar(40)  null
+
+)
+
+go
+
+alter table ITFORM_PEOSAL add constraint PK_ITFORM_PEOSAL primary key (SERIAL);
+go
+
+
+/* 950723增加收入欄位*/
+alter table TBIN alter column NOTENO nvarchar(100)  null
+alter table TBIN add INSERNO nvarchar(20)  null
+
+alter table TBIN alter column INKIND nvarchar(100)  null
+
+
+/*96/08/01 修正TBTRSACT 發票號碼*/
+alter table TBTRSACT  add BILLNUM  nvarchar(50) null 
+alter table BAKTRSACT  add BILLNUM  nvarchar(50) null 
+alter table TBOUTWASH  add BILLNUM  nvarchar(50) null 
+
+
+/*96/08/24 增加說明書分類*/
+alter table TBBUDPOI  add KIND  nvarchar(10) DEFAULT '' not null 
+alter table TBBUDPOI drop constraint PK_TBBUDPOI
+alter table TBBUDPOI add constraint PK_TBBUDPOI primary key (YEARS,KIND)
+
+/* 960827增加借入款變動*/
+drop table TBBORROW
+create table TBBORROW (
+                  /*自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*決算年度 */
+	YEARS smallint not null ,
+	/*決預算類別 */
+	KIND varchar(10)  null,
+	/*貸款機購 */
+	REMARK1 varchar(200)  null,
+	/*借款用途 */
+	REMARK2 varchar(200)  null,
+	/*保證情形 */
+	REMARK3 varchar(200)  null,
+	/*核准日期 */
+	REMARK4 varchar(200)  null,
+	/*借款期間 */
+	[DATE1] [days] NULL ,
+	[DATE2] [days] NULL ,
+	/*期初金額 */
+	MONEY1 dollar null default 0,
+	/*本期借入金額 */
+	MONEY2 dollar null default 0,
+	/*本期償還金額 */
+	MONEY3 dollar null default 0,
+	/*期未金額 */
+	MONEY4 dollar null default 0,
+	/*利率 */
+	PCT varchar(10) null
+)
+
+go
+
+alter table TBBORROW add constraint PK_TBBORROW primary key (SERIAL);
+go
+
+/* 960828增加決算借方金額 貸方金額*/
+alter table TBAUDIT add DEBIT dollar null
+alter table TBAUDIT add CREDIT dollar null
+
+/* 960903銀行*/
+drop table TBBK
+create table TBBK (
+                  /*自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*總機構代號 */
+	BK varchar(10)  null,
+	/*分支機構代號 */
+	BKCODE varchar(10)  null,
+	/*分支機構名稱 */
+	BKNAME varchar(100)  null,
+	/*地址 */
+	BKADDR varchar(100)  null,
+	/*電話 */
+	BKTEL varchar(20)  null,
+	/*負責人 */
+	BKPEO varchar(10) null
+)
+
+go
+
+alter table TBBK add constraint PK_TBBK primary key (SERIAL);
+go
+
+/* 960903銀行手續費判斷*/
+drop table TBBANK_FEE
+create table TBBANK_FEE (
+                  /*自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*銀行代號代號 */
+	CODE varchar(8) not null,
+	/*總機構代號 */
+	BK varchar(10)  null,
+	/*分支機構名稱 */
+	BKNAME varchar(100)  null,
+	/*手續費 */
+	FEE dollar null default 0
+)
+
+go
+
+alter table TBBANK_FEE add constraint PK_TBBANK_FEE primary key (SERIAL);
+go
+
+
+/*96/09/04 修正TBEXPORT 支出編號*/
+alter table TBEXPORT  add BOUTNO  nvarchar(20) null 
+alter table TBEXPORT  add EOUTNO  nvarchar(20) null 
+
+/*96/09/04 修正ITFORM 來源長度*/
+alter table ITFORM alter column DB_SOURCE varchar(100)  null
+
+
+/*96/09/04 修正出納收入摘要長度*/
+alter table TBINDETAIL  alter column REMARK  varchar(500) null 
+
+/* 960926採購明細*/
+drop table ITFORM_BUYACT
+create table ITFORM_BUYACT (
+                  /*自動編號 */
+                   SERIAL int identity (1, 1) not null ,
+	/*表單編號 */
+	FORMID varchar(20)  not null,  
+	/*品名 */
+	GOODSNAME nvarchar(100) null,
+	/*廠牌 */
+	BRANDNAME  nvarchar(100) null,
+	/*規格 */
+	STANDARDS nvarchar(255) null,
+	/*備註1 */
+	MEMO1 nvarchar(100) null,
+	/*備註2 */
+	MEMO2 nvarchar(100) null,
+	/*備註2 */
+	PRICE int null ,
+	/*備註2 */
+	AMOUNT int null ,
+	/*備註2 */
+	UNIT nvarchar (10)   null ,
+	/*備註2 */
+	MONEY dollar null 
+)
+
+go
+
+alter table ITFORM_BUYACT add constraint PK_ITFORM_BUYACT primary key (SERIAL);
+go
+
+
+/*96/10/03 修正TBCODE 專案金額*/
+alter table TBCODE  add BUDMONEY dollar default 0
+
+/*96/11/01 修正戶名長度 專案金額*/
+alter table TBEXPORTDETAIL alter column ACCOUNTNAME nvarchar(50)  null
+alter table TBEXPORTDETAILDET alter column ACCOUNTNAME nvarchar(50)  null
+
+/*96/11/07 修正TBOUT NOTENO 票據自動編號*/
+alter table TBOUT  add SERIAL int identity (1, 1) not null 
+
+/*96/11/14 增加 ITFORM 決算金額*/
+alter table ITFORM  add SUMMONEYOFF dollar null 
+
+/*96/11/19 增加 付款查詢 幾日後可查詢*/
+insert into sysvar(class,var,name,content,attrib) values ('SQL使用參數','after_day','付款幾日後可供查詢','3','string') 
+
+/*96/12/12 表單新增帳號分類*/
+alter table sysuser  add kind varchar(20)  null
+update sysuser set kind = 'acc'
+
+/*96/12/17 新增財產相關欄位*/
+alter table TBTRSACT  add ADDNO varchar(20)  null
+alter table TBTRSACT  add ASSNO varchar(20)  null
+alter table TBTRSACT  add ASSSERNB INT null
+alter table TBTRSACT  add ASSSERNE INT  null
+
+alter table TBASSACT  add TRANS bit null
+
+/*96/12/27 補足專案預算 專案代號*/
+UPDATE        PRJ_BUD_DET
+SET   DB_CODE=(select DB_CODE from ITSCHOOLDEPBUDGET where PRJ_BUD_DET.YEARS=ITSCHOOLDEPBUDGET.YEARS and PRJ_BUD_DET.DB_ID=ITSCHOOLDEPBUDGET.DB_ID)          
+WHERE         (YEARS = 95)
+
+/*97/01/04 增加預算摘要長度*/
+alter table TBBUDPRE alter column REMARK nvarchar(1000)  null
+alter table TBBUDPOI alter column CONTENT nvarchar(4000)  null
+
+
+alter table TBREPCON drop constraint PK_TBREPCON
+alter table TBREPCON alter column NAME nvarchar(80) not null
+alter table TBREPCON add constraint PK_TBREPCON primary key (KIND,NAME)
+
+/*97/01/11 增加配合款*/
+alter table ITSCHOOLDEPBUDGET add DB_CODE1 varchar(50)  null
+
+/*97/01/14 增加小額收費轉入*/
+alter table TBPENNY  add TRANS bit null
+alter table TBINDETAIL  add PENNYNO varchar(20) null
+alter table TBINDETAIL  add BUSNO varchar(20) null
+alter table TBINDETAIL  add BUSNAME varchar(50) null
+
+/*97/03/03 增加TBBORROW 原始貸款金額*/
+alter table TBBORROW  add MONEY5 dollar default 0
+
+/*97/03/07 增加TBOUTDETAIL TBINDETAIL 序號功能*/
+alter table TBOUTDETAIL  add SERNO varchar(4) null
+alter table TBINDETAIL  add SERNO varchar(4) null
+alter table TBEXPORTDETAIL  add SERNO varchar(4) null
+alter table TBEXPORTDETAILDET  add SERNO varchar(4) null
+
+/* 970117增加ITFORM_DETIAL表格  Standards(規格/型號)Brand(廠牌)欄位*/
+alter table ITFORM_DETIAL add Standards varchar(200) null
+alter table ITFORM_DETIAL add Brand varchar(50) null
+
+/*970130增加嘉藥小額收費明細資料表*/
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[TBPENNY_DETIAL]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[TBPENNY_DETIAL]
+GO
+
+CREATE TABLE [dbo].[TBPENNY_DETIAL] (
+	[PENNYNO] [varchar] (20) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL ,
+	[PENNYDATE] [days] NOT NULL ,
+	[MONEY] [dollar] NULL ,
+	[KIND] [varchar] (10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[KINDNAME] [varchar] (40) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[BUSNO] [varchar] (20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[BUSNAME] [varchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[REMARK] [varchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[PICKID] [varchar] (20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[PICKNAME] [varchar] (20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[DEP] [varchar] (20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[DOC_ID] [int] IDENTITY (1, 1) NOT NULL 
+) ON [PRIMARY]
+GO
+
+/*970220嘉藥小額收費項目資料表 增加會計科目編號欄位及名稱欄位*/
+alter table TBPENNYKIND add DB_SUBNO varchar(10) null
+alter table TBPENNYKIND add DB_SUBJECT varchar(80) null
+
+/*970220嘉藥小額收費資料表 增加狀態欄位、移送日期*/
+alter table TBPENNY add pick_state varchar(4) null
+alter table TBPENNY add send_acc_data datetime null
+
+/*970229嘉藥小額收費資料表 增加收費類別、收費編號*/
+alter table TBPENNY add com_class varchar(8) null
+alter table TBPENNY add com_no varchar(8) null
+alter table TBPENNY_DETIAL add com_class varchar(8) null
+alter table TBPENNY_DETIAL add com_no varchar(8) null
+
+
+/*97/03/13 修正小額收費欄位長度*/
+alter table TBPENNY alter column com_class varchar(20) null
+alter table TBPENNY alter column com_no varchar(20) null
+alter table TBPENNY_DETIAL alter column com_class varchar(20) null
+alter table TBPENNY_DETIAL alter column com_no varchar(20) null
+alter table TBPENNYKIND alter column DB_SUBNO varchar(20) null
+
+/*97/03/13 增加收入轉小額收費欄位*/
+alter table TBINDETAIL  add SUBNO varchar(20) null
+alter table TBINDETAIL  add COM_CLASS varchar(20) null
+alter table TBINDETAIL  add COM_NO varchar(20) null
+alter table TBINDETAIL  add COM_DUYDATE days null
+alter table TBINDETAIL  add COM_CHECKDATE days null
+alter table TBINDETAIL  add KIND varchar(10) null
+alter table TBINDETAIL  add PENNYDOC_ID int null
+alter table TBPENNY_DETIAL  add TRANS bit null
+
+
+/*970229慈惠ITFORM資料表 增加驗收日期、採購日期、驗收說明*/
+alter table ITFORM add CHECK_DATE datetime null
+alter table ITFORM add BUY_DATE datetime null
+alter table ITFORM add CHECK_INFO varchar(300) null
+
+
+/*970321崑山小額收費 增加付款人*/
+alter table TBPENNY add PAY_NAME varchar(100) null
+alter table TBPENNY_DETIAL add PAY_NAME varchar(100) null
+
+/*95/06/30 專案預算增加經費總收入*/
+alter table PRJ_BUD  add PD_INMONEY dollar null
+
+/*970730 增加廠商帳號*/
+alter table TBBUS add BANK1 nvarchar(50) null
+alter table TBBUS add BANK_ACCOUNT1 nvarchar(20) null
+
+/*9700808 增加收入及支出明細 部門 及收入種類*/
+alter table TBINDETAIL add DEP nvarchar(20) null
+alter table TBOUTDETAIL add DEP nvarchar(20) null
+alter table TBINDETAIL add INKIND nvarchar(20) null
+alter table TBBUS add DEP nvarchar(20) null
+
+/*9700813 TBOUTWASH 整批付款 程式*/
+alter table TBOUTWASH add DEP nvarchar(20) null
+alter table TBOUTWASH add FLAG nvarchar(20) null
+alter table TBOUTWASH add PAYKIND nvarchar(20) null
+alter table TBOUTWASH add PAYDATE days null
+alter table TBOUTWASH add PAYBANK nvarchar(20) null
+
+alter table TBOUTWASH add PAYBANK_NO nvarchar(20) null
+alter table TBOUTWASH add PAYBANK_ACCOUNT nvarchar(20) null
+alter table TBOUTWASH add OUTNO nvarchar(10) null
+alter table TBOUTWASH add OUTSERIAL int null
+
+alter table TBOUTWASH add PAYNOTENO nvarchar(17) null
+
+alter table TBOUTDETAIL add PAYBANK_NO nvarchar(20) null
+alter table TBOUTDETAIL add PAYBANK_ACCOUNT nvarchar(20) null
+
+/*970828 TBWASH增加廠商 */
+alter table TBWASH add BUSNO nvarchar(20) null
+alter table TBWASH add BUSNAME nvarchar(50) null
+
+update tbwash 
+set busno=(select flag2 from TBTRSACT where tbwash.trsserial=TBTRSACT.serial)
+,busname=(select busname from TBTRSACT where tbwash.trsserial=TBTRSACT.serial)
+
+/*970828 ITSCHOOLDEP 增長專案負責人長度  */
+alter table ITSCHOOLDEP alter column TEAID nvarchar(200)  null
+
+/*970828 預算百分比控制 及預算控制方式   */
+alter table ITSCHOOLDEP add PD_PCT int null
+alter table ITSCHOOLDEPBUDGET add DB_PCT int null
+alter table ITSCHOOLDEPBUDGET add DB_CONTROL int null
+
+/*970917 增加原始預算金額欄位   */
+alter table ITSCHOOLDEPBUDGET add DB_MONEY1 dollar  null
+
+update ITSCHOOLDEPBUDGET 
+set DB_MONEY1=DB_MONEY
+
+/*970922 增加傳票年度欄位   */
+alter table TBTRS add YEARS smallint DEFAULT 0 not null
+alter table TBTRSACT add YEARS smallint DEFAULT 0 not null
+
+update TBTRS
+set YEARS=89
+where TRSDATE BETWEEN '2000/08/01' and '2001/07/31'
+
+update TBTRSACT
+set YEARS=89
+where TRSDATE BETWEEN '2000/08/01' and '2001/07/31'
+
+update TBTRS
+set YEARS=90
+where TRSDATE BETWEEN '2001/08/01' and '2002/07/31'
+
+update TBTRSACT
+set YEARS=90
+where TRSDATE BETWEEN '2001/08/01' and '2002/07/31'
+
+update TBTRS
+set YEARS=91
+where TRSDATE BETWEEN '2002/08/01' and '2003/07/31'
+
+update TBTRSACT
+set YEARS=91
+where TRSDATE BETWEEN '2002/08/01' and '2003/07/31'
+
+update TBTRS
+set YEARS=92
+where TRSDATE BETWEEN '2003/08/01' and '2004/07/31'
+
+update TBTRSACT
+set YEARS=92
+where TRSDATE BETWEEN '2003/08/01' and '2004/07/31'
+
+update TBTRS
+set YEARS=93
+where TRSDATE BETWEEN '2004/08/01' and '2005/07/31'
+
+update TBTRSACT
+set YEARS=93
+where TRSDATE BETWEEN '2004/08/01' and '2005/07/31'
+
+update TBTRS
+set YEARS=94
+where TRSDATE BETWEEN '2005/08/01' and '2006/07/31'
+
+update TBTRSACT
+set YEARS=94
+where TRSDATE BETWEEN '2005/08/01' and '2006/07/31'
+
+update TBTRS
+set YEARS=95
+where TRSDATE BETWEEN '2006/08/01' and '2007/07/31'
+
+update TBTRSACT
+set YEARS=95
+where TRSDATE BETWEEN '2006/08/01' and '2007/07/31'
+
+update TBTRS
+set YEARS=96
+where TRSDATE BETWEEN '2007/08/01' and '2008/07/31'
+
+update TBTRSACT
+set YEARS=96
+where TRSDATE BETWEEN '2007/08/01' and '2008/07/31'
+
+update TBTRS
+set YEARS=97
+where TRSDATE BETWEEN '2008/08/01' and '2009/07/31'
+
+update TBTRSACT
+set YEARS=97
+where TRSDATE BETWEEN '2008/08/01' and '2009/07/31'
+
+
+/*970933 TBOUTWASH 增加付款表單資訊 程式*/
+alter table TBOUTWASH add FormNo varchar(30) null
+alter table TBOUTDETAIL add FormNo varchar(30) null
+
+/* 970925 更新 usp_check_budget */
+drop procedure usp_check_budget
+create procedure usp_check_budget
+  @years smallint,
+  @budgetno varchar(20),
+  @morebudget dollar output
+as
+declare @calcBudget dollar,
+  @calcTrs dollar,
+  @calcIt dollar,
+  @calcControl smallint
+
+  /* 預算控制方式 */
+  select @calcControl = DB_CONTROL from ITSCHOOLDEPBUDGET
+   where YEARS = @years  and DB_ID = @budgetno
+
+  /* 預算金額 */
+  select @calcBudget =  DB_MONEY from ITSCHOOLDEPBUDGET
+   where YEARS = @years  and DB_ID = @budgetno
+
+  /* 傳票明細 */
+  select @calcTrs =ISNULL(sum(b.DEBIT),0) - ISNULL(sum(b.CREDIT),0)
+    from TBTRS a, TBTRSACT b
+   where b.YEARS=@years and a.TRSKIND = b.TRSKIND
+       and a.TRSNO = b.TRSNO and b.BUDGETNO = @budgetno
+
+  /* 簽證金額 */
+  select @calcIt =sum(IsNull(MONEY,0)) from ITFORM_DETIAL 
+   where not DOC_ID in (select CAST(NOTENO as int) from TBTRSACT where NOTENO <> '' group by NOTENO) 
+   and BUDGETNO = @budgetno and YEARS = @years 
+
+  /* 如果有其中一項沒有資料則設為零 */
+  /* 計算公式: 預算金額 - 傳票明細 - 簽證金額 - 異動金額           */
+  /* select @morebudget = IsNull(@calcBudget, 0) - IsNull(@calcTrs, 0) - IsNull(@calcIt , 0) */
+  select @morebudget =IsNull(@calcBudget, 0) - IsNull(@calcTrs, 0) - IsNull(@calcIt , 0)
+
+GO
+
+
+/* 970925 更新 usp_check_itmoney */
+drop procedure usp_check_itmoney
+create procedure usp_check_itmoney
+  @years smallint,
+  @noteno int,
+  @moreitform dollar output
+as
+declare @calcTrs dollar,
+  @calcIt dollar,
+  @calcControl smallint
+
+  /* 傳票明細 */
+  select @calcTrs =ISNULL(sum(b.DEBIT),0)
+    from TBTRS a, TBTRSACT b
+   where b.YEARS=@years and a.TRSKIND = b.TRSKIND
+       and a.TRSNO = b.TRSNO and b.noteno = @noteno
+
+  /* 簽證金額 */
+  select @calcIt =IsNull(MONEY,0) from ITFORM_DETIAL 
+   where DOC_ID = @noteno and YEARS = @years 
+
+  /* 如果有其中一項沒有資料則設為零 */
+  /* 計算公式: 預算金額 - 傳票明細 - 簽證金額 - 異動金額           */
+  /* select @morebudget = IsNull(@calcBudget, 0) - IsNull(@calcTrs, 0) - IsNull(@calcIt , 0) */
+  select @moreitform =IsNull(@calcIt , 0)-IsNull(@calcTrs, 0)
+
+GO
+
+update ITFORM
+set STATUS='9'
+where formid in (select formno from tbtrsact) and STATUS >=0
+
+
+/* 971215 新增專案代號-細項 */
+alter table TBTRSACT add CODEDET varchar(20) null
+alter table ITSCHOOLDEPBUDGET add CODEDET varchar(20) null
+
+
+/*970130增加嘉藥小額收費明細資料表*/
+
+drop table dbo.TBCODEDET
+create table dbo.TBCODEDET (
+  CODEDET varchar(20)  not null ,
+  CODEDETNAME varchar(40)  null,
+  MEMO varchar(255) null  
+)
+go
+
+alter table dbo.TBCODEDET add constraint PK_TBCODEDET primary key (CODEDET);
+go
+  
+
+alter table TBINDETAIL alter column PENNYDOC_ID nvarchar(1000)  null
+
+/* 971225 新增預算明細專案代號-細項 */
+
+alter table ITSCHOOLDEPBUDGET add CODEDET varchar(20) null
+
+alter table TBPENNYKIND add ISMELD bit null
+
+/* 971229 新增預算流用表單編號 */
+alter table TBBUDMOVE add FORMNO varchar(20) null
+alter table TBBUDMOVE add FORMDOC_ID int null
+
+/* 971231  */
+alter table TBBANK alter column NAME nvarchar(50)  null
+
+
+/* 980218  */
+alter table TBBUDDET add MEMO1 varchar(100) null
+alter table TBBUDDET add MEMO2 varchar(100) null
+alter table TBBUDDET add MEMO3 varchar(100) null
+
+alter table TBBUDPRE add ID [int] IDENTITY (1, 1) NOT NULL 
+
+alter table TBBUDPRE drop constraint PK_TBBUDPRE
+alter table TBBUDPRE add constraint PK_TBBUDPRE primary key (ID)
+alter table TBBUDPRE alter column SUBNO nvarchar(50)  null
+
+/* 980305 銀行對帳單  */
+
+drop table dbo.TBBANKDIF
+create table dbo.TBBANKDIF (
+DIFDATE days NOT NULL ,
+BANKNO varchar(20)  not null ,
+SUBNO varchar(20)  not null ,
+BANKPART varchar(20)  null,
+BANKNAME varchar(40)  null,
+MONEY1 dollar  null,
+MONEY2 dollar  null,
+MONEY3 dollar  null,
+MONEY4 dollar  null,
+MONEY5 dollar  null,
+MONEY6 dollar  null,
+MONEY7 dollar  null,
+MONEY8 dollar  null,
+MONEY9 dollar  null,
+MEMO varchar(255) null  
+)
+go
+
+alter table dbo.TBBANKDIF add constraint PK_DIFDATE primary key (DIFDATE,BANKNO);
+go
+
+
+
+/* 980323  */
+alter table TBBUDDET add ID [int] IDENTITY (1, 1) NOT NULL 
+
+alter table TBBUDDET drop constraint PK_TBBUDDET
+alter table TBBUDDET add constraint PK_TBBUDDET primary key (ID)
+alter table TBBUDDET alter column DEP varchar(10)  null
+alter table TBBUDDET alter column BUDGETNO nvarchar(20)  null
+
+
+/* 980402  */
+alter table TBOUTDETAIL add FORM varchar(2) null
+
+/*980420新增仁德利息支出資料表*/
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[TBLOADOUT]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[TBLOADOUT]
+
+
+CREATE TABLE [dbo].[TBLOADOUT] (
+	/*年度*/
+	[YEARS] [decimal](2, 0) NOT NULL ,
+	/*年利率*/
+	[LOADRATE] [decimal](8, 0) NULL ,
+	/*貸款用途*/
+	[TITLE] [nvarchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	/*借款日期*/
+	[LOADDATE] [nvarchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	/*借款金額*/
+	[MONEY] [decimal](8, 0) NULL ,
+	/*每期利息*/
+	[EVERYOUT] [decimal](8, 0) NULL ,
+	/*本期償還*/
+	[RELOAD] [decimal](8, 0) NULL ,
+	/*備註*/
+	[REMARK] [nvarchar] (200) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL 
+) ON [PRIMARY]
+
+/*980420新增仁德個人薪資資料表*/
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[TBSALARY]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[TBSALARY]
+
+
+CREATE TABLE [dbo].[TBSALARY] (
+	/*年度*/
+	[YEARS] [decimal](2, 0) NOT NULL ,
+	/*類別*/
+	[SALARYKIND] [nvarchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	/*職級別*/
+	[TITLE] [nvarchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	/*人數*/
+	[NUM] [decimal](4, 0) NULL ,
+	/*薪水*/
+	[MONEY] [decimal](8, 0) NULL ,
+	/*備註*/
+	[REMARK] [nvarchar] (200) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL 
+) ON [PRIMARY]
+
+
+/*980420新增仁德維護費用資料表*/
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[TBSCHMAIN]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[TBSCHMAIN]
+
+
+CREATE TABLE [dbo].[TBSCHMAIN] (
+	/*年度*/
+	[YEARS] [decimal](2, 0) NOT NULL ,
+	/*維修項目*/
+	[OUT] [nvarchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	/*維修類別*/
+	[ITEM] [nvarchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	/*金額*/
+	[MONEY] [decimal](8, 0) NULL ,
+	/*備註*/
+	[REMARK] [nvarchar] (200) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL 
+) ON [PRIMARY]
+
+
+/*980423崑山出納修正支票長度及發票長度*/
+alter table TBOUT alter column NOTENO varchar(100)  null
+alter table TBOUTDETAIL alter column BILLNUM nvarchar(200)  null
+
+
+/*980504修正仁德利息支出資料表*/
+alter table TBLOADOUT alter column LOADRATE nvarchar(8)  null
+
+/*980507增加匯出出納傳票檔排序*/
+alter table TBOUTWASH add SERNO varchar(4) null
+
+/*980701 增加收入轉小額收費的長度*/
+alter table TBINDETAIL alter column PENNYDOC_ID varchar(3000)  null
+
+/*980709 增長TBCODE UPPER的長度*/
+alter table TBCODE alter column UPPER varchar(20)  null
+
+/* 970727 更新 usp_Change_trsno 變更傳票編號 */
+drop procedure usp_Change_trsno
+CREATE procedure usp_Change_trsno
+ @btrsno varchar(14),
+ @etrsno varchar(14),
+ @bDate days,
+ @eDate days,
+ @status int output
+as
+declare
+  @calcB int,
+  @calcE int
+   select @calcB = IsNull(count(*), 0) from TBTRS where  TRSNO = @btrsno
+   select @calcE = IsNull(count(*), 0) from TBTRS where  TRSNO = @etrsno
+  set  @status = 0
+  if @calcB >0 and @calcE = 0 
+  begin
+     update TBTRS set TRSNO =@etrsno,TrsDate=@eDate  where TRSNO= @btrsno
+     update TBTRSACT set TRSNO =@etrsno,TRSDATE=@eDate  where TRSNO= @btrsno
+     update TBWASH set TRSNO =@etrsno,TRSDATE=@eDate  where TRSNO= @btrsno
+     set  @status = 3
+  end
+  else
+  begin
+  if @calcB = 0
+   set  @status =1
+  if @calcE >0
+   set  @status = 2
+  end
+GO
+
+
+
+/*980806 增加匯出出納傳票檔排序*/
+alter table TBBUS add BUSKIND nvarchar(50) null
+alter table TBOUTWASH add BUSKIND nvarchar(50) null
+
+/*980806 增長TBPARA VALUE長度*/
+alter table TBPARA alter column VALUE varchar(100)  null
+
+/*980805增加廠商代號* /
+alter table TBBUS add BUSKIND varchar(20) null
+alter table TBOUTWASH add BUSKIND varchar(20) null
+alter table ITSCHOOLDEP add BUSKIND varchar(20) null
+alter table ITSCHOOLDEPBUDGET add BUSKIND varchar(20) null
+
+/*980805增加現金收入、流量記錄表*/
+
+CREATE TABLE [dbo].[TBMONEYIN] (
+	[YEARS] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL ,
+	[KIND] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL ,
+	[SUBNO] [nvarchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL ,
+	[SUBJECT] [nvarchar] (100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[MONEY1] [dollar] NULL ,
+	[MONEY2] [dollar] NULL ,
+	[FLAG1] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL ,
+	[FLAG2] [nvarchar] (50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL 
+) ON [PRIMARY]
+
+/*980910增加零用金判斷*/
+alter table ITFORM add MEMO3 varchar(250) null
+
+/*980928 增長TBEXPORTDETAIL、TBEXPORTDETAILDET 戶名長度*/
+alter table TBEXPORTDETAIL alter column ACCOUNTNAME varchar(100)  null
+alter table TBEXPORTDETAILDET alter column ACCOUNTNAME varchar(100)  null
+
+/*980929增加廠商代號郵遞區號*/
+alter table TBBUS add ADRZIP nvarchar(20) null
+
+/*981002增長廠商名稱*/
+alter table TBBUS alter column NAME varchar(100)  null
+
+/*981027增加預算是否被執行欄位*/
+alter table ITFORM_DETIAL add ITTRS nvarchar(20) null
+
+/*981027增加傳票判斷是否有預算執行的trigger Insert*/
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+go
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER TRIGGER [trg_TRSACT_Insert] ON [dbo].[TBTRSACT] 
+FOR  INSERT
+AS 
+BEGIN
+	Declare @noteno  nvarchar(20)
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;	
+	 DECLARE notenoITEM  CURSOR For SELECT DISTINCT NOTENO From Inserted
+        OPEN       notenoITEM
+        FETCH NEXT FROM notenoITEM INTO @noteno
+        WHILE (@@FETCH_STATUS=0)
+        BEGIN
+           UPDATE  [dbo].[ITFORM_DETIAL] SET ITTRS='1' WHERE DOC_ID=@noteno
+            FETCH NEXT FROM notenoITEM INTO @noteno
+       END
+       DEALLOCATE notenoITEM
+
+	--SELECT * FROM INSERTED
+	--UPDATE  [dbo].[ITFORM_DETIAL] SET ITTRS='1'
+   
+END
+
+/*981027增加傳票判斷是否有預算執行的trigger DELETE */
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+go
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER TRIGGER [trg_TRSACT_Delete] ON [dbo].[TBTRSACT] 
+FOR  DELETE 
+AS 
+BEGIN
+	Declare @noteno  nvarchar(20)
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;	
+	 DECLARE notenoITEM  CURSOR For SELECT DISTINCT NOTENO From Deleted
+        OPEN       notenoITEM
+        FETCH NEXT FROM notenoITEM INTO @noteno
+        WHILE (@@FETCH_STATUS=0)
+        BEGIN
+           UPDATE  [dbo].[ITFORM_DETIAL] SET ITTRS=NULL WHERE DOC_ID=@noteno
+            FETCH NEXT FROM notenoITEM INTO @noteno
+       END
+       DEALLOCATE notenoITEM
+
+	--SELECT * FROM INSERTED
+	--UPDATE  [dbo].[ITFORM_DETIAL] SET ITTRS='1'
+   
+END
+
+/*981027增加傳票判斷是否有預算執行的trigger UPDATE*/
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+go
+
+-- =============================================
+ALTER TRIGGER [trg_TRSACT_Update] ON [dbo].[TBTRSACT] 
+FOR  UPDATE
+AS 
+BEGIN
+	Declare @noteno  nvarchar(20)
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;	
+	DECLARE notenoITEM  CURSOR For SELECT DISTINCT NOTENO From Deleted
+        OPEN       notenoITEM
+        FETCH NEXT FROM notenoITEM INTO @noteno
+        WHILE (@@FETCH_STATUS=0)
+        BEGIN
+           UPDATE  [dbo].[ITFORM_DETIAL] SET ITTRS=NULL WHERE DOC_ID=@noteno
+            FETCH NEXT FROM notenoITEM INTO @noteno
+       END
+       DEALLOCATE notenoITEM 
+	
+	DECLARE notenoITEM2  CURSOR For SELECT DISTINCT NOTENO From Inserted
+        OPEN       notenoITEM2
+        FETCH NEXT FROM notenoITEM2 INTO @noteno
+        WHILE (@@FETCH_STATUS=0)
+        BEGIN
+           UPDATE  [dbo].[ITFORM_DETIAL] SET ITTRS='1' WHERE DOC_ID=@noteno
+            FETCH NEXT FROM notenoITEM2 INTO @noteno
+       END
+       DEALLOCATE notenoITEM2
+
+	--SELECT * FROM INSERTED
+	--UPDATE  [dbo].[ITFORM_DETIAL] SET ITTRS='1'
+   
+END
+/*981105增加SQL排程，將會計TBTRSACT的資料寫入財產TBASSACT-UP_PMS_TBASSACT*/
+update TBASSACT
+set citation=trsno
+,writeoffyear=TRSDATE
+,OffBeginMonth=TRSDATE
+,AccYears=YEAR(TRSDATE)
+,Subject=SUBSTRING(SUBNO,1,4)
+from CHACC_TZU.dbo.TBTRSACT
+where TBASSACT.serno= CHACC_TZU.dbo.TBTRSACT.NOTENO
+and TBASSACT.serno is not null
+
+update TBASSACT
+set SubjectName=AcntName
+from Ptyaccount
+where TBASSACT.Subject= Ptyaccount.AcntNo
+and TBASSACT.serno is not null
+
+update TBASSACTDET 
+set SubjectName=AcntName
+from Ptyaccount
+where TBASSACTDET.Subject= Ptyaccount.AcntNo
+and TBASSACTDET.citation is not null
+
+
+
+/*981118增加TBOUTBATCH，用來處理支出整批匯入功作*/
+CREATE TABLE [dbo].[TBOUTBATCH](
+	[TRANS] [bit] NULL,
+	[SERIAL] [int] IDENTITY(1,1) NOT NULL,
+	[DATE] [dbo].[days] NOT NULL,
+	[TRSNO] [varchar](12) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	[TRSSERIAL] [int] NOT NULL,
+	[TRSDATE] [dbo].[days] NOT NULL,
+	[SUBNO] [varchar](12) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	[WASHNO] [varchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[MONEY] [dbo].[dollar] NULL CONSTRAINT [DF__TBOUTBATCH__MONEY__69FBBC1F]  DEFAULT (0),
+	[FMONEY] [dbo].[dollar] NULL CONSTRAINT [DF__TBOUTBATCH__FMONE__6AEFE058]  DEFAULT (0),
+	[TMONEY] [dbo].[dollar] NULL CONSTRAINT [DF__TBOUTBATCH__TMONE__6BE40491]  DEFAULT (0),
+	[BUSNO] [varchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[BUSNAME] [varchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[REMARK] [varchar](160) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[TRSSERNO] [varchar](12) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[BILLNUM] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DEP] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FLAG] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PAYKIND] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PAYDATE] [dbo].[days] NULL,
+	[PAYBANK] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PAYBANK_NO] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PAYBANK_ACCOUNT] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[OUTNO] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[OUTSERIAL] [int] NULL,
+	[PAYNOTENO] [nvarchar](17) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FormNo] [varchar](30) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[SERNO] [varchar](4) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[BUSKIND] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+ CONSTRAINT [PK_TBOUTBATCH] PRIMARY KEY CLUSTERED 
+(
+	[SERIAL] ASC
+)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+
+/*981118 增加收入轉小額收費的長度*/
+alter table TBINDETAIL alter column PENNYDOC_ID varchar(4000)  null
+
+/*981119 增加支出明細 傳票借方明細KEY值*/
+alter table TBOUTDETAIL add TRSSERIAL_DEBIT int  null
+alter table TBOUTDETAIL add FORMNO_DOCID int  null
+
+/*981123 增加收入傳票、支出傳票的長度*/
+alter table TBIN drop constraint PK_TBIN 
+alter table TBIN alter column INNO varchar(20) not null
+alter table TBIN add constraint PK_TBIN  primary key (INNO)
+
+alter table TBINDETAIL  alter column INNO varchar(20)  null
+
+alter table TBOUT drop constraint PK_TBOUT
+alter table TBOUT alter column OUTNO varchar(20) not  null
+alter table TBOUT add constraint PK_TBOUT  primary key (OUTNO)
+
+alter table TBOUTDETAIL alter column OUTNO varchar(20)  null
+
+alter table TBNO drop constraint PK_TBNO 
+alter table TBNO alter column TYPE varchar(20) not null
+alter table TBNO add constraint PK_TBNO primary key (TYPE,KIND)
+
+alter table TBTRSACT alter column INNO varchar(20)  null
+alter table TBTRSACT alter column OUTNO varchar(20)  null
+
+
+/*981125 增長TBEXPORTDETAIL、TBEXPORTDETAILDET 戶名長度*/
+alter table TBOUT alter column BUSNAME varchar(100)  null
+alter table TBOUTDETAIL alter column BUSNAME varchar(100)  null
+alter table TBIN alter column BUSNAME varchar(100)  null
+alter table TBINDETAIL alter column BUSNAME varchar(100)  null
+
+
+/*981208 增加會計移送出納 移送人及移送日期*/
+alter table TBOUTWASH add CreateDate days  null
+alter table TBOUTWASH add Creater nvarchar(20)  null
+
+/*981229 增加匯款磁片 手續費負擔別*/
+alter table TBEXPORTDETAIL add FEEKIND nvarchar(20)  null
+alter table TBEXPORTDETAILDET add FEEKIND nvarchar(20)  null
+
+/*981230 建立朝陽財產view，建立折舊傳票*/
+CREATE VIEW [dbo].[VDisctHistory]
+AS
+SELECT	ChargeCode, ChargeName, WriteOff, WriteOffName, DepNo, DepName, WriteOffPric, Amount, Offmonth
+FROM	dbo.DisctHistory
+WHERE	(Subject NOT LIKE '1350%') AND (WriteOffPric <> 0)
+AND	ISNULL(source,'') <> '幼稚園經費'
+
+/*981230 財產view，建立折舊傳票*/
+CREATE VIEW [dbo].[VDisctHistory]
+AS
+SELECT     ChargeCode, ChargeName, WriteOff, WriteOffName, SUBSTRING(DepNo, 1, 3) + '0' AS DepNo, DepName, WriteOffPric, Amount, OffMonth, 
+                      SubjectName
+FROM         dbo.DisctHistory
+WHERE     (Subject NOT LIKE '1350%') AND (WriteOffPric <> 0)
+
+/*981231 建立有價證券table*/
+
+drop table [dbo].[TBSECURITIES]
+
+CREATE TABLE [dbo].[TBSECURITIES](
+	[AUTO] [int] IDENTITY(1,1) NOT NULL,
+	[SECURITIESNO] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[UNIT] [int] NULL,
+	[ACCOUNTNAME] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[OUT] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PAY] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[SECMONEY] [money] NULL,
+	[STARTDATE] [datetime] NULL,
+	[ENDDATE] [datetime] NULL,
+	[PLACE] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[REMARK] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[YEARMONTH] [datetime] NULL,
+	[RATE] [nvarchar] (10)
+) ON [PRIMARY]
+
+alter table dbo.TBSECURITIES add constraint PK_TBSECURITIES primary key (AUTO);
+go
+
+/*990205 財產view，建立報癈傳票*/
+REATE VIEW [dbo].[VUnUseTBASSACTDET]
+AS
+SELECT         UnUseCode,Amt,WriteOffPct,Amount,ltrim(rtrim(GoodsName)) as GoodsName ,AssNo,AssSerNB,AssSerNE,DEPNO,Used
+,AddDate,ValidDate,UsedDate,ChargeCode,ChargeName,Subject,(SELECT PayBack FROM PtySu1 
+WHERE AssNo=TBASSACTDET.AssNo AND AssSerNB=TBASSACTDET.AssSerNB AND AssSerNE=TBASSACTDET.AssSerNE) AS PayBack
+FROM             TBASSACTDET 
+//朝陽專用 
+//where (substring(sourceno,1,3)='001' or substring(sourceno,1,3)='002')
+
+/*990311 新增預算封面資料表*/
+USE [CHACC_SHU]
+GO
+/****** 物件:  Table [dbo].[TBBUDCONV]    指令碼日期: 03/11/2010 14:02:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBBUDCONV](
+	[CONID] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[CODE] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[CODEVALUE] [nvarchar](200) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[CONDATE] [datetime] NULL
+) ON [PRIMARY]
+
+
+/*990322 更新預算負責人長度*/
+alter table ITSCHOOLDEP alter column TEAID nvarchar(255)  null 
+alter table ITSCHOOLDEP alter column TEANAME nvarchar(255)  null
+
+/*990323 新增現金流量備註*/
+alter table TBMONEYIN add Remark nvarchar(200)  null
+
+/*990407 新增預算申請金額 DB_MONEY-最終金額 DB_MONEY1 核定金額 DB_MONEY2 申請金額*/
+alter table ITSCHOOLDEPBUDGET add DB_MONEY2 dollar  null
+
+/*990407 新增預算線上資料備份資料表-ITSCHOOLDEPCOPY/ITSCHOOLDEPBUDGETCOPY*/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ITSCHOOLDEPCOPY](
+	[DOC_ID] [int] IDENTITY(1,1) NOT NULL,
+	[BAKTYPE] [int] NULL,
+	[WRDATE] [datetime] NULL,
+	[WRTIME] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[LWRDATE] [datetime] NULL,
+	[LWRTIME] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[WRID] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[WRDEP] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[LWRID] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[YEARS] [nvarchar](4) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	[DEP] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[SK_ID] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_ID] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	[PD_NAME] [nvarchar](100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_LEVEL1] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_LEVEL2] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_LEVEL3] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_BENEFIT] [nvarchar](500) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_CONTENTS] [nvarchar](1000) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_YEARS] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD01] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD02] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD03] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD04] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD05] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD06] [nvarchar](1000) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD07] [nvarchar](1000) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD08] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD09] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD10] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_MONEY] [dbo].[dollar] NULL,
+	[PD_PRJID] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_KIND] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_DATE] [datetime] NULL,
+	[APPRDEP] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[TEANAME] [nvarchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[APPR] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[TEAID] [nvarchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FILE_NAME] [nvarchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FILE_TYPE] [nvarchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FILE_SIZE] [int] NULL,
+	[FILE_DATA] [text] COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[BANK_NO] [varchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[MEMO1] [varchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[MEMO2] [varchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[MEMO3] [varchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[MEMO4] [varchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[MEMO5] [varchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DATE1] [dbo].[days] NULL,
+	[DATE2] [dbo].[days] NULL,
+	[MAIN_FUNDS] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[SUB_FUNDS1] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[SUB_FUNDS2] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[SUB_FUNDS3] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[MANAGE_EXP] [dbo].[dollar] NULL,
+	[FACTORY_EXP] [dbo].[dollar] NULL,
+	[TEC_GRANT] [dbo].[dollar] NULL,
+	[ACCEPT_ORG] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[INTER_TRUST] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[OVER_TRUST] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[INTER_COOPER] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[OVER_COOPER] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD11] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD12] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD13] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[BUDCLOSE] [bit] NULL,
+	[PD_PCT] [int] NULL,
+	[BUSKIND] [varchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD14] [text] COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD15] [text] COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD16] [text] COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+ CONSTRAINT [PK_ITSCHOOLDEPCOPY] PRIMARY KEY CLUSTERED 
+(
+	[YEARS] ASC,
+	[PD_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+
+USE [CHACC_SHU]
+GO
+/****** 物件:  Table [dbo].[ITSCHOOLDEPBUDGET]    指令碼日期: 04/08/2010 08:44:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ITSCHOOLDEPBUDGETCOPY](
+	[DOC_ID] [int] IDENTITY(1,1) NOT NULL,
+	[BAKTYPE] [int] NULL,
+	[WRDATE] [datetime] NULL,
+	[WRTIME] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[LWRDATE] [datetime] NULL,
+	[LWRTIME] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[WRID] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[WRDEP] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[LWRID] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[YEARS] [nvarchar](4) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	[DEP] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[PD_ID] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_ID] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	[DB_NAME] [nvarchar](40) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_SUBNO] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_SUBJECT] [nvarchar](30) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_GOODSNAME] [nvarchar](255) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_STANDARDS] [nvarchar](500) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_PRICE] [int] NULL,
+	[DB_AMOUNT] [int] NULL,
+	[DB_UNIT] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_MONEY] [dbo].[dollar] NULL,
+	[DB_FIXED] [nvarchar](2) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_ORDER] [nvarchar](10) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_CONTEINTS] [nvarchar](500) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_SERIALNUM] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD01] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD02] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD03] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD04] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[FIELD05] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DATE1] [datetime] NULL,
+	[DATE2] [datetime] NULL,
+	[DB_SOURCE] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_POSTMONEY] [dbo].[dollar] NULL,
+	[DB_APPRMONEY] [dbo].[dollar] NULL,
+	[DB_CODE] [nvarchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_REAL_ORDER] [nvarchar](6) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_EQUKIND] [nvarchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_PURPOSE] [text] COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[BUDCLOSE] [bit] NULL,
+	[DB_CODE1] [varchar](50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_PCT] [int] NULL,
+	[DB_CONTROL] [int] NULL,
+	[DB_MONEY1] [dbo].[dollar] NULL,
+	[CODEDET] [varchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[BUSKIND] [varchar](20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	[DB_MONEY2] [dbo].[dollar] NULL,
+ CONSTRAINT [PK_ITSCHOOLDEPBUDGETCOPY] PRIMARY KEY CLUSTERED 
+(
+	[YEARS] ASC,
+	[DB_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+
+/*990415 新增折舊前會計名稱備註*/
+CREATE VIEW [dbo].[VDisctHistory]
+AS
+SELECT     ChargeCode, ChargeName, WriteOff, WriteOffName, SUBSTRING(DepNo, 1, 3) + '0' AS DepNo, DepName, WriteOffPric, Amount, OffMonth, 
+                      SubjectName
+FROM         dbo.DisctHistory
+WHERE     (WriteOffPric <> 0) AND (SUBSTRING(DepNo, 1, 3) <> '000') AND (WriteOff <> '154101')
+
+
+/*990322 更新預算負責人長度*/2010/4/19
+alter table ITSCHOOLDEP alter column TEAID nvarchar(255)  null 
+alter table ITSCHOOLDEP alter column TEANAME nvarchar(255)  null
+
+/*990419 增加預算匯出欄位*/
+alter table ITSCHOOLDEPBUDGET add FIELD07 nvarchar(50)  null
+alter table ITSCHOOLDEPBUDGET add FIELD06 nvarchar(50)  null
+
+/*990427 增加移送傳票的人員及移送日期*/
+alter table TBOUTWASH add Passer nvarchar(20)  null
+alter table TBOUTWASH add PassDate days  null
+
+/*990427 增加收入最後修改日期及修改人員*/
+alter table TBIN add USENAME nvarchar(10)  null
+alter table TBIN add  USEDATE datetime null
+
+/*990427 增加支出最後修改日期及修改人員*/
+alter table TBOUT add USENAME nvarchar(10)  null
+alter table TBOUT add  USEDATE datetime null
+
+/*990518 增加銀行關帳欄位 */
+alter table TBBANK add ISCLOSE bit null
+update TBBANK  set ISCLOSE=0
+
+/*990519 增長預算借入款變動表長度 */
+alter table TBBUDPRE alter column SUBNO nvarchar(50)  null
+
+/*990524 增長常用摘要長度 */
+alter table TBMARK alter column MARK nvarchar(255)  null
+
+/*990603 增長銀行關帳日期 */
+alter table TBBANK add  ISCLOSEDATE datetime null
+
+/*990607 新增廠商配合款-FLAG0 */
+alter table TBTRSACT add  FLAG0 nvarchar(20)  null
+
+/*990618 新增在途明細*/
+create table dbo.TBOUTTRANSIT (
+        SERIAL int identity (1, 1) not null ,
+	BANKNO nvarchar(10)  null ,
+        OUTDATE days  null ,
+	REMARK nvarchar(255) null ,
+	SUMMONEY dollar null default 0,
+)
+go
+
+alter table dbo.TBOUTTRANSIT add constraint PK_TBOUTTRANSIT primary key ( SERIAL);
+go
+
+
+/*9906125 預算新增其他代號欄位*/
+alter table ITSCHOOLDEPBUDGET add  DB_OTHER nvarchar(20)  null
+
+
+/*990702 其他代號增加期初金額-遠東*/
+alter table TBOTHER add MONEY  dollar null default 0
+
+/*990715 增加支出 支出群組,匯款群組*/
+alter table TBOUTDETAIL add OUTGROUP nvarchar(20)  null
+alter table TBOUTDETAIL add EXPORTGROUP nvarchar(20) null
+
+alter table TBOUTDETAIL add CTTNO nvarchar(20)  null
+alter table TBOUTDETAIL add CTTNAME nvarchar(20) null
+
+/*991111 增加現流表排序*/
+alter table TBMONEYIN add SERNO nvarchar(5)  null
+
+/*991126 增長TBBARK 名稱長度*/
+alter table TBBANK alter column BANK nvarchar(100)  null
+
+/*991126 增長TBBARK 名稱長度*/
+alter table ITFORM_PEOSAL add TRANS bit null
+
+/*991214 統一長度 名稱長度*/
+alter table TBOUTWASH alter column PAYBANK_NO nvarchar(50)  null
+alter table TBOUTWASH alter column PAYBANK_ACCOUNT nvarchar(20)  null
+alter table TBBUS alter column BANK nvarchar(50)  null
+alter table TBBUS alter column BANK_ACCOUNT nvarchar(20)  null
+
+alter table TBOUTWASH alter column OUTNO nvarchar(20)  null
+
+/*1000125 統一預算編號長度*/
+alter table TBTRSACT alter column BudgetNo  nvarchar(50)  null
+alter table TBBUDDET alter column BudgetNo  nvarchar(50)  null
+alter table ITFORM alter column BudgetNo  nvarchar(50)  null
+alter table ITFORM_DETIAL alter column BudgetNo  nvarchar(50)  null
+
+
+
+alter table ITSCHOOLDEPBUDGET drop constraint PK_ITSCHOOLDEPBUDGET
+alter table ITSCHOOLDEPBUDGET alter column DB_ID  nvarchar(50) not null
+alter table ITSCHOOLDEPBUDGET add constraint PK_ITSCHOOLDEPBUDGET  primary key (YEARS,DB_ID)
+
+/*1000301 玄奘日計表*/
+create table dbo.TBINOUTCASH (
+    SERIAL int identity (1, 1) not null ,
+	/*日期 */
+	CASHDATE days null ,	
+	/*上日金額 */
+	BMOUNT dollar null default 0,
+	/*本日收金額 */
+	INMOUNT dollar null default 0,
+	/*本日支金額 */
+	OUTMOUNT dollar null default 0,	
+	/*本日結金額 */
+	EMOUNT dollar null default 0,	
+	/*備註 */
+	REMARK nvarchar(255)  null
+	)
+
+go
+
+alter table dbo.TBINOUTCASH add constraint PK_TBINOUTCASH primary key (SERIAL);
+go
+
+/*1000301 玄奘-銀行簡稱*/
+alter table TBBANK add SIMPLENAME nvarchar(50)  null
+
+/*1000304 正修-卓越預算修改*/
+alter table ITFORM add ISPRJ int  null
+alter table ITSCHOOLDEP add ISPRJ int  null
+alter table PRJ_BUD_DET add DB_CODE1 varchar(50)  null
+alter table PRJ_BUD_DET add DB_SUBNO1 varchar(20)  null
+alter table PRJ_BUD_DET add DB_SUBJECT1 varchar(30)  null
+
+
+/*1000308 朝陽-計劃欄位新增*/
+alter table TBPLAN add DEP varchar(50)  null
+alter table TBPLAN add BYEAR varchar(20)  null
+alter table TBPLAN add EYEAR varchar(20)  null
+
+alter table TBPLAN alter column PLANNAME  nvarchar(100)  null
+
+/*1000317 正修-卓越預算修改*/
+alter table ITSCHOOLDEPBUDGET add DB_SUBNO1 varchar(20)  null
+alter table ITSCHOOLDEPBUDGET add DB_SUBJECT1 varchar(30)  null
+
+/*1000317 朝陽-EMAIL1對多程式修改*/
+alter table TBEXPORTDETAIL add TRANS bit  null
+
+/*1000318 敏惠預算流用長度修正*/
+alter table TBBUDMOVE alter column SBUDGETNO  nvarchar(50)  null
+alter table TBBUDMOVE alter column DBUDGETNO  nvarchar(50)  null
+
+drop procedure usp_bud_move
+CREATE procedure usp_bud_move
+	@years smallint,
+	@movedate datetime,
+	@ssubno varchar(14),
+	@sbudgetno varchar(50),
+	@dsubno varchar(14),
+	@dbudgetno varchar(50),
+    @moveuser varchar(10),
+	@movemoney dollar,
+    @status int output
+as
+declare
+  @smoney1 dollar,
+  @smoney2 dollar,
+  @dmoney1 dollar,
+  @dmoney2 dollar
+  select @smoney1=IsNull(DB_MONEY, 0) from ITSCHOOLDEPBUDGET where YEARS=@years and DB_SUBNO=@ssubno and DB_ID=@sbudgetno
+  select @dmoney1=IsNull(DB_MONEY, 0) from ITSCHOOLDEPBUDGET where YEARS=@years and DB_SUBNO=@dsubno and DB_ID=@dbudgetno
+  select @smoney2 = IsNull(@smoney1, 0) - @movemoney
+  select @dmoney2 = IsNull(@dmoney1, 0)+ @movemoney
+  set  @status = 0
+  if @smoney2 >0 and @dmoney1 > 0 and @smoney1 >0
+  begin
+    update ITSCHOOLDEPBUDGET  set DB_MONEY=@smoney2 where YEARS=@years and DB_SUBNO=@ssubno and DB_ID=@sbudgetno
+    update ITSCHOOLDEPBUDGET  set DB_MONEY=@dmoney2 where YEARS=@years and DB_SUBNO=@dsubno and DB_ID=@dbudgetno
+    insert into TBBUDMOVE(YEARS,MOVEDATE,MOVEUSER,SSUBNO,SBUDGETNO,SMONEY1,SMONEY2,DSUBNO,DBUDGETNO,DMONEY1,DMONEY2,MOVEMONEY)
+    values (@years,@movedate,@moveuser,@ssubno,@sbudgetno,@smoney1,@smoney2,@dsubno,@dbudgetno,@dmoney1,@dmoney2,@movemoney)  
+     set  @status = 3
+  end
+  else
+  begin
+     set  @status = 2
+  end
+GO
+
+/*1000418 朝陽廠商加上備註*/
+alter table TBBUS add MEMO varchar(255)  null
+
+/*1000519 正修薪資調節表*/
+drop table TBSALADJUST
+create table dbo.TBSALADJUST (
+    TRSNO nvarchar(20) not null ,
+    TRSSERIAL int not null ,
+	TRSDATE days not null ,
+	SUBNO nvarchar(14) not null ,
+	/*傳票金額 */
+	TRSMONEY dollar null default 0,
+
+	/*格式 */
+	SAL50  dollar null default 0,
+	/*格式 */
+	SAL51  dollar null default 0,
+	/*格式 */
+	SAL52  dollar null default 0,
+	/*格式 */
+	SAL9A  dollar null default 0,
+	/*格式 */
+	SAL9B  dollar null default 0,
+	/*格式 */
+	SAL91  dollar null default 0,
+	/*格式 */
+	SAL92  dollar null default 0,	
+	/*格式 */
+	SAL95  dollar null default 0,	
+	/*備註 */
+	REMARK nvarchar(255)  null	
+	)
+
+go
+
+alter table dbo.TBSALADJUST add constraint PK_TBSALADJUST primary key (TRSNO,TRSSERIAL);
+go
+
+drop table TBSALADJUSTSET
+create table dbo.TBSALADJUSTSET (
+    SERIAL int identity (1, 1) not null ,
+	SNO nvarchar(10)  null ,
+	KIND nvarchar(10)  null ,
+	TAX nvarchar(10) null,
+	REMARK nvarchar(255) null 
+	)
+
+alter table dbo.TBSALADJUSTSET add constraint PK_TBSALADJUSTSET primary key (SERIAL);
+go
+
+/*1001028 新增廠商配合款-FLAG0 */
+alter table ITSCHOOLDEPBUDGET add  DB_CODE0 nvarchar(20)  null
+
+/*1001222 所得摘要設定增加是否使用 */
+alter table TBSALADJUSTSET add  ISUSE bit  null
+
+/*1001229 正修專案使用 */
+alter table PRJ_BUD_DET alter column DB_CONTEINTS text  null
+
+alter table PRJ_BUD add BUDCLOSE bit NULL 
+alter table PRJ_BUD add PD_PCT int NULL 
+alter table PRJ_BUD add BUSKIND varchar(20) NULL 
+alter table PRJ_BUD add ISPRJ int NULL 
+
+alter table PRJ_BUD_DET add BUDCLOSE bit NULL 
+alter table PRJ_BUD_DET add DB_PCT int NULL 
+alter table PRJ_BUD_DET add DB_CONTROL int NULL 
+alter table PRJ_BUD_DET add DB_MONEY1 money NULL 
+alter table PRJ_BUD_DET add CODEDET varchar(20) NULL 
+alter table PRJ_BUD_DET add BUSKIND varchar(20) NULL 
+alter table PRJ_BUD_DET add FIELD07 varchar(50) NULL 
+alter table PRJ_BUD_DET add FIELD06 varchar(50) NULL 
+alter table PRJ_BUD_DET add DB_MONEY2 money NULL 
+alter table PRJ_BUD_DET add TB_OTHER nvarchar(20) NULL 
+alter table PRJ_BUD_DET add DB_OTHER nvarchar(20) NULL 
+alter table PRJ_BUD_DET add TRSSUM money NULL 
+alter table PRJ_BUD_DET add ITFORMSUM money NULL 
+alter table PRJ_BUD_DET add DB_CODE0 nvarchar(20) NULL 
+
+/*1010208 朝陽增加專案計劃主持人用 */
+alter table TBCODE add TEANAME varchar(255) NULL 
+
+/*1010213 崑山增加收費類別是否移送會計 */
+alter table TBPENNYKIND add ISTRAN bit DEFAULT 0
+update TBPENNYKIND set ISTRAN=0 where ISTRAN is null
+
+
+/*1010213 崑山傳票長度改為250 */
+alter table TBTRS alter column REMARK nvarchar(255)  null
+alter table TBTRSACT alter column REMARK nvarchar(255)  null
+alter table TBWASH alter column REMARK nvarchar(255)  null
+alter table BAKTRS alter column REMARK nvarchar(255)  null
+alter table BAKTRSACT alter column REMARK nvarchar(255)  null
+alter table TBOUTWASH alter column REMARK nvarchar(255)  null
+
+
+
+/*1010223 小額收費主檔新增收入部門 */
+alter table TBPENNY add BYDEP nvarchar(10) NULL 
+
+/*1010327 大仁優先序變10碼 */
+alter table ITSCHOOLDEPBUDGET add DB_ORDER nvarchar(10) NULL 
+
+
+/*1010418 線上預算申請作業 單價小數點 */
+alter table ITSCHOOLDEPBUDGET alter column DB_PRICE money NULL 
+
+/*1010720 遠東流用上下限比例及金額 */
+alter table ITSCHOOLDEPBUDGET add UPPCT dollar NULL 
+alter table ITSCHOOLDEPBUDGET add UPMONEY dollar NULL 
+alter table ITSCHOOLDEPBUDGET add DOWNPCT dollar NULL 
+alter table ITSCHOOLDEPBUDGET add DOWNMONEY dollar NULL 
+
+/*1010720 遠東預算類別*/
+drop table TBBUDKIND
+create table dbo.TBBUDKIND (
+    /*預算分類編號*/ 
+    BUDKINDNO nvarchar(20) not null , 
+	/*預算分類名稱 */
+	BUDKINDNAME nvarchar(50) null ,
+	/*預算負責人 */
+	BUDADMIN nvarchar(100) null ,
+	REMARK nvarchar(255)  null	
+	)
+go
+alter table dbo.TBBUDKIND add constraint PK_TBBUDKIND primary key (BUDKINDNO);
+go
+
+/*1010720 預算主檔加上預算類別 */
+alter table ITSCHOOLDEP add  BUDKINDNO nvarchar(20) NULL 
+
+/*20120724 V1.12.0814 TBOUT 增加作廢日期*/
+alter table TBOUT add InvalidDate  days  null
+
+INSERT INTO [TBPARA] ([CODE],[NAME],[VALUE],[CANSEE],[NOTES]) VALUES ('ITFORMNOTCON','是否控制預算','N','72',null);
+
+/*20121011 V1.12.1011 TBWASH 增加銷帳完成日期*/
+alter table TBWASH add ENDDATE  days  null
+
+/*1030823 大華收款收據增加紙本編號 */
+alter table TBPENNY add  paperno nvarchar(20) NULL 
+
+/*1031007 付款對象編號改為20 */
+alter table TBOUTDETAIL alter column BUSNO nvarchar(20)  null
+alter table TBEXPORTDETAIL alter column BUSNO nvarchar(20)  null
+alter table TBEXPORTDETAILDET alter column BUSNO nvarchar(20)  null
+alter table TBOUT alter column BUSNO nvarchar(20)  null
+alter table TBIN alter column BUSNO nvarchar(20)  null
+alter table TBOUTWASH alter column BUSNO nvarchar(20)  null
+
+
+/*1031009 預算說明書長度變更 */
+alter table TBBUDPOI alter column [CONTENT] nvarchar(MAX)  null
+
+/*10311125 中華醫 科研 */
+alter table ITSCHOOLDEP add Research bit NULL 
+
+/*20131231 付款對象編名稱長度100 */
+alter table TBTRSACT alter column BUSNAME nvarchar(100)  null
+
+/*20140115 崑山關閉其他代號 */
+alter table TBOTHER add ISCLOSE nvarchar(2)  null 
+
+/*20140429 增加廠商最後修改日期及修改人員*/
+alter table TBBUS add USENAME nvarchar(10)  null
+alter table TBBUS add  USEDATE datetime null
+
+/*20140429 修改 「專案名稱」欄位，若輸入英文計畫名稱 */
+alter table TBCODE alter column NAME nvarchar(100) not  null
+
+
+/*20140325 南台借支與分次核銷處理 */
+alter table TBTRSACT add NOPAYOVER nvarchar(2) NULL 
+
+
+/*20140325 南台會計預算跨年度 */
+alter table ITSCHOOLDEPBUDGET add ACCMONEY dollar NULL 
+alter table ITSCHOOLDEPBUDGET add FORMMONEY dollar NULL 
+alter table ITSCHOOLDEPBUDGET add BORROWMONEY dollar NULL
+alter table ITSCHOOLDEPBUDGET add RETURNMONEY dollar NULL
+
+/*2014325 新增 usp_set_accmoney */
+drop procedure usp_set_accmoney
+create procedure usp_set_accmoney
+  @years smallint,
+  @BUDGETNO NVARCHAR(50)
+  
+as
+    /*以下為宣告區*/
+	DECLARE @AccMoney MONEY
+	DECLARE @PD_BDATE datetime
+	DECLARE @PD_EDATE datetime
+	/*以下為資料區*/
+   -- 取得計劃起訖
+   select @PD_BDATE =b.DATE1,@PD_EDATE =b.DATE2 from ITSCHOOLDEPBUDGET a
+   join ITSCHOOLDEP b on a.PD_ID=b.PD_ID
+   where DB_ID = @budgetno	
+   	
+	-- 取得目前預算的已執行金額
+	select @AccMoney=sum(IsNull(a.DEBIT,0)-IsNull(a.CREDIT,0))  from TBTRSACT a,TBTRS b 
+	where a.BUDGETNO = @BUDGETNO
+	and b.TRSDATE between @PD_BDATE and @PD_EDATE 
+	and a.TRSNO = b.TRSNO	
+	
+	/*以下為更新區*/	
+	update ITSCHOOLDEPBUDGET 
+	set 
+	AccMoney=isnull(@AccMoney,0)
+	where DB_ID=@BUDGETNO
+	AND   ISNULL(budclose,'0')<>'1'
+	AND   ISNULL((SELECT ISNULL(budclose,'0') FROM ITSCHOOLDEP WHERE PD_ID=dbo.ITSCHOOLDEPBUDGET.PD_ID AND years=dbo.ITSCHOOLDEPBUDGET.years),'0')<>'1'
+	AND YEARS=@years
+
+GO
+
+drop procedure usp_set_formmoney
+create procedure usp_set_formmoney
+  @years smallint,
+  @BUDGETNO NVARCHAR(50)
+  
+as
+    /*以下為宣告區*/
+	DECLARE @FormMoney MONEY
+	DECLARE @PD_BDATE datetime
+	DECLARE @PD_EDATE datetime
+	
+	/*以下為資料區*/
+   -- 取得計劃起訖
+   select @PD_BDATE =b.DATE1,@PD_EDATE =b.DATE2 from ITSCHOOLDEPBUDGET a
+   join ITSCHOOLDEP b on a.PD_ID=b.PD_ID
+   where DB_ID = @budgetno	
+	
+   -- 取得目前請購金額
+  
+	select @FormMoney =sum(IsNull(MONEY,0)) from ITFORM_DETIAL 
+	where not DOC_ID in (select CAST(NOTENO as int) from TBTRSACT where NOTENO <> '' and trsdate between @PD_BDATE and @PD_EDATE group by NOTENO) 
+	and BUDGETNO = @budgetno
+    and FORMDATE between @PD_BDATE and @PD_EDATE
+    group by BUDGETNO  
+	
+	/*以下為更新區*/	
+	update ITSCHOOLDEPBUDGET 
+	set 
+	FormMoney=isnull(@FormMoney,0)
+	where DB_ID=@BUDGETNO
+	AND ISNULL(budclose,'0')<>'1'
+	AND ISNULL((SELECT ISNULL(budclose,'0') FROM ITSCHOOLDEP WHERE PD_ID=dbo.ITSCHOOLDEPBUDGET.PD_ID AND years=dbo.ITSCHOOLDEPBUDGET.years),'0')<>'1'
+	AND YEARS=@years
+
+GO
+
+drop procedure usp_set_allbudmoney
+create procedure usp_set_allbudmoney
+  @years smallint='',
+  @BUDGETNO NVARCHAR(50)='',  
+  @PD_ID NVARCHAR(50)='' 
+as
+		if @BUDGETNO <> '' and @years <> ''
+	BEGIN				
+		/*以下為函示區*/
+		exec usp_set_accmoney @years,@BUDGETNO
+		exec usp_set_formmoney @years,@BUDGETNO
+	END	
+	if @years <> '' and @BUDGETNO = '' and @PD_ID <> ''
+	BEGIN
+		/*以下為宣告區*/
+		DECLARE contact_cursor02 CURSOR 
+		/*以上為宣告區*/		
+		FOR
+			/* 取得帶入迴圈的參數：@amount ,@ass_no_old_nb ,@ass_no_old_ne ,@ass_serial ,@pric */    
+			SELECT  DB_ID
+			  FROM  ITSCHOOLDEPBUDGET 
+			  WHERE years=@years
+			  AND   PD_ID=@PD_ID
+		      ORDER BY  DB_ID		  
+		--- 啟動指標
+		OPEN contact_cursor02
+		FETCH NEXT FROM contact_cursor02 INTO @BUDGETNO
+		--- 指標迴圈：開始，指標所指的資料紀錄不為空則進入迴圈
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			------ 迴圈需要執行的語法 ----------
+			------------------------------------
+			/*以下為函示區*/
+		    exec usp_set_accmoney @years,@BUDGETNO
+		    exec usp_set_formmoney @years,@BUDGETNO
+			/*以上為函示區*/				
+			------------------------------------
+			------ 迴圈需要執行的語法 ----------
+		FETCH NEXT FROM contact_cursor02 INTO @BUDGETNO
+		END  ---> 結束外部迴圈    
+		--- 釋放暫存表格
+		--- 結束並釋放指標 ---
+		CLOSE contact_cursor02  
+		DEALLOCATE contact_cursor02
+	END	
+	
+	if @years <> '' and @BUDGETNO = ''
+	BEGIN
+		/*以下為宣告區*/
+		DECLARE contact_cursor02 CURSOR 
+		/*以上為宣告區*/		
+		FOR
+			/* 取得帶入迴圈的參數：@amount ,@ass_no_old_nb ,@ass_no_old_ne ,@ass_serial ,@pric */    
+			SELECT  DB_ID
+			  FROM  ITSCHOOLDEPBUDGET 
+			  WHERE years=@years
+			  AND   ISNULL(budclose,'0')<>'1'
+			  AND   ISNULL((SELECT ISNULL(budclose,'0') FROM ITSCHOOLDEP WHERE PD_ID=dbo.ITSCHOOLDEPBUDGET.PD_ID AND years=dbo.ITSCHOOLDEPBUDGET.years),'0')<>'1'
+		      ORDER BY  DB_ID		  
+		--- 啟動指標
+		OPEN contact_cursor02
+		FETCH NEXT FROM contact_cursor02 INTO @BUDGETNO
+		--- 指標迴圈：開始，指標所指的資料紀錄不為空則進入迴圈
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			------ 迴圈需要執行的語法 ----------
+			------------------------------------
+			/*以下為函示區*/
+		    exec usp_set_accmoney @years,@BUDGETNO
+		    exec usp_set_formmoney @years,@BUDGETNO
+			/*以上為函示區*/				
+			------------------------------------
+			------ 迴圈需要執行的語法 ----------
+		FETCH NEXT FROM contact_cursor02 INTO @BUDGETNO
+		END  ---> 結束外部迴圈    
+		--- 釋放暫存表格
+		--- 結束並釋放指標 ---
+		CLOSE contact_cursor02  
+		DEALLOCATE contact_cursor02
+	END
+
+GO
+
+
+/*20140715 正修 傳票變更記錄 */
+alter table TBTRS add TRSNOLOG nvarchar(100) NULL 
+
+/*20141111 崑山 增加預算關閉日期、國科會計劃 */
+alter table ITSCHOOLDEP add PD_CLOSEDATE days null
+alter table ITSCHOOLDEP add NSCNO nvarchar(100) NULL 
+
+/*20141225 正修優先序長度增長處理 */
+alter table ITSCHOOLDEPBUDGET alter column DB_ORDER nvarchar(10)  null
+
+
+
+

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates simple list report. To create it:&#13;&#10;&#13;&#10;- go to &quot;Data&quot; menu and select &quot;Choose Report Data...&quot; item to select datasource;&#13;&#10;&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu to create the band structure;&#13;&#10;&#13;&#10;- return to the report page, doubleclick the data band to show its editor;&#13;&#10;&#13;&#10;- choose the datasource;&#13;&#10;&#13;&#10;- drag data from the Data Dictionary window to the band." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="09/03/2015 17:41:13" ReportInfo.CreatorVersion="1.4.42.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport                                             
+{
+  public class ReportScript
+  {
+  
+
+  }  
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqJKod1bZKcGrds90PWq0g4oLG9I6Qzoc0HaYZ0wDsTIVIiWGz27JL5LOHaLUohDrJpNxjvJybR0elRBAp78NJ0A==" ConnectionStringExpression="[ConnStr]">
+      <TableDataSource Name="Table" Alias="主資料" DataType="System.Int32" Enabled="true" SelectCommand="select 客戶主檔.公司名稱 as 客戶公司名稱,客戶主檔.簡稱 as 客戶簡稱&#13;&#10;,m.*,客戶主檔.*&#13;&#10;from 應收帳款主檔 m&#13;&#10;LEFT JOIN 客戶主檔  ON m.客戶代號 = 客戶主檔.客戶代號 &#13;&#10;where  m.憑單號碼 between @RepKey1 and @RepKey2&#13;&#10;order by m.憑單號碼&#13;&#10;">
+        <Column Name="客戶公司名稱" DataType="System.String"/>
+        <Column Name="憑單號碼" DataType="System.String"/>
+        <Column Name="客戶代號" DataType="System.String"/>
+        <Column Name="出貨日期起" DataType="System.String"/>
+        <Column Name="出貨日期迄" DataType="System.String"/>
+        <Column Name="請款日期" DataType="System.String"/>
+        <Column Name="金額" DataType="System.Double"/>
+        <Column Name="含稅" DataType="System.Double"/>
+        <Column Name="總計" DataType="System.Double"/>
+        <Column Name="CK含稅" DataType="System.String"/>
+        <Column Name="建立人員" DataType="System.String"/>
+        <Column Name="建立日期" DataType="System.String"/>
+        <Column Name="修改人員" DataType="System.String"/>
+        <Column Name="修改日期" DataType="System.String"/>
+        <Column Name="客戶簡稱" DataType="System.String"/>
+        <Column Name="所屬年月" DataType="System.String"/>
+        <Column Name="收款日期" DataType="System.String"/>
+        <Column Name="本期應收帳款" DataType="System.Double"/>
+        <Column Name="預收金額" DataType="System.Double"/>
+        <Column Name="扣款" DataType="System.Double"/>
+        <Column Name="折讓" DataType="System.Double"/>
+        <Column Name="現金" DataType="System.Double"/>
+        <Column Name="票據" DataType="System.Double"/>
+        <Column Name="郵票" DataType="System.Double"/>
+        <Column Name="未收餘額" DataType="System.Double"/>
+        <Column Name="前期累計帳款" DataType="System.Double"/>
+        <Column Name="重量" DataType="System.Double"/>
+        <Column Name="關聯序號" DataType="System.String"/>
+        <Column Name="客戶代號1" DataType="System.String"/>
+        <Column Name="分類代碼" DataType="System.String"/>
+        <Column Name="統一編號" DataType="System.String"/>
+        <Column Name="負責人" DataType="System.String"/>
+        <Column Name="公司名稱" DataType="System.String"/>
+        <Column Name="公司抬頭" DataType="System.String"/>
+        <Column Name="簡稱" DataType="System.String"/>
+        <Column Name="公司郵遞區號" DataType="System.String"/>
+        <Column Name="公司地址" DataType="System.String"/>
+        <Column Name="帳單郵遞區號" DataType="System.String"/>
+        <Column Name="帳單地址" DataType="System.String"/>
+        <Column Name="電話1" DataType="System.String"/>
+        <Column Name="電話2" DataType="System.String"/>
+        <Column Name="電話3" DataType="System.String"/>
+        <Column Name="傳真1" DataType="System.String"/>
+        <Column Name="傳真2" DataType="System.String"/>
+        <Column Name="網址" DataType="System.String"/>
+        <Column Name="E_Mail" DataType="System.String"/>
+        <Column Name="備註1" DataType="System.String"/>
+        <Column Name="備註2" DataType="System.String"/>
+        <Column Name="備註3" DataType="System.String"/>
+        <Column Name="備註4" DataType="System.String"/>
+        <Column Name="備註5" DataType="System.String"/>
+        <Column Name="備註6" DataType="System.String"/>
+        <Column Name="備註7" DataType="System.String"/>
+        <Column Name="備註8" DataType="System.String"/>
+        <Column Name="備註9" DataType="System.String"/>
+        <Column Name="備註10" DataType="System.String"/>
+        <Column Name="試片否" DataType="System.String"/>
+        <Column Name="往來否" DataType="System.String"/>
+        <Column Name="建立人員1" DataType="System.String"/>
+        <Column Name="建立日期1" DataType="System.String"/>
+        <Column Name="修改人員1" DataType="System.String"/>
+        <Column Name="修改日期1" DataType="System.String"/>
+        <Column Name="其他郵遞區號1" DataType="System.String"/>
+        <Column Name="其他地址1" DataType="System.String"/>
+        <Column Name="其他郵遞區號2" DataType="System.String"/>
+        <Column Name="其他地址2" DataType="System.String"/>
+        <Column Name="其他郵遞區號3" DataType="System.String"/>
+        <Column Name="其他地址3" DataType="System.String"/>
+        <CommandParameter Name="RepKey1" DataType="22" Expression="[RepKey]"/>
+        <CommandParameter Name="RepKey2" DataType="22" Expression="[RepKey1]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="ConnStr" DataType="System.String"/>
+    <Parameter Name="RepKey" DataType="System.String"/>
+    <Parameter Name="RepKey1" DataType="System.String"/>
+    <Parameter Name="RepKey2" DataType="System.String" Expression="&quot;2015-12-31&quot;"/>
+    <Parameter Name="RepKey3" DataType="System.String"/>
+    <Parameter Name="RepKey4" DataType="System.String"/>
+    <Parameter Name="A1" DataType="System.String"/>
+    <Parameter Name="A2" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="299" PaperHeight="178" TopMargin="20" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15">
+    <DataBand Name="Data1" Width="1054.62" Height="593.46" StartNewPage="true" DataSource="Table">
+      <TextObject Name="Text2" Left="207.9" Top="340.2" Width="538.65" Height="18.9" Text="[主資料.客戶公司名稱]" Font="標楷體, 16pt"/>
+      <TextObject Name="Text3" Left="207.9" Top="311.85" Width="538.65" Height="18.9" Text="[主資料.其他地址2]" Font="標楷體, 16pt"/>
+      <TextObject Name="Text4" Left="207.9" Top="283.5" Width="94.5" Height="18.9" Text="[主資料.公司郵遞區號]" Font="標楷體, 16pt"/>
+    </DataBand>
+  </ReportPage>
+</Report>

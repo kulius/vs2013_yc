@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates simple list report. To create it:&#13;&#10;&#13;&#10;- go to &quot;Data&quot; menu and select &quot;Choose Report Data...&quot; item to select datasource;&#13;&#10;&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu to create the band structure;&#13;&#10;&#13;&#10;- return to the report page, doubleclick the data band to show its editor;&#13;&#10;&#13;&#10;- choose the datasource;&#13;&#10;&#13;&#10;- drag data from the Data Dictionary window to the band." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="04/12/2017 21:35:49" ReportInfo.CreatorVersion="1.4.42.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport                                             
+{
+  public class ReportScript
+  {
+    private Int32 sum;
+    private double sum1;
+    private void Data1_BeforePrint(object sender, EventArgs e)
+    {         
+        /*
+      sum +=  ((Int32)Report.GetColumnValue(&quot;主資料.標準產量&quot;));
+      sum1 += (double)Report.GetColumnValue(&quot;主資料.S重量&quot;);
+      Report.SetParameterValue(&quot;A1&quot;,((Int32)Report.GetVariableValue(&quot;Row#&quot;)) );
+    
+      if ((String)Report.GetColumnValue(&quot;主資料.分類&quot;)==&quot;I&quot;)
+      Report.SetParameterValue(&quot;A1&quot;, &quot;進貨&quot;);
+      else
+      Report.SetParameterValue(&quot;A1&quot;, &quot;出貨&quot;);
+      
+      string V=&quot;&quot;;
+      DataSourceBase ds = Report.GetDataSource(&quot;明細資料&quot;);
+      ds.Init();
+      while (ds.HasMoreRows)
+      {
+        string V1 = (string)Report.GetColumnValue(&quot;明細資料.簡稱&quot;);
+        string V2 = (string)Report.GetColumnValue(&quot;明細資料.簡稱1&quot;);
+        
+        V=V+V1+&quot;-&quot;+V2+&quot;,&quot;;
+          
+        // do something with it...
+        // ...
+        // go next data row
+        ds.Next();
+      }
+      Report.SetParameterValue(&quot;A2&quot;, V);
+       */
+    } 
+  }  
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqJKod1bZKcGrds90PWq0g4oLG9I6Qzoc0HaYZ0wDsTIVIiWGz27JL5LOHaLUohDrJdtdydOnZSYcjp6I16ULTAQ==" ConnectionStringExpression="[ConnStr]">
+      <TableDataSource Name="Table" Alias="主資料" DataType="System.Int32" Enabled="true" SelectCommand="select * from (&#13;&#10;select m.預排爐號,m.組長,m.操作員,sum(Y重量) as Y重量 ,sum(Y重量*單價) as 金額,sum(N重量) as N重量 from workitem m&#13;&#10;where  m.T製造日期 &gt;=@RepKey1 and m.T製造日期 &lt;=@RepKey2&#13;&#10;group by m.預排爐號,m.組長,m.操作員&#13;&#10;)  as m&#13;&#10;left join 各爐產能設定 d on m.預排爐號=d.爐號 and d.年月= @RepKey&#13;&#10;order by 組長,預排爐號&#13;&#10;">
+        <Column Name="預排爐號" DataType="System.String"/>
+        <Column Name="操作員" DataType="System.String"/>
+        <Column Name="Y重量" DataType="System.Double"/>
+        <Column Name="金額" DataType="System.Double"/>
+        <Column Name="N重量" DataType="System.Double"/>
+        <Column Name="autono" DataType="System.Int32"/>
+        <Column Name="年月" DataType="System.String"/>
+        <Column Name="爐號" DataType="System.String"/>
+        <Column Name="個人標準產量" DataType="System.Double"/>
+        <Column Name="標準總產量" DataType="System.Double"/>
+        <Column Name="個人標準金額" DataType="System.Double"/>
+        <Column Name="標準總金額" DataType="System.Double"/>
+        <Column Name="組長" DataType="System.String"/>
+        <CommandParameter Name="RepKey1" DataType="22" Expression="[RepKey1]"/>
+        <CommandParameter Name="RepKey2" DataType="22" Expression="[RepKey2]"/>
+        <CommandParameter Name="RepKey" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="ConnStr" DataType="System.String" Expression="&quot;server=60.249.192.91;database=ERPALL;uid=erp;pwd=erp&quot;"/>
+    <Parameter Name="RepKey" DataType="System.String" Expression="&quot;201702&quot;"/>
+    <Parameter Name="RepKey1" DataType="System.String" Expression="&quot;2017-02-01&quot;"/>
+    <Parameter Name="RepKey2" DataType="System.String" Expression="&quot;2017-02-28&quot;"/>
+    <Parameter Name="RepKey3" DataType="System.String"/>
+    <Parameter Name="RepKey4" DataType="System.String"/>
+    <Parameter Name="A1" DataType="System.String"/>
+    <Parameter Name="A2" DataType="System.String"/>
+    <Total Name="Total1" Expression="[主資料.Y重量]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total2" Expression="[主資料.金額]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total3" Expression="[主資料.N重量]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" TopMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="66.15">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Text="組長及個人產量表" HorzAlign="Center" VertAlign="Center" Font="標楷體, 20pt, style=Bold, Underline"/>
+      <TextObject Name="Text12" Left="189" Top="47.25" Width="283.5" Height="18.9" Text="製造日期：[RepKey1]-[RepKey2]" Font="標楷體, 12pt, style=Bold"/>
+      <TextObject Name="Text13" Left="642.6" Top="47.25" Width="75.6" Height="18.9" Text="頁次：[TotalPages#]" HorzAlign="Right" Font="標楷體, 12pt, style=Bold"/>
+      <TextObject Name="Text25" Left="472.5" Top="47.25" Width="170.1" Height="18.9" Text="列印日期：[Date]" Format="Date" Format.Format="MM/dd/yy" WordWrap="false" Font="標楷體, 12pt, style=Bold"/>
+    </PageHeaderBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="68.48" Width="718.2" Height="37.8" CanShrink="true"/>
+    <GroupHeaderBand Name="GroupHeader1" Top="108.6" Width="718.2" Height="37.8" CanShrink="true" Condition="[主資料.組長]">
+      <TextObject Name="Text14" Left="119.07" Width="47.25" Height="37.8" Border.Lines="All" Text="爐號" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text15" Left="166.32" Width="66.15" Height="37.8" Border.Lines="All" Text="標準產量" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text17" Left="232.47" Width="66.15" Height="37.8" Border.Lines="All" Text="實際產量" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text19" Left="298.62" Width="56.7" Height="37.8" Border.Lines="All" Text="產量&#13;&#10;達成率" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text45" Left="355.32" Width="73.71" Height="37.8" Border.Lines="All" Text="標準金額" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text46" Left="429.03" Width="69.93" Height="37.8" Border.Lines="All" Text="實際金額" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text49" Left="498.96" Width="56.7" Height="37.8" Border.Lines="All" Text="金額&#13;&#10;達成率" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text50" Left="555.66" Width="52.92" Height="37.8" Border.Lines="All" Text="不合格&#13;&#10;產量" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text52" Left="608.58" Width="62.37" Height="37.8" Border.Lines="All" Text="個人總產量" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text53" Left="670.95" Width="47.25" Height="37.8" Border.Lines="All" Text="不合&#13;&#10;格率" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text70" Left="52.92" Width="66.15" Height="37.8" Border.Lines="All" Text="[主資料.組長]" VertAlign="Center" Font="標楷體, 10pt"/>
+      <TextObject Name="Text71" Width="52.04" Height="37.8" Border.Lines="All" Text="組長" HorzAlign="Center" VertAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <DataBand Name="Data1" Top="148.73" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+        <TextObject Name="Text2" Left="119.07" Width="47.25" Height="18.9" Border.Lines="All" Text="[主資料.預排爐號]" Font="標楷體, 9pt"/>
+        <TextObject Name="Text4" Left="232.47" Width="66.15" Height="18.9" Border.Lines="All" Text="[主資料.Y重量]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text48" Left="429.03" Width="69.93" Height="18.9" Border.Lines="All" Text="[主資料.金額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text51" Left="555.66" Width="52.92" Height="18.9" Border.Lines="All" Text="[主資料.N重量]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text54" Left="608.58" Width="62.37" Height="18.9" Border.Lines="All" Text="[[主資料.Y重量]+[主資料.N重量]]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text60" Left="166.32" Width="66.15" Height="18.9" Border.Lines="All" Text="[主資料.個人標準產量]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text61" Left="298.62" Width="56.7" Height="18.9" Border.Lines="All" Text="[[主資料.Y重量]/[主資料.個人標準產量]]" HideZeros="true" Format="Percent" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.PercentSymbol="%" Format.PositivePattern="1" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text62" Left="355.32" Width="73.71" Height="18.9" Border.Lines="All" Text="[主資料.個人標準金額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text63" Left="498.96" Width="56.7" Height="18.9" Border.Lines="All" Text="[[主資料.金額]/[主資料.個人標準金額]]" HideZeros="true" Format="Percent" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.PercentSymbol="%" Format.PositivePattern="1" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text64" Left="670.95" Width="47.25" Height="18.9" Border.Lines="All" Text="[[主資料.N重量]/([主資料.Y重量]+[主資料.N重量])]" HideZeros="true" Format="Percent" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.PercentSymbol="%" Format.PositivePattern="1" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text47" Left="52.92" Width="66.15" Height="18.9" Border.Lines="All" Text="[主資料.操作員]" Font="標楷體, 9pt"/>
+        <TextObject Name="Text44" Width="52.04" Height="18.9" Border.Lines="All" Text="操作員" Duplicates="Clear" HorzAlign="Center" VertAlign="Center" Font="標楷體, 9pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="169.95" Width="718.2" Height="18.9">
+        <TextObject Name="Text55" Left="232.47" Width="66.15" Height="18.9" Border.Lines="All" Text="[Total1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text56" Left="429.03" Width="69.93" Height="18.9" Border.Lines="All" Text="[Total2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text57" Left="555.66" Width="52.92" Height="18.9" Border.Lines="All" Text="[Total3]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text58" Left="608.58" Width="62.37" Height="18.9" Border.Lines="All" Text="[[Total1]+[Total3]]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text59" Width="166.32" Height="18.9" Border.Lines="All" Text="合計" Font="標楷體, 9pt"/>
+        <TextObject Name="Text65" Left="166.32" Width="66.15" Height="18.9" Border.Lines="All" Text="[主資料.標準總產量]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text66" Left="298.62" Width="56.7" Height="18.9" Border.Lines="All" Text="[[Total1]/[主資料.標準總產量]]" Format="Percent" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.PercentSymbol="%" Format.PositivePattern="1" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text67" Left="355.32" Width="73.71" Height="18.9" Border.Lines="All" Text="[主資料.標準總金額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text68" Left="498.96" Width="56.7" Height="18.9" Border.Lines="All" Text="[[Total2]/[主資料.標準總金額]]" Format="Percent" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.PercentSymbol="%" Format.PositivePattern="1" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text69" Left="670.95" Width="47.25" Height="18.9" Border.Lines="All" Text="[[Total3]/([Total1]+[Total3])]" Format="Percent" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.PercentSymbol="%" Format.PositivePattern="1" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 9pt" Trimming="EllipsisCharacter"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

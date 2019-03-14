@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" TextQuality="Regular" StartReportEvent="_StartReport" ReportInfo.Description="Demonstrates simple list report. To create it:&#13;&#10;&#13;&#10;- go to &quot;Data&quot; menu and select &quot;Choose Report Data...&quot; item to select datasource;&#13;&#10;&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu to create the band structure;&#13;&#10;&#13;&#10;- return to the report page, doubleclick the data band to show its editor;&#13;&#10;&#13;&#10;- choose the datasource;&#13;&#10;&#13;&#10;- drag data from the Data Dictionary window to the band." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="09/29/2015 12:53:25" ReportInfo.CreatorVersion="1.4.42.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqJKod1bZKcGrds90PWq0g4oLG9I6Qzoc0HaYZ0wDsTIVIiWGz27JL5LOHaLUohDrJ5UBCuQ01A6nnLAKR/jcL1w==" ConnectionStringExpression="[ConnStr]">
+      <TableDataSource Name="Table" Alias="主檔" DataType="System.Int32" Enabled="true" SelectCommand="SELECT 客戶.簡稱 as 客戶簡稱,前加工廠.簡稱 as 前加工廠簡稱,次加工廠.簡稱 as 次加工廠簡稱&#13;&#10;,產品.一層名稱 AS 品名,客戶.公司名稱 as 客戶公司名稱&#13;&#10;,檢驗員.姓名 as 檢驗員姓名,金相審核.姓名 as 金相審核姓名,金相檢驗.姓名 as 金相檢驗姓名&#13;&#10;,m.*&#13;&#10;FROM 進貨單主檔 AS m &#13;&#10;LEFT JOIN 客戶主檔 AS 客戶 ON m.客戶代號 = 客戶.客戶代號 &#13;&#10;LEFT JOIN 加工廠主檔 AS  前加工廠 ON m.加工廠代號 = 前加工廠.加工廠代號 &#13;&#10;LEFT JOIN 加工廠主檔 AS  次加工廠 ON m.次加工廠代號1 = 次加工廠.加工廠代號 &#13;&#10;LEFT JOIN 加工廠主檔 AS  二次加工廠 ON m.次加工廠代號2 = 二次加工廠.加工廠代號 &#13;&#10;LEFT JOIN (select * from s_一層代碼檔 where 類別 = 'S03N0001') AS 產品 ON m.產品代碼 = 產品.一層代碼 &#13;&#10;LEFT JOIN (select * from s_一層代碼檔 where 類別 = '狀態') AS 狀態 ON m.狀態 = 狀態.一層代碼&#13;&#10;LEFT JOIN 員工主檔 AS 檢驗員 ON m.檢驗人員 = 檢驗員.員工代號&#13;&#10;LEFT JOIN 員工主檔 AS 金相審核 ON m.金相審核人員 = 金相審核.員工代號&#13;&#10;LEFT JOIN 員工主檔 AS 金相檢驗 ON m.金相檢驗人員 = 金相檢驗.員工代號&#13;&#10; where 工令號碼=@工令號碼">
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="前工令號碼" DataType="System.String"/>
+        <Column Name="日期" DataType="System.String"/>
+        <Column Name="時間" DataType="System.String"/>
+        <Column Name="車次序號" DataType="System.String"/>
+        <Column Name="客戶代號" DataType="System.String"/>
+        <Column Name="加工廠代號" DataType="System.String"/>
+        <Column Name="開單人員" DataType="System.String"/>
+        <Column Name="司機代號" DataType="System.String"/>
+        <Column Name="客戶單號" DataType="System.String"/>
+        <Column Name="客戶批號" DataType="System.String"/>
+        <Column Name="產品代碼" DataType="System.String"/>
+        <Column Name="規格代碼" DataType="System.String"/>
+        <Column Name="長度代碼" DataType="System.String"/>
+        <Column Name="長度說明" DataType="System.String"/>
+        <Column Name="品名分類代碼" DataType="System.String"/>
+        <Column Name="加工方式代碼" DataType="System.String"/>
+        <Column Name="材質代碼" DataType="System.String"/>
+        <Column Name="規範分類" DataType="System.String"/>
+        <Column Name="強度級數" DataType="System.String"/>
+        <Column Name="表面處理代碼" DataType="System.String"/>
+        <Column Name="電鍍別代碼" DataType="System.String"/>
+        <Column Name="次加工廠代號1" DataType="System.String"/>
+        <Column Name="次加工廠代號2" DataType="System.String"/>
+        <Column Name="數量1" DataType="System.Double"/>
+        <Column Name="單位代號1" DataType="System.String"/>
+        <Column Name="數量2" DataType="System.Double"/>
+        <Column Name="單位代號2" DataType="System.String"/>
+        <Column Name="數量3" DataType="System.Double"/>
+        <Column Name="單位代號3" DataType="System.String"/>
+        <Column Name="數量4" DataType="System.Double"/>
+        <Column Name="單位代號4" DataType="System.String"/>
+        <Column Name="淨重" DataType="System.Double"/>
+        <Column Name="線材爐號" DataType="System.String"/>
+        <Column Name="依據標準" DataType="System.String"/>
+        <Column Name="表面硬度" DataType="System.String"/>
+        <Column Name="心部硬度" DataType="System.String"/>
+        <Column Name="抗拉強度" DataType="System.String"/>
+        <Column Name="滲碳層" DataType="System.String"/>
+        <Column Name="扭力" DataType="System.String"/>
+        <Column Name="華司材質" DataType="System.String"/>
+        <Column Name="華司硬度" DataType="System.String"/>
+        <Column Name="試片" DataType="System.String"/>
+        <Column Name="存放位置" DataType="System.String"/>
+        <Column Name="運費種類" DataType="System.String"/>
+        <Column Name="回火溫度" DataType="System.Double"/>
+        <Column Name="以前爐號" DataType="System.String"/>
+        <Column Name="預排爐號" DataType="System.String"/>
+        <Column Name="注意事項1" DataType="System.String"/>
+        <Column Name="注意事項2" DataType="System.String"/>
+        <Column Name="注意事項3" DataType="System.String"/>
+        <Column Name="注意事項4" DataType="System.String"/>
+        <Column Name="狀態" DataType="System.String"/>
+        <Column Name="過磅狀態" DataType="System.String"/>
+        <Column Name="檢驗狀態" DataType="System.String"/>
+        <Column Name="進爐狀態" DataType="System.String"/>
+        <Column Name="製造日期" DataType="System.String"/>
+        <Column Name="製造時間" DataType="System.String"/>
+        <Column Name="操作人員" DataType="System.String"/>
+        <Column Name="品管人員" DataType="System.String"/>
+        <Column Name="班別" DataType="System.String"/>
+        <Column Name="流量" DataType="System.String"/>
+        <Column Name="CP值" DataType="System.String"/>
+        <Column Name="氨值1" DataType="System.String"/>
+        <Column Name="氨值2" DataType="System.String"/>
+        <Column Name="氨值3" DataType="System.String"/>
+        <Column Name="氨值4" DataType="System.String"/>
+        <Column Name="加熱爐1" DataType="System.String"/>
+        <Column Name="加熱爐2" DataType="System.String"/>
+        <Column Name="加熱爐3" DataType="System.String"/>
+        <Column Name="加熱爐4" DataType="System.String"/>
+        <Column Name="加熱爐5" DataType="System.String"/>
+        <Column Name="加熱爐6" DataType="System.String"/>
+        <Column Name="加熱爐油溫" DataType="System.String"/>
+        <Column Name="加熱爐速度" DataType="System.String"/>
+        <Column Name="回火爐1" DataType="System.String"/>
+        <Column Name="回火爐2" DataType="System.String"/>
+        <Column Name="回火爐3" DataType="System.String"/>
+        <Column Name="回火爐4" DataType="System.String"/>
+        <Column Name="回火爐速度" DataType="System.String"/>
+        <Column Name="斷面積" DataType="System.Double"/>
+        <Column Name="最大負荷值1" DataType="System.Double"/>
+        <Column Name="最大負荷值2" DataType="System.Double"/>
+        <Column Name="最大負荷值3" DataType="System.Double"/>
+        <Column Name="最大負荷值4" DataType="System.Double"/>
+        <Column Name="最大負荷值5" DataType="System.Double"/>
+        <Column Name="最大負荷值6" DataType="System.Double"/>
+        <Column Name="最大負荷值7" DataType="System.Double"/>
+        <Column Name="最大負荷值8" DataType="System.Double"/>
+        <Column Name="抗拉強度值1" DataType="System.Double"/>
+        <Column Name="抗拉強度值2" DataType="System.Double"/>
+        <Column Name="抗拉強度值3" DataType="System.Double"/>
+        <Column Name="抗拉強度值4" DataType="System.Double"/>
+        <Column Name="抗拉強度值5" DataType="System.Double"/>
+        <Column Name="抗拉強度值6" DataType="System.Double"/>
+        <Column Name="抗拉強度值7" DataType="System.Double"/>
+        <Column Name="抗拉強度值8" DataType="System.Double"/>
+        <Column Name="降伏點值1" DataType="System.Double"/>
+        <Column Name="降伏點值2" DataType="System.Double"/>
+        <Column Name="降伏點值3" DataType="System.Double"/>
+        <Column Name="降伏點值4" DataType="System.Double"/>
+        <Column Name="降伏點值5" DataType="System.Double"/>
+        <Column Name="降伏點值6" DataType="System.Double"/>
+        <Column Name="降伏點值7" DataType="System.Double"/>
+        <Column Name="降伏點值8" DataType="System.Double"/>
+        <Column Name="降伏強度值1" DataType="System.Double"/>
+        <Column Name="降伏強度值2" DataType="System.Double"/>
+        <Column Name="降伏強度值3" DataType="System.Double"/>
+        <Column Name="降伏強度值4" DataType="System.Double"/>
+        <Column Name="降伏強度值5" DataType="System.Double"/>
+        <Column Name="降伏強度值6" DataType="System.Double"/>
+        <Column Name="降伏強度值7" DataType="System.Double"/>
+        <Column Name="降伏強度值8" DataType="System.Double"/>
+        <Column Name="伸長率值1" DataType="System.Double"/>
+        <Column Name="伸長率值2" DataType="System.Double"/>
+        <Column Name="伸長率值3" DataType="System.Double"/>
+        <Column Name="伸長率值4" DataType="System.Double"/>
+        <Column Name="伸長率值5" DataType="System.Double"/>
+        <Column Name="伸長率值6" DataType="System.Double"/>
+        <Column Name="伸長率值7" DataType="System.Double"/>
+        <Column Name="伸長率值8" DataType="System.Double"/>
+        <Column Name="脫碳層值1" DataType="System.Double"/>
+        <Column Name="脫碳層值2" DataType="System.Double"/>
+        <Column Name="脫碳層值3" DataType="System.Double"/>
+        <Column Name="脫碳層值4" DataType="System.Double"/>
+        <Column Name="脫碳層值5" DataType="System.Double"/>
+        <Column Name="脫碳層值6" DataType="System.Double"/>
+        <Column Name="脫碳層值7" DataType="System.Double"/>
+        <Column Name="脫碳層值8" DataType="System.Double"/>
+        <Column Name="華司硬度值1" DataType="System.Double"/>
+        <Column Name="華司硬度值2" DataType="System.Double"/>
+        <Column Name="華司硬度值3" DataType="System.Double"/>
+        <Column Name="華司硬度值4" DataType="System.Double"/>
+        <Column Name="華司硬度值5" DataType="System.Double"/>
+        <Column Name="華司硬度值6" DataType="System.Double"/>
+        <Column Name="華司硬度值7" DataType="System.Double"/>
+        <Column Name="華司硬度值8" DataType="System.Double"/>
+        <Column Name="國際標準" DataType="System.String"/>
+        <Column Name="拉力機編號" DataType="System.String"/>
+        <Column Name="表面硬度規格" DataType="System.String"/>
+        <Column Name="表面硬度值" DataType="System.Double"/>
+        <Column Name="表面硬度值1" DataType="System.Double"/>
+        <Column Name="表面硬度值2" DataType="System.Double"/>
+        <Column Name="表面硬度值3" DataType="System.Double"/>
+        <Column Name="表面硬度值4" DataType="System.Double"/>
+        <Column Name="表面硬度值5" DataType="System.Double"/>
+        <Column Name="表面硬度值6" DataType="System.Double"/>
+        <Column Name="表面硬度值7" DataType="System.Double"/>
+        <Column Name="表面硬度值8" DataType="System.Double"/>
+        <Column Name="心部硬度規格" DataType="System.String"/>
+        <Column Name="心部硬度值" DataType="System.Double"/>
+        <Column Name="心部硬度值1" DataType="System.Double"/>
+        <Column Name="心部硬度值2" DataType="System.Double"/>
+        <Column Name="心部硬度值3" DataType="System.Double"/>
+        <Column Name="心部硬度值4" DataType="System.Double"/>
+        <Column Name="心部硬度值5" DataType="System.Double"/>
+        <Column Name="心部硬度值6" DataType="System.Double"/>
+        <Column Name="心部硬度值7" DataType="System.Double"/>
+        <Column Name="心部硬度值8" DataType="System.Double"/>
+        <Column Name="抗拉強度值" DataType="System.Double"/>
+        <Column Name="抗拉強度值起迄" DataType="System.String"/>
+        <Column Name="降伏強度值" DataType="System.Double"/>
+        <Column Name="降伏強度值起迄" DataType="System.String"/>
+        <Column Name="伸長率值" DataType="System.Double"/>
+        <Column Name="伸長率值起迄" DataType="System.String"/>
+        <Column Name="降伏點值起迄" DataType="System.String"/>
+        <Column Name="最大負荷值起迄" DataType="System.String"/>
+        <Column Name="斷面積值起迄" DataType="System.String"/>
+        <Column Name="扭力強度值" DataType="System.Double"/>
+        <Column Name="扭力強度值1" DataType="System.Double"/>
+        <Column Name="扭力強度值2" DataType="System.Double"/>
+        <Column Name="扭力強度值3" DataType="System.Double"/>
+        <Column Name="扭力強度值4" DataType="System.Double"/>
+        <Column Name="扭力強度值5" DataType="System.Double"/>
+        <Column Name="扭力強度值6" DataType="System.Double"/>
+        <Column Name="扭力強度值7" DataType="System.Double"/>
+        <Column Name="扭力強度值8" DataType="System.Double"/>
+        <Column Name="滲碳層1值" DataType="System.Double"/>
+        <Column Name="滲碳層1值1" DataType="System.Double"/>
+        <Column Name="滲碳層1值2" DataType="System.Double"/>
+        <Column Name="滲碳層1值3" DataType="System.Double"/>
+        <Column Name="滲碳層1值4" DataType="System.Double"/>
+        <Column Name="滲碳層1值5" DataType="System.Double"/>
+        <Column Name="滲碳層1值6" DataType="System.Double"/>
+        <Column Name="滲碳層1值7" DataType="System.Double"/>
+        <Column Name="滲碳層1值8" DataType="System.Double"/>
+        <Column Name="滲碳層2值1" DataType="System.Double"/>
+        <Column Name="滲碳層2值2" DataType="System.Double"/>
+        <Column Name="滲碳層2值3" DataType="System.Double"/>
+        <Column Name="滲碳層2值4" DataType="System.Double"/>
+        <Column Name="滲碳層2值5" DataType="System.Double"/>
+        <Column Name="滲碳層2值6" DataType="System.Double"/>
+        <Column Name="滲碳層2值7" DataType="System.Double"/>
+        <Column Name="滲碳層2值8" DataType="System.Double"/>
+        <Column Name="斷面收縮率值" DataType="System.Double"/>
+        <Column Name="斷面收縮率值1" DataType="System.Double"/>
+        <Column Name="斷面收縮率值2" DataType="System.Double"/>
+        <Column Name="斷面收縮率值3" DataType="System.Double"/>
+        <Column Name="斷面收縮率值4" DataType="System.Double"/>
+        <Column Name="斷面收縮率值5" DataType="System.Double"/>
+        <Column Name="斷面收縮率值6" DataType="System.Double"/>
+        <Column Name="斷面收縮率值7" DataType="System.Double"/>
+        <Column Name="斷面收縮率值8" DataType="System.Double"/>
+        <Column Name="安全負荷值" DataType="System.Double"/>
+        <Column Name="安全負荷值1" DataType="System.Double"/>
+        <Column Name="安全負荷值2" DataType="System.Double"/>
+        <Column Name="安全負荷值3" DataType="System.Double"/>
+        <Column Name="安全負荷值4" DataType="System.Double"/>
+        <Column Name="安全負荷值5" DataType="System.Double"/>
+        <Column Name="安全負荷值6" DataType="System.Double"/>
+        <Column Name="安全負荷值7" DataType="System.Double"/>
+        <Column Name="安全負荷值8" DataType="System.Double"/>
+        <Column Name="HV1" DataType="System.Double"/>
+        <Column Name="HV2" DataType="System.Double"/>
+        <Column Name="HV3" DataType="System.Double"/>
+        <Column Name="HV12" DataType="System.Double"/>
+        <Column Name="HV12OK" DataType="System.String"/>
+        <Column Name="HV13" DataType="System.Double"/>
+        <Column Name="HV13OK" DataType="System.String"/>
+        <Column Name="頭部敲擊5" DataType="System.String"/>
+        <Column Name="頭部敲擊10" DataType="System.String"/>
+        <Column Name="頭部敲擊15" DataType="System.String"/>
+        <Column Name="彎曲度5" DataType="System.String"/>
+        <Column Name="彎曲度15" DataType="System.String"/>
+        <Column Name="整體判定" DataType="System.String"/>
+        <Column Name="外觀判定" DataType="System.String"/>
+        <Column Name="檢驗人員" DataType="System.String"/>
+        <Column Name="單支重" DataType="System.Double"/>
+        <Column Name="不合格桶數" DataType="System.Double"/>
+        <Column Name="不合格特急處理動作" DataType="System.String"/>
+        <Column Name="品管備註1" DataType="System.String"/>
+        <Column Name="品管備註2" DataType="System.String"/>
+        <Column Name="製造日期1" DataType="System.String"/>
+        <Column Name="班別1" DataType="System.String"/>
+        <Column Name="操作人員1" DataType="System.String"/>
+        <Column Name="桶數1" DataType="System.Double"/>
+        <Column Name="組長1" DataType="System.String"/>
+        <Column Name="製造日期2" DataType="System.String"/>
+        <Column Name="班別2" DataType="System.String"/>
+        <Column Name="操作人員2" DataType="System.String"/>
+        <Column Name="桶數2" DataType="System.Double"/>
+        <Column Name="組長2" DataType="System.String"/>
+        <Column Name="製造日期3" DataType="System.String"/>
+        <Column Name="班別3" DataType="System.String"/>
+        <Column Name="操作人員3" DataType="System.String"/>
+        <Column Name="桶數3" DataType="System.Double"/>
+        <Column Name="組長3" DataType="System.String"/>
+        <Column Name="裝袋合計" DataType="System.Double"/>
+        <Column Name="磅後桶數" DataType="System.Double"/>
+        <Column Name="桶數差" DataType="System.Double"/>
+        <Column Name="進貨重量" DataType="System.Double"/>
+        <Column Name="磅後總重" DataType="System.Double"/>
+        <Column Name="重量差" DataType="System.Double"/>
+        <Column Name="現在爐號" DataType="System.String"/>
+        <Column Name="建立人員" DataType="System.String"/>
+        <Column Name="建立日期" DataType="System.String"/>
+        <Column Name="修改人員" DataType="System.String"/>
+        <Column Name="修改日期" DataType="System.String"/>
+        <Column Name="進貨日期" DataType="System.String"/>
+        <Column Name="加熱爐7" DataType="System.String"/>
+        <Column Name="加熱爐8" DataType="System.String"/>
+        <Column Name="回火爐5" DataType="System.String"/>
+        <Column Name="回火爐6" DataType="System.String"/>
+        <Column Name="品管備註3" DataType="System.String"/>
+        <Column Name="製造備註1" DataType="System.String"/>
+        <Column Name="製造備註2" DataType="System.String"/>
+        <Column Name="製造備註3" DataType="System.String"/>
+        <Column Name="序號" DataType="System.Double"/>
+        <Column Name="應對交期" DataType="System.String"/>
+        <Column Name="製造時間1" DataType="System.String"/>
+        <Column Name="製造時間2" DataType="System.String"/>
+        <Column Name="製造時間3" DataType="System.String"/>
+        <Column Name="產量操作人員" DataType="System.String"/>
+        <Column Name="產量過磅人員" DataType="System.String"/>
+        <Column Name="產量備註" DataType="System.String"/>
+        <Column Name="牙分類" DataType="System.String"/>
+        <Column Name="CK抗拉強度" DataType="System.String"/>
+        <Column Name="CK表面硬度" DataType="System.String"/>
+        <Column Name="CK心部硬度" DataType="System.String"/>
+        <Column Name="CK滲碳層" DataType="System.String"/>
+        <Column Name="CK表面硬度值" DataType="System.String"/>
+        <Column Name="CK心部硬度值" DataType="System.String"/>
+        <Column Name="CK抗拉強度值" DataType="System.String"/>
+        <Column Name="CK降伏強度值" DataType="System.String"/>
+        <Column Name="CK伸長率值" DataType="System.String"/>
+        <Column Name="CK扭力強度值" DataType="System.String"/>
+        <Column Name="CK滲碳層1值" DataType="System.String"/>
+        <Column Name="CK斷面收縮率值" DataType="System.String"/>
+        <Column Name="CK安全負荷值" DataType="System.String"/>
+        <Column Name="CK降伏點值起迄" DataType="System.String"/>
+        <Column Name="CK最大負荷值起迄" DataType="System.String"/>
+        <Column Name="CK斷面積值起迄" DataType="System.String"/>
+        <Column Name="品管備註" DataType="System.String"/>
+        <Column Name="製造重量1" DataType="System.Double"/>
+        <Column Name="製造重量2" DataType="System.Double"/>
+        <Column Name="製造重量3" DataType="System.Double"/>
+        <Column Name="客戶簡稱" DataType="System.String"/>
+        <Column Name="前加工廠簡稱" DataType="System.String"/>
+        <Column Name="次加工廠簡稱" DataType="System.String"/>
+        <Column Name="品名" DataType="System.String"/>
+        <Column Name="檢驗員姓名" DataType="System.String"/>
+        <Column Name="客戶公司名稱" DataType="System.String"/>
+        <Column Name="CK脫碳層" DataType="System.String"/>
+        <Column Name="CK滲碳層2值" DataType="System.String"/>
+        <Column Name="CK華司硬度" DataType="System.String"/>
+        <Column Name="華司硬度規格" DataType="System.String"/>
+        <Column Name="完爐日期" DataType="System.String"/>
+        <Column Name="完爐時間" DataType="System.String"/>
+        <Column Name="CK滲碳層值" DataType="System.String"/>
+        <Column Name="入料桶數" DataType="System.Double"/>
+        <Column Name="入料總重" DataType="System.Double"/>
+        <Column Name="產品名稱" DataType="System.String"/>
+        <Column Name="對照" DataType="System.Double"/>
+        <Column Name="出貨桶數" DataType="System.Double"/>
+        <Column Name="出貨重量" DataType="System.Double"/>
+        <Column Name="斷面收縮率值起迄" DataType="System.String"/>
+        <Column Name="安全負荷值起迄" DataType="System.String"/>
+        <Column Name="CK頭部敲擊" DataType="System.String"/>
+        <Column Name="CK彎曲度" DataType="System.String"/>
+        <Column Name="產品名稱" DataType="System.String" PropName="Column"/>
+        <Column Name="CK最大負荷" DataType="System.String"/>
+        <Column Name="最大負荷" DataType="System.String"/>
+        <Column Name="所屬工廠" DataType="System.String"/>
+        <Column Name="CK扭力強度" DataType="System.String"/>
+        <Column Name="扭力強度" DataType="System.String"/>
+        <Column Name="CK華司硬度1值" DataType="System.String"/>
+        <Column Name="CK華司硬度2值" DataType="System.String"/>
+        <Column Name="華司硬度2值1" DataType="System.String"/>
+        <Column Name="華司硬度2值2" DataType="System.String"/>
+        <Column Name="華司硬度2值3" DataType="System.String"/>
+        <Column Name="華司硬度2值4" DataType="System.String"/>
+        <Column Name="華司硬度2值5" DataType="System.String"/>
+        <Column Name="華司硬度2值6" DataType="System.String"/>
+        <Column Name="華司硬度2值7" DataType="System.String"/>
+        <Column Name="華司硬度2值8" DataType="System.String"/>
+        <Column Name="不合格品處理" DataType="System.String"/>
+        <Column Name="不合格重量" DataType="System.Double"/>
+        <Column Name="處理方式" DataType="System.String"/>
+        <Column Name="滲碳層規格" DataType="System.String"/>
+        <Column Name="金相審核姓名" DataType="System.String"/>
+        <Column Name="金相檢驗姓名" DataType="System.String"/>
+        <Column Name="狀態備份" DataType="System.String"/>
+        <Column Name="圖倍率1" DataType="System.String"/>
+        <Column Name="圖倍率2" DataType="System.String"/>
+        <Column Name="圖倍率3" DataType="System.String"/>
+        <Column Name="圖倍率4" DataType="System.String"/>
+        <Column Name="圖倍率5" DataType="System.String"/>
+        <Column Name="圖倍率6" DataType="System.String"/>
+        <Column Name="金相審核日期" DataType="System.String"/>
+        <Column Name="金相檢驗日期" DataType="System.String"/>
+        <Column Name="金相審核人員" DataType="System.String"/>
+        <Column Name="金相檢驗人員" DataType="System.String"/>
+        <Column Name="金相結果判定說明" DataType="System.String"/>
+        <Column Name="金相結果判定" DataType="System.String"/>
+        <CommandParameter Name="工令號碼" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+      <TableDataSource Name="Table2" Alias="金相1" DataType="System.Int32" Enabled="true" SelectCommand="SELECT *&#13;&#10;FROM 進貨單金相圖檔&#13;&#10;where 工令號碼=@工令號碼 and 序號=1">
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="金相圖檔" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="序號" DataType="System.String"/>
+        <CommandParameter Name="工令號碼" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="金相2" DataType="System.Int32" Enabled="true" SelectCommand="SELECT *&#13;&#10;FROM 進貨單金相圖檔&#13;&#10;where 工令號碼=@工令號碼 and 序號=2">
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="金相圖檔" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="序號" DataType="System.String"/>
+        <CommandParameter Name="工令號碼" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+      <TableDataSource Name="Table3" Alias="金相3" DataType="System.Int32" Enabled="true" SelectCommand="SELECT *&#13;&#10;FROM 進貨單金相圖檔&#13;&#10;where 工令號碼=@工令號碼 and 序號=3">
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="金相圖檔" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="序號" DataType="System.String"/>
+        <CommandParameter Name="工令號碼" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+      <TableDataSource Name="Table4" Alias="金相4" DataType="System.Int32" Enabled="true" SelectCommand="SELECT *&#13;&#10;FROM 進貨單金相圖檔&#13;&#10;where 工令號碼=@工令號碼 and 序號=4">
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="金相圖檔" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="序號" DataType="System.String"/>
+        <CommandParameter Name="工令號碼" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+      <TableDataSource Name="Table5" Alias="金相5" DataType="System.Int32" Enabled="true" SelectCommand="SELECT *&#13;&#10;FROM 進貨單金相圖檔&#13;&#10;where 工令號碼=@工令號碼 and 序號=5">
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="金相圖檔" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="序號" DataType="System.String"/>
+        <CommandParameter Name="工令號碼" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+      <TableDataSource Name="Table6" Alias="金相6" DataType="System.Int32" Enabled="true" SelectCommand="SELECT *&#13;&#10;FROM 進貨單金相圖檔&#13;&#10;where 工令號碼=@工令號碼 and 序號=6">
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="金相圖檔" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="序號" DataType="System.String"/>
+        <CommandParameter Name="工令號碼" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="ConnStr" DataType="System.String" Expression="&quot;server=60.249.192.91;database=ERPALL;uid=erp;pwd=erp&quot;"/>
+    <Parameter Name="RepKey" DataType="System.String" Expression="&quot;46OV2185&quot;"/>
+    <Parameter Name="V1" DataType="System.String"/>
+    <Parameter Name="V2" DataType="System.String"/>
+    <Parameter Name="V3" DataType="System.String"/>
+    <Parameter Name="V4" DataType="System.String"/>
+    <Parameter Name="V5" DataType="System.String"/>
+    <Parameter Name="V6" DataType="System.String"/>
+    <Parameter Name="V7" DataType="System.String"/>
+    <Parameter Name="V8" DataType="System.String"/>
+    <Parameter Name="V0" DataType="System.String"/>
+    <Parameter Name="VName" DataType="System.String"/>
+    <Parameter Name="VState" DataType="System.String"/>
+    <Parameter Name="RepKey1" DataType="System.String"/>
+    <Parameter Name="RepKey2" DataType="System.String"/>
+    <Parameter Name="RepKey3" DataType="System.String"/>
+    <Parameter Name="RepKey4" DataType="System.String"/>
+    <Parameter Name="RepKey5" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5">
+    <ReportTitleBand Name="ReportTitle1" Width="756" Height="1058.4" BeforePrintEvent="ReportTitle1_BeforePrint">
+      <PictureObject Name="Picture2" Left="18.9" Top="18.9" Width="122.85" Height="94.5" Image="iVBORw0KGgoAAAANSUhEUgAAAJoAAACdCAYAAABM+mGvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAEuJSURBVHhe7V0HYJVF8kfs9Tw97+5/BREBC9gRxd7L2cUuKiogRXoHUVERUCmiiEoVBD1AUgi9txBCh0AIJYRAGklISEhPmP/8Znbf+/LyEhKS9xJPBia7X9sy+9uZ2fnKq0Wn6BT5gWoM0I6DjxeZHFJQkdmnezNy86nlxM30p87z6aJOIXRR57mcn8NpxflPXeZ63Q++uBPSeZK/UOpAXrcv7hxCF3ZCfi6nnO+Cc3i7E7cJxziv13D5fB7yzrJPhi905efR3V+toujDmSwXlQn+SApZSVozqQZpNIgJwlJxOYWGfEJ6NrWZsoXOaBdEtd4LotPeC6RabYI5f5LchssBO7ddKXNb5tb2ONfXZrY5xvXiGKenoX5TzmlyrR47TdrH+815rrJPhvna2ihfyg6mM9oG0qNfh9KOuEwqLLLywoQUUTE5JVdzqEaZTohIxaQ5ESNL8EBqDr3/y3Y6v2OIAZgO7GmSVo4FHIbd+wK4bGapI5Bqt9Zjtdoy2JDKeXxM2oLzOAXwsN+WI+Cy52m5J8MWbFpHEJ3O+bM6hNDT34XT5th0KhCwWUugVBOhVuOApsQ5Bhi2Y1KzqNN/t9HFbKJkZovwzQCYQTgpttc7B5M1hoKDWc4LpIt4UG//cCm9Nno9df51O/UN2Ek9Z+6kd8dtpEcHr6a/dptvymAgsLaR9gG4Zp8CrTLt1NS2B3UgPe/9EGr+fTitP5Ammg0yU4np35pGNcx0qrD0H9HhzFzqNH0bXdJ1jpih096D+YKwMQBIK6ctnIxy3YCYxSYqhB7+bCWNXrCPwnenUmxSFqUfy6ecvALKyi6gxNRsiohJp/+Gx1GbcZvpHPbFcB1AK+UJW+B5r7NcLKC1E0LLtPnzOs6h58asox0JGcaXVbnpn5pFNQ5o6mwU0TEe0A6syS5kx9wlaB6w2gIGB9jkWOVZtJmAjAe3wxz6YNp2OpB0TIAlyxFuFoyUEJopaRGbrkJKTs+i2ZsS6M4By+i01rMYHLNFA4k2E7Nbsr5ys/iByCvwarX9jVMDNpbDOe1n02PfhrHmPyZuBlpmWlmjqEaZThBklccj237aFjq7vQpbZzaApT7SaW2hOZBnBuCqinkAT+eB+35eNGXxClfBxAMnTJSVU0BxKdmUnpEr2ziOFBCM2H+U1u86Qv8ZspoBECBlKTC03BJ1lZelHOfEYhCjXClb6xDtO3I1JRzNQ2O0YTWM/Ao09F+1guaUsGJy+xhZuQXU6ZcIOl3MonvmCtiqlAFiM4Di0M+ms9qF0JCAXZSdW8gt0fYVFh2nqLhj9OnUHdSw3xI6k83VhV3n0hvD19KSLUl0LKeQ5oUn0J+6zqd6/RZTxx/X07+6sxaWicHlI22L8r21oXIsE421HfK1mbEaPcAmvQgTA43nP5IaqVcn+VmjKcCMGEp0PoV9sl4zI9j3wOAEs/AANKPRqpgVAJxvbbVmIDX/ei0dTD7GLdGBKSgspDU7k+neoauoVmvWUq2YBUB8TatAqtdjHnUev5n+3XchXdhuNt3z5RqqP2AJXciOuoQ++LzaJizirQ2VY8hGzTK2Ia8zOwRT8x820B42+UU8eVW+mMiSYfKUuP+oWkyndhd/NYQBScSn5VL/wJ30Z9YWKkQeKAOGqnT6LasZwkApEP7RYwH9HHqICgtZk3GToBX2Jh6jx4atVbNtWK91tKd1EP2JTXzfydvpaEY+bdmbSv3/G0G3f7ZCwzFyjS80MtrhyGNisuY/l+t8Y+Imiog/SkWuOJtKvDqpGn00BRhEkJSZQ31m7aTLus8T4QnIAARZcWHbBwMFh51TqYcH6emvw2hfPLSZDkt+QSGNWbifardjUAEshmGiXO17L4DOZ3PbZfIWXhDk6pXcJ5jerXvTaOjcPfTMF6FyN6FE/ZVmKxuAHu0xcT/edwEvoF6fsJF28moUEwbtqm7AVYPp1E7brmeyg90/mEHWTTWZagAWoAma+gpoLq3EDvW5vMocMCuScvILzVgcp4zsAgEJNJZbKynorM94JoPw7XGbKZo1X/HbZ8cpL6+Qtu9Lo7HBe+iBz1ZpXT5g1fbaF3EFADpu4/kMthYTNvBqNJubY33g6iO/A00GRGYZQgNF1Ctgh9x3VC1RXFiyT5z14sKtGtYBgjP9f53n0ZRlMWieDgY38UByDl3QlTWsDU8wuOAz4trarD3QroeGh9LcdfG0cH0CbdmdohdK34jiU3LoxdHhVK/3Qrq0o2rPqmXVxKfhboWVldmniwSeQO/Ppud/WE9JGTncLLRL21YdVD0+Gvc3n7n3rAgRhku7MIugcD8TwU+AjoVY26ysqpIFwALiQKrbfS4FrY0zrcNwFNGmvRl0WofZVLtTCJ3bbb7c9pEBlUFlZm12Dq80/9xzPl38/hzq/OMmNlOmAKYjmXl0Ny8ObBzNWxsqx06ZAWBI0T6YUGxbrRtCz38fRoe5PdVJVQ40yFrXO5ZBWPmwWTL7svMK6IOAXWyyMNOhHVRjuIXoe0Z9Z7A2OJ/bcMMHS2jx5iRpJ2YBWpnGPtfSTYm0LfooDfotki7pxAOLFSQGUW7smzyXU6tVELUfvdEqMynjWFYB3TdiLZ2Buvg8b23wJTtDH2fwpHhp7HpecKlmk2byH22ujpavyUcaza52bGfchNs4g+dE8eqSNQQDTMyQT2Z82Yy66/deRCNm7qSNkSmUnV0og2AJ2iknP59+WRlL9bstEF8NGuOi9gxOMA8e+Ez0ofVv1G/CNnM9M/9PSM2iZl+s4sH2hdk8ETP4BdwqV/QVq9FWU7bS/pQsWSBoT6EAkJp2+5B8Zjq12doBmTPsm6Vk5tPnc6Po/3rNN8KAJtMBhDBKCsx3jHprM2CafbiMPpsZSaG7UiiVtZiu0hBDO04BYXF0NYNRzSUPHJ//+shw6j99O/X7dTt9wPzWxK3UoM9imrJ4vwyaDCH/37Inha7/aJlc6xvTWTbDvLvyLF+keHbuvalbKTpZb1cp3LS/viYf+2jaEfw9msOabP4eBhlrBxGEmh6XMBx5f7AVPgKrZ7NmuuGDxdTupy0UsiGeUo/m0/z1cXRdvyWsyaBxVTvUZlP7zMh1tCMmQ2JURaz2cGdgzvpEOnhYQyMg9Hf6qlj6F/t29jkyz/p9zQI0aFtMZtyZ4LajD3hgs920rXTgSJY21oyRsu/IR0DT2WKbn1dQREMWMMjYcZYwgcxyFoYrhIGVkp+BxvXprFf/8GzWVlf3XUy3fbyMnecNdH3/xXQ6H8PjOK5rGJyns6l/dmQY7YhO585x7/BfE81QoSwEOrGZOrsdD670z799s6wAt+YT+3QbYGvz82ZejfICwU+hDx8AjRvtCGEUcv4TNpeXdDUhDDGT2mk1SWafAZ+/WOtkAJiHGk9vG0Ktx2+hyYtj6Lmha3ihEkzvj9tCQ4J20T+7aJhDARPIK7kgemr4WtqyL414DukgyZITPs9xWrzlMF0v2lDL978ParSot9AHmPt9XsfZ1GLSJko95p/Qh+98NG53AfOgeVHybL0VtnQcnfVDCKMsdrVHZj3vY81zec95tHxnMqUdy6NV21Mo7WguHc3Ko0lLounKPovkFs9p77AWbhVAf2WtMHreXsrJxWoaWkGH6nBaLrX5cT2dLtpa69GJ5U92yxJmUyaVPDAJ7YptnVxndwihlpM2Ump2vrTfl3TSQLMOvnsmYDZD6KDjlJtfQF8t3EsXd0HEH53TmeQWhu9ZQg+GS+yHjyhg10EQDcva525eHEQdYh+MFwO6jOG/3MXYxCyatmg/ff5LBH0bsIvWRSZTbg77aRCDBRrns3MLaMLiA3RFjwUMzFmmvuLtqm7W0Ifmz2XXoC0vEA7Lo0/GhEqfNKNp5akSGs0NMs/GZGYX0Jhl0ez4s8nh2VRtIQwxFwBSScZj4a7U+FHis7Hzf99HSyks8ojEwqzUdWJp/9yEfccpn+1nBrQCTzScksMAHMegrNeDfVJoFKPVSmNvbfcV275arQcFcBErg56/7aT4dJhR6SkTFAdS/NE9laFKmU6t3tUszhbx6rKAvmOQ1e23UDsCIZtBdZkpP7GCRwHkGli7TzSdPQ8pt1OO8Wxnzdag50IaGhBFW6PTKJVnO1aYMuMxEOgq/4H2ik44RlNCD9LHMyIoRu554iBrNpbDuEXR1LAnr7Jt3aWwZ7t9yVKnxzZ8uj93m0e9Z+2gOAEbNJmOK8idO3mqBNBQvZvxN7eggEYvj6bL+y6SxgvIXJ3SgbQd9AeXZjrlmKt9fEzOse3DLRw+zprtvPbBdPfAFdRu8lb6gf20kHWH2NGPp0UbEumXVbE0cNYuen5EGF3UdT6dwWW9Mjqc5obH04IN8TR/YwLN5/Sdr9dRbTbRnvVXJ8uYYNKLAjBuDbcfj2j1nBXBq1E8iWJH1cknT5UCmrMJCHR+syKa/t0HcTIMnukUBlnUdTUAzaE1PFmOc5vcmszdNtWAaLfpB6/eLus0l67uuYiu77+QGvdeQpezBsAdAr1Wr8PTHNewJmzceyE14sVD474LWaPxpGvH53hpg2Vbrz9ZrYs1n9in2xd3nUddZ2yjI+IKmNFFUkk6aaA5H4vB05wjlu6jy9gnEUC5BMh5zBqkxvH27LC/2FO7aVu0fRrM1DYLG9C5BwNg4hUyQhV8fW15sRiTBz4egqHY5jKwH+WBzbm2vprD3CYTvHWNjezjFMztRZSg3a9bKT3LLhAqj7RK+2gIYYxato/+0k3jZOiMdACNdoQwsM/fIQzRSBhwPILtya1/o9qtApmR131YCAhY+JrTWv1mUhwz5QjzOTiX99njUga2pQzsQ7m4hrff1bLL4mJt9jHLhJA8gMX1m4nlGfq4gDV45+nbKJ19TZ9rNOvga01gOMLuEAYi/uNXH6B/wOGtthCGe6DcK0gIL0ienLjn4+XU8utweot9pbe/DmO2qb85nFqORN2avvP1emnXM0NW0VlyB4EHG+2WgUdYBEDwryzBztAHvvfRPzCSUo+xzyaaTYZdU/6rafnoBBqt9BBGdl4hTQ49QPXYZ4FwqiuEoaYNA2Tr5rR1MJ3H/tIbo8LoYEo2t1bDDmoE+J/4HjWDjmYVUL9p2+WjNeKcy0RlkLW2msd/LJPUxBRlm2V6Cfuin4REUUpmnrhLKjldeSsqyifLEwDNolYLtBouO7+IpoYdpAYDFmuDIBgxl9o4Z+P9wVqnagC05cL3Z9Nb366XdwAgEBGKYe0RuOZQUlo29Zq6nS7pMof74Z6w/tZoqk0d+0SugfSX7vNo8PzdqtlEgm75lVeSJwSak/EX9y5/CotlkC3hRunAuhtXDereagDU22Y2XdAuhN4es452xh41s47JhTbZMGnNINWux+nQ4Szqw5rt4k5sujDgxpR67bMPWUAOgIniMO4Q78eLQwPn7KK0bH1S1z1hyyfPcmk0ywhhTGKQ1ZNgrBtQou7FN0Kj/As08WsQA+PBOYvzr7MPFskg0/caoYXN7SHJSy8kX2NImqISjkvOou5TttM5eEPfWAhvffYtQ5ZqIbCtoNf9l7IZHRC8U4LyLt+9nKIsE2ieIYyxaw7Qv/uwTyaNwSBrg0QoSKsjhMEgxyLgdE5fHh5G+xOhycyNbpGDhyT05mSNIRs+kPul3C7clO89eRvVFsvg3xWphD7YIhQbU7Fa0LKc5xU1nsLpHchgY81WkdDHCTSajglCGDCXdRhkLqQblAu4ZMWp+/z+FAZmfZtZ9PyQUB4k7jz+odHMbhGoVtM95RWNvwltVM7kQewxaauGSrz02VesoQ/UyePqCH0IAM0Y4zxoto9DdlFGbvlDH7UkWOHSXGYgXCGMIsovLKJfww/Rlf3h+BubLX5RyYb6jt31OUMY2I9bP89/sZYSj+RIe4Us0n435JC9bANs+dSdwYZn36yvppPahD4cMvEX13pP3wRDHguEz+ftYc2GOwhG2pJqPzyJNZrOIm+H8woKKXhTPF394WJBsy+/hVEeVt8BeU5bB9O5LPjnhoXSnoRM6aCBmSHvHa6ZZNsKNj4kT/6ktBxqP2EznY+nfO1dB/S9Gl540dAH8joGGIu/9phPo5buV5/NYAh9kHlutiwx0CwG7V9OuZP5hcdp9tYEajxwqRaMWQRtAnXqGnD/sdYJX0HBjhveL44Mo63R6eJ2Eb56KH1DRyXzOyPIHYz/dsFyXJ4I6TBhC13YkfsOLeb4lIOnjHzJakYd+wR0gfT3Xgvo2xXRlJGDhycNfgw58wI0Je2Y/iuimZvj6Fq8xWO0mLsS2G//q22tl1MW9NkMuBdGrJFHqV2vjvEfBZgbcCbzuyAreWmyNFvBhn8Kts10Xgc1mXbCe5eT71ismUx4boMj9PG3nvPpq8V7KDPXDTYbtrHkApoe5u7xCTM2xdHVH8EncwOqOkMYYH2MR1eXTw8FyI7ISlj6I2Q6Bn/To5M1ntBstFmarG2X0TD9wMSPScigtmM30+nQ6NUENJ3sAJpaNNFyxpz/rdd8Grpwt1kgWPOP/ijVcjn+fBAD9+vGQ9TwwyWmUC5ICuU8Ooe0WkIYugjA17GfGLyaog6l8RhoCEOGxNEh7Z9083dE2lo1mZas76yMTiam5lCHsZt0olfDgqx46AMMa6ehD7Tn7wy2wQt20zHRbM6+iEZTYpeMgtgnE00mqAWg0BkDLllx6mzy+1MYMnNm0eODVtGBpBw1l8WQhEHRVAYFVOx4TSe0mRtcapt16qBvqUfzqO2PDDY/A608oY/azP/Xa6E8zZOVx4rA0R8BWiGP2rwdyXT9wOU6qAw0aBBvFfqOtdHIawgD36nVmYL3Kx8dtJr2xmdyay2QVPT/+wQAop+2t7oafXfMRjqTZWV9Z3foA6l/QQh2hj7+wZrth5UxDDasRpVqFfCSbUVUMt346XLVWECo39Wym90+AM+c1uz4M/Af+nwlbdwLn+w42QgfyNPh/N8kO6HAxhyxi7OfFwivjQ6Xr3KXDH341+J4C338s89C+jnsoGo2plrLdyVTk0ErXOCyX6BxrzL9xxZk1jc8m2fpY0NW0xrWtgAZ/zG4YtELyP4ohH5r39VnQ9+P067Yo9Ri9Ho6p4MZrxoV+giif/VZQFPDD0kPat382UqZDS4VLHke8GoJYWijIbAzmB/9fAWFRjLI8AYS/om8IWS1/1bg//uk/Xd314CNZRF1MIPe+G49nWmtkZWhh1x9y6gXmIGi4Dzawnlg6aoBS9BgqnWe/L6SAk3BxmoQargazKeGMLixvLp84NOVtC4yRR5LcisvI2neh50KtP9xMl3WrmrGgkz/FdGeQ6zZvl3PY8ZjBzn6HWhgWCK1SK5txhG+pwuqhU8Z6YoCBxF9RmrA5irED8z12RDGA5+soO0xqSxLOP6w8SxQN9pE3iLsPwRp39VkWtJVKjxWWWXz8dikbHrr23AeN1YQflcSrME8Qx9iTmfLTz+Cav2ps34XwxNYfgeaNCyA7vt4OUXGZopPJreWQJLaDQjcrDz/EKRAcnW/BOmUg0wOpWTT698YsHmTsY+4eOgDZlPHEvvw3gGoFjICNFxgwCXbPlG/3AgjBFcIA+qW9+Gz6nd9vJI278O9SwMkkW+pEj5FIiDIx2q7Irld9cLIMPNJU5W7jYO6x8F/XE1AA6Nsa8s533o2ncV13fXJclq+/bBosj9eCONkCdNQgeYCG8trR8xRenbkWjqrHcu4mp/6qEaggbV8qFzcu7uLfTJ8rBi/u+Q2EyxCAdkpKpsgJ0n4P8CmG9v2pdFTw0LpzPZsRSBzARmsiX/NavUBDSZTyuaOsza74+MltGRL4qkQxkmQSkXlJhuyw24DbOn07HD8xJBZjUL+PlUgJbnagKYdhkoPpNsHLKOV29hc4jeLVGpMRmISwsB/14FT5EEyIY24bMaCTP8VshlNo2eHhfHYGs3mZ64eoKF8ZiwE7vhwGYVFKcjUx2DBuNEmchOhafYUlSBIRWVm/9l9sl/MKCbrcdp9KJNeGKFgkzHwNjY+4uoBGpeJ1U/TD5ZQ2K4j4pOVDGGAjZAs2XNOkYNUTgBS6fJR+GEVjzsIT30V6n1cfMg+BZqqaQ1lSGrKQjC2CYNsOZtL+bVCmY36Jo3OSQAPP9iVR7m5ueXinJycYulJM9cpP6HIbSgoKKDcHC6T96MthYUF3N7CYu3Kz8/X9qO9ueVrry2vSOqRqspJONF9cn4+t89VLvqdbfJ50i7X+XKJrkYxcSP2p9PjX66RUFKxoDwUgI9uOfoWaACXF6Bd1nEOjV0cTXhiRIiTQhPMsGbz8OFk6tatB7V8623htwy3bKnbzvTtlu/IsTffaklv8baci+Nmv2sb5ztYy2tp8m9x2pK6de9BGzdtRkto6rRfuex3+dg79P77nWjFypW0ffsO6ty5i5yLMj/59FOKi0+kuIRE6tuvn7s+y852SBtQX0vq0qULl7Xd1V+blodwLsA0cuQo6T/aZ8t/66136b22HSh8/UZjCzBtQdhSsHEBNH99PDXoic+LmbHCmGOcfrdAwyyxgDNl/avrPJqx+oCIAEITUagE+L+K5+DBQ3TH7XfQlZfXZb7cpHWpft26VK/O5ZxeYbY1tee5j7v3XYm8bLvLQb4e2FHOFZzef+99tHTpMmnDkC++pPpX1Ofz6tHtt95Ov/02i9asWcv5ploGX/PC881p//4Y4UcffkT215PylZ3tQx7HwA2vbEDjx40XDVQRkFk6eDCO7r7rLtMvMPqMvl5Bjz/6GMXH4cfTbLmQsyTIyb812w9T4374NRgFl0b1KzfeZbFPgQa217tAxx3D9/r/uzpWBWwkYEVi8wDafffcR1fWUSFqavIi1OJAU2DpMeU6VN/mMQAmj33gerxPWMo0zGU9cP8DtHzFCmnDl8NHUP16VwoYm93ejAKDgmhNaBg1a9qU6jOYBWjNX6D9MQcohvnxxx43YHLzlcz1kdbR1A28K6jj+x0pJSXF0ffyEc6fOXMWXXlFPWk/+i59Qt+4vV+zppMJDDZXSA4bsuM4rWa3pVFffR9EgCZWB+NUcgyrgv0HNIDMAO1fDDT8dI12X//Jc2ZGCBDQwYMH6Z6775HBtCCwqWgFk1qQuAfQIy+DrXlougaOY3KcAVwfqQCiLj14/4O0YvkKEcowBloDHkycdweAFhhEa0PDqRlrtPp16kj9otEAtAOx9B8ATcBUz5SHupSxT/PuNt137720Y8cO7fsJyAIHVFBQKKbcamMtU4F/840307ZtbJJFmOYazZo/OHKcVm1Pokb4doo8KQOQOUxmJcfcG/seaKYDxYDWeS4DTU2ndN75jQwxnRZod6sQRSO5wSGgY1ag8SyGqbR5PteaTQtGJyAtC8CsluTr9ZwrGGis0VxAG8mmk7UGl9PstmYUwEALDV1Htze9TQYWwH2RNRq0mRto7jrAAOp111zrAizqscBueGV9mjxlMhXwIsOCqDy0Z89eanLLrSID1WRaF9J27drLQkPJAAsgNf/sPmi0xtBoAJqYTowVj5kPQAb2KdCcM8UCDfl/dWGgsY/mjawoMo9l0fz5C2jWrED6bVYAM6e/BdIsZs0H0M9TptIzTz1LV7BZgplymVE2H80ZADOmz6SZfJ6c7+IAMTs9e/am6xtd7wKEvVZMpwDtOA0ePFQAckXdOtS0SVMuaxatXBVKTW9tIvvg0zV/9jmKjt4vWg2m01kWjl/VoCG1eO11uvG662UbLHUyyJFv36E9r0LxGYfy088/T6WG9a/SuowmQx4TIiAgSOSnUtQFgEuoDlrFPppoNBkfjLtzrKt+QeB7jWauLwE01mgnIv3luNI5mf2b1q3b6sAJ15EUmqJLl65er7H8yy+/UpObbyl2HTSi9dFACxYsooGffMory0H05ZfDeDW6hfbui6avho3Q/Z98RuPGT+R2pFK00WjFy1Me9PkQWWnWv/xK2bZaDUC79ZYmXOa+EkCwZDWdxUpubj6vKtsW05DQyPXr1KOHH36MkpKS5ES5Si/1Squ3JYtGwxjL+LjGWrermms00E5EqalHSgAN2gRA69ixs6zovBGA9vPP06jJTTe7rtO0ONAseTNrnnv2HzhIjz/ymFurcmrzo8f8QD9N+oka1mvoMvkwndBAANukyT+ZUoqTt3q3bY+g22+/XdsrZanbUJ9XxoMGDVazWQbALJ0CWgVIgNbqPQMSnt3soCMF0Dp16izBW29UWFhIU9js3noCjQYqr+8EoImP5gCYppfTqG9GU/T+/XTbrQwQAYe21/K777wjgWKX9iqlTuyf9NNkur7xda4yBLRshm+58RZauXK1TCJLZbX9FNAqQJ5AsxrtqisblKrRIHxE/gG08mg052B55p3bMTGs0VymU9kCbdiIrykrO5t69+5b7LjlW26+mXbsjJRybJnOsi2lpx+ljrzahA/qBDT4nbffpYSERDlPrvVyvZNOAa0CBKC1MkCzg4q81WilmU4X0Mqh0TzJGwBAMTCdHkCzZQ4bNpKys3No8eIldO1VV+t+B0jQ3okT3ebTWYczv3nzFqkD5lZML1Iu5xouc/ToMZSVZX9N+MR0CmgVICfQwBrasD5aJzGd3oDh1mgVB5on2fL3x2Ax8B9TjpMvpxHDVaMdOXKEXmj+okMT6cRoULcevf3222UCBeZ+Gi9gbr25iYBUwiimnEcfeZRC14ZJW2x7vPXbSaeAVgHyZjqRlmU6QSer0TwHz7ktPtqj6qO52wPw16Xhw1WjwVH/+utvTPzucl4MaIgE27jzsGnTJinLG0gOHz5M3Xv0oCthNk1oxNbRiSfVofgEx3VuP600qjagXdh5LgMMcS+t0BX/YtApAE+C7bVITR4dKQE0K5+S8i2TSgPaiVadFfHRykuy6izFdA5njQagAQgAU7PbcA+3ngElQhN16bpG19GEiZNEBMXEYTa2bNlKzz/bXEymbS9M5y033CgraNwtAHkDqTfSOBqAhnEOkDHHlzxlzIU9xrKSXAxoWgkfMNpHgAeA2O2KMje8WMqMOizQ8MiKPG9mZKNJ+QQF+r0BDZSUdJjatevA2swNtAYMnqu4zW3btmeHP70EWPC40owZv9Etrvaqb4b06SeeFN+torRm22G6DhoNdwbazNZxtvc77fhVIV/E+AKx6VSgubSYq+KqU6WoEE92/rPLHPp1VQxXywJloUKubpAVF3JZ9HsEGto0ftxEanTNtXLc3vcEcPD0x8YNG9wiMHKBb9evb3/j/LvLvap+A+rRvQcdPZqh51eArOmUm+pyv1PfJ9C7Aj69M8BAYxCArZmzGs3urzCjEkde/b9A+idX+t+V0GhM5rEgzGLRcOVU/aDfI9DQvY0bN9FTTzylsTA2mwAZGBprypSfRYM5KWr3Hnr26WelLGWUW4du5fNxi85SRWS3Ck9v9FnEY8MAk1fx9H3PSo13GXxRJ6PRLu+9iP7CJu0vrG2QXsp8GYNP950co4xLUQaz5M02VHbA2jiZrhCN3uytOP0egQbCQ529e/UhiYfJwkDB1pC3e/fsTcnJyQIaOBYFvNoMnj2Hrru2sUObqWZ7is1m9H5YhopT2M4UumvgMh6P+fJjtxgjGbdKjnlpfAXjC1Rr+Y5kWrA9iRaDI5Jokc2z07g44uQYZdhykC406arIFEo8kmvgBbRZoFUMcL9XoCFUMX3GTGra5FaX6RRm0DV/rjlt2bpVzoM0EPIY8OHHxeJuAOXVbDY/++xzyvfQfuXVaukZebQ2KpXHI1HGZIGMM8YoscQ4VgUv35ks9dZCA/HFx+N4rxKMfBUzysezV/xfuASwsL8CYPu9Ag0UEbGDnnvqGTkHwJFz61wuz5PNmP6baDKIIiEpkR6Tcu3jQGo6G1/diELXrjOlKUHGFSE8SS9fBBDm63mHYMBHDJJPi2oWfzVXnnjMCckW5Um8X1acjjq4OaWf74UqBDSUa95RwCBaoNlBts+8PfTAgwy0lXx+yYZYYXmjA3h643EN2MIcOh9KHD5shARsXX3jNJu3+38wgDWTuVMAAMGMcjv69utPqUdSZeADQ+aZNjKbZ+2w/eprLSgnxz53dhIkbWFgWfnztgBCt3xGtYoY0vjxCrz65hfGoAnb8YdHUrFuVhhohgRoP0/TKDufrwOp1953z720ZOlSc2ZJ8gY27IPD/tCDD7nKU+2j7AKag1DK7JA51PTmpqZ+AB2LgsvpeTafeBypsKiIevTq7SoH51ig/TRpsojvZAnX6iNTGA/W8kWFUp+yx1hVAaMeUK2gzXE0fX0czfADz9kUT4cOHxNg6cBhVskWJ24NdyI6WdOJOgMCAuXxbAyaHWikN11/A02dOtW18rPAQmrzlpzbK1auorvuuMvVFqdGG/3td5Tt8XAjrj10KI6eZvOp9ds+1KUbGl9HixYtZrN5mO6+0z5l7D6nWdPbaP/+yt1ZSUnPpYXbkui38HiasSHJNTYzHeNUlRy4KUHqrXVBt/l0WvvZVKtdMDNSz3zV8b+7z6cZa2KlYgyVmlCzoX/KRRUFmhMYeNPpofsfdF1rBxKPbvft05dSUlPNmcXJE2wgvEP5/fc/0PXX6RO7KEtjXuy0N2goT/rmyXuWhrgIlAKN8sWXwyQe5tkOPN07fVZAsXccUCa4d5/eMhHKL6mStGZ7MjXuv8Q9LviyE4832DlWVcUXdXUFbOe44mYapGV25YMqzRoMZOYycWfgv3iU2wya829F6GQ1Gqravj1CbunIDWrHYCL/MJvANWtCiz3bZckJNJuPjIykN954gxCusGUgBSig5cLCwr0CFIT3L6FFtX7cLNcXW574z5P0xpt4Klc1rRznFM+iLVy00GvbKkIasF2kY9M2QH9IztwZcI5bVbE7YMuDrwFVwwjY4vaBTauIUem/usyhGXKvE8IXg4lRs7lyU2WAlpZ+lHr26iNhAifQwLgdhJeSt251v+BrybmNwcaLKb179aLrrm1UrAw8XQHz+SaDBeeUAJrZzM7JlbrcbVDgN+R24fEfGzvTxcoV9MrLr1FcsRvoJ0fyckq/BTwegTz57aeseIzAXsatsuy4BYUfjOedLoDZinnbgq+CrE8CeHCbYNdbUOqZgXR2Sr4C8qsM0LCsD54dQrc1udV1vZg7ccovp4YNrqKHHnpETGJExE46dixL4l8glHsgNpZ+/XU6vdHiTfOMma5aLWAANNxm+vab0ZSV5bkQQCfdHcUb8a7rXMByalr0C5qtHuFJECwsKiorT1rFprNRvyXmi5vMPOZqwYxVq2J23IL6fT0mhBmdyn5Uq1ZtZECgPezgNBCgddRHub0MBq4Fp6WlUfu27cTk4Xq8UGzLwIsk8Neg3Ro3uo6efPJpasvn4n3KF194lW69pSld1eBq10siFhwW7Cjv5ZdeFhNdFqEd8fGJdPdd95jrtSx3eQZ8dS6nO9kMh4bqc2eWnPmK0Knn0cpBVrhujYbBNkv/Omr6XEArg1AOgHD//fe7nHcMqAAF23XwaDje36xDVyDFfj5HnwUDoPR4cVAo6O+5624KYGfe2+rVks3jYy0ffPCh63pbluenH1q3bkOxBw96LauidApo5SSI2A00HgxoIwYZGKbz/Y7vy1d7PMlzkPB39eo19CQ739defY0MqpvVjDoH2x6zoJNt1Gv245z773uAJk36qcwnZp0gga+3ZMkyanxtYykTZXvWd12jxvTdmO958pTiDlSQTgGtnGSB9s47rXlw6pnBgcmrRw3q1ad2bObwyamyyA42gol4sLB//w/o3nvuE0fcDrAddMvOwbcs5/D+2265ld5+8y1asGAh+3EnfqvJEo4nJCTRq+zoy/c6JCiLslVLow7cdVgbFmauOHGZJ6JTQCsnQdB4K+jTTz9nn+klevHFF+mlF1+ml154mV556VWJQ8lgm/NLI7vShVZJTEqikJA5Ysaef765POrdwBGysCBzgY1TxM7wrgB8t6lTf6W9e6OlvIoSbklNnDSZ+/CK9sPwy8Kv0NChX9DhZL0xDToFNA/2FdCwUi1k3+bgoUO0O2oP7d6zh6J275YUHBcXT7idYgektIGRoIrjGB6JTklJpV1RUWzOltLYsePp80GDqW+fftSje0/q0aMn9erVhz76aCB9wytKPMKzZcs2dugTigdlK0hoQ+qRNG77Xtq9G33g1OTxrY3ERHxI2qzOT9Cn8tApoJWbWOgsZxF1mfJ2B1HKTTidGQMLnygzM1O0Z1paujAet87IyBAtJBF654A7sx5A8AaM0sBSKojKKL8i9AcBmn62qjSCABGrwiPKGRnHOM00aQbz0VNcDj7RitsNNDM+f0SggeArNW/+Ij3xxFP0xJOWn6YnefsUezDLBXL6DzPk9Myzz9H3P4yVRU5p5ASafTdEQfeHAZr6TADa8889Ly/H4oFCfNcCn8w8xV6YZfMYp489ivRxeR/h+zHfu3w6b3RKowkh6n+Edu6MpB07dtJ28M6dFMGM7VNcnCM8GN/xiE9I5AlrxOmFvGq0PxrQKuPk/pEJciuv7BRo+rFkGZ//RaDZjyV7pVMYqxI6EeAEaPKmOsb7f1Sj/YPrmrZiv2DKJRBOJO9FPuWdpaeo/LRicyJd23tBcaAhz+wcv6pinwPNG+MXOx7/MpS2R6cxiPCuAPClcbESpAeZTiIeVl6ydTiL57zsMiD3OORO8eh5iYng6YR7Hq9eOng4m94at5nO6DCbx7jq30r3xtUDNC4fP9Pz9Feh8ttEMlYYjON40gGDoqBCDgDUwbZceXJqSGep2O864jzH5t27XKRfES9Jzjpc5GWXz0naVwQpSvXxKdnUdtJWOq09xpo1mcf4Wp+tqrlagAaWTjLj19Z2H8K3IyAGsBWJYZtg4JCvcgKQvYMFVKJKx45igHXl3a13E+8zx+WYNxD6jEzdxwspITWbOk3ZTvIuiAGZjrfvtVq1AU2ZO8udxI+WRsQc1VGQP1BxjgGTPISFjaoh3DqKi4+nTZs20+o1obQ2bJ2EChBVt5RfUEhRe/bQrl27aN++aLkNFc/X4ItAR9LS5U2ko8eOyTNikZG7+LwoOpaVJW8vRUZG0S4w74vk66Oi9sjnC1JT08qMb1U1qRSLKC45h9r+tM0FMjsG6p8Z0BkuPkZVw9UENHQMnTWd5jqeGR5GW+Gzuf4BbIIxEVRVEu5RLlmyhHr26EHPP/s8PfIwgp5P0GuvvkZfffkV7d69Wx7bxm2vd95tTW+8/qb8LsHqNWvpyy+G0fgJk2ju/IXyo2jhGzbRV18NpxavvSHnIYb105SfqcXrvN3iDWrR4k3Jv9XiLWrDZQ34YID8fgKe7vULsQAPHc6i1mIuZ5N81MWMr2UXyAzgnMeqiqtRo6HTCjTUeWbbYHpyeCht3ccDYDWYYXe+8gQArVq1ip5+8inzYgqenFXGw5N4yaRrl650KC6etVsG3XTTTXxOPXqMwTg7ZK68I9C9Ry/6cex4uuP2O+W3CN5rg0/QXyGPhK9bt54+G/Q5X1NX3j+wz6rJQ5l8Dl6te+D++2nsj2Plxryv6RA7/m9O2ExnwfGH9hIN5h4H2bZAM1x8nKqGqw1oUm5bfGnQdL5dEJ3NYHtu5FraCTNq4KVmFGnVAA2apG/f/vJwJL7e88prr9NHAz8T7XRHszvlIUq8bDJ9+gx5auO2pvpLdvh22fwFC+XrirMCg2jl2jD5TOi69RvlEWuc06BBA1oXvoEGDRrK2/XoukaN6PHH/0MvvfQKNX/+Bbrd/FofnmfDNz5WrFgl3wHxFcWn5FCbn7bSOR1DzDhqjMwJNE/GWHjbX1kuBjT8vrkATcwas9n2dqGv+AwG2wsjw2h/It5k19BHqaYTB8W24ngZQORD9ih+Y+q5556TAe/YqbM8t4bnyOBb4dfrbr3lVqpXpx717NOX0o6m6+8+MTAefvAR+SYHfDt8UgHPuuHFYbxKh0+vozw8mQugff75F7KNe5DLli0XwML3g5/Xr/8A0Xwos/+ADykt3TcmNDk9jzpN3k5n4aVwq8kc7E32lWV8Yw1KqvZ7v0kKq4UXkwFyF9BcnxblEyz6a7UNYfM2y1WQXxj1syDe+CacDiXrh1HUeOJVNwsqzZU79MGH7FH5ucPHH5fPeeKBxiMOXyk29iB16dxFPvTy0YcfUtLhJGp22+3yksgjDz0iGsiSXTni4y6eQBv0OTRaXXkQYK35WrYlmGT8NhTMKJ66QHsqTY4QBuhIRi71nx6pIYzW+oE9f7Bih7Un8njzHcoKecZSCdOpAMOFJu8oyF8sDWVt2nL0Rjoo3+jA6/8QosOcgnVXsYH0SjjHZA/FJbApe1kG+v5776dx7GtFRUVR8uEUysrOkd+XSkhMFC2UmnaEbsNPJrL28QSapdKAhmss0JyE90OHDRuuv3rX+HoKDV0r7T9hH8oke30hpTLIBszYRbWMJnPJ1IeazHLt92YpXtrihWQFmPjinHcB7fxODDRRd47GyYn+mxEuxsyQdgRQi2/DafdBdpoFLBCmAgw5MEvY7C+DzCBiMDIyMmnw4CHyTQy8cdSI/bGnn3qKV5W9aOrUaRLigBnFFTCd9gXjUoEWG0vvvtNKgOVpOvEugRNoqB+mFy8eN776Gr6mnnwE2X5R+2RJJVBESak51PPXnXQavndhFlmQpz9ABnZbQ83LfhnLILqA8QWqdbn8pJ45SRoJbWY/oOtPhkCY8aVoTs9oF0gtRq+nqIN2gaD/5L/gR0FUHsJAI4a1ceNGevXlV3gF2FA0G0ABoNxy4030+quvC+CwIiwX0FijvfvOuy6ghfGq06XR8OaSh0ZD/fhcVROuCyvSCRMmCfgqRdyvRAZZt1920Fns+HsLYYB9DTj8XLZYIygoR/3Y97ce86WptSaHHaR/91mgqHTNBlaFXhrsc26jKlfqZsGcw2bg9THhFBmLoK4BmmF3vmxymib8sMT68PXygskD9z/IoFDnHIBCKAKfhQoKCqajmRmu309/9OFHBWjOckCq0bwvBjw1GghAmzt3HjW9pYkA7cexEwRonuVWhBIYZJ2nRZBaJQWTDrjvtZiT1S9DXoGmWAqm8zrOoSFzd0tba2XlF9KUdQfpX73x4Q/1zdR02ov9ywL2djYfROe2C6bXR4fT/oRj3FzHalQGqOKDhJUjIv07d+6iKVOmyetytzHABGzMb7d6V+4cYDEAEFqggZygsEDDOfgoy9ZtEQ4frSTQEMcLDg6mm264gU335TRx0hQqYNmfLMxSjuaxJosQ01SeEIYvtRrqV8xo/QAaQPbJnD10JEvfEKuFnmZzh39YHUP/tGCTC7HqxAxBzAuF2UbCrLKaNpX4g89ksL07ZiMlpeVwcy3YShki7BZAYOHAes+AAy+94DbQwYNx+uEW3g8fCR9iwTdh8VtNV7A5ve22ZrR161Z69NFHBTSPPPCQ/jIxFyNFG8ZtpZZvviXgvPaaayhiRyR9xqtZBGixGMBvNDkJ2vSnn36iqxs2lHdGZ8+e7fp4TFmkrS9OGVkF9PHMXXS2Mxjrwd7kWBkuHsJA+TCXzMAGLBBw0WaWPDhxfqcQ6h0QSSmZ7tcQa2lHiigrL59GLttL/wewobECNlOQVITCGITt8PUhPy8UuG50rv2PmyiVZ7IOOv6VL/SBAQ0ICKB7775HArArVqzQc/QwZefk0Ddfj6Jr2Xe7sfF1FLpmLb340ivyrQ18S2POnLl0XO5T6oIEjHdIX37pJQEaXiaOOXCAPv18sJpO9tGcQENdiKd9MnCgmGh8lXvTls3F2lA64QRMLj0xkzXEF8F76LQOPBYIYfgAVN5YzKENYfDEVyUEC2jzOBZMF3YOoe7Tt1PSUXxJSccFJBpNu3CcMnPzafD8KPp7T6PZDLhOExsMTaept4b4mqWDrQOpw9gtlHAEq0OYHTTeDkFxIOhOXQQgCr9w4WLWJlfJXYHPPv2MkpNT5BwMNt5UH9C/vxzD17Hx/H2nzl3El2rE2mrQoM/lfJyLYvN5Ui5avJiBezdrvbp03733srZMpU8/VaA9AaCFhrnqhjbFj1k88+RTAjR8vC8+UT+5qe0si7hOAJL7e/RYHg1lkNUymswlGygGHwOuZAiD2eah7QAy1mTtpm6lOLY80m5pvxJrNGzir+7OyC2gLxbuMWBDJUCt7YSCz21G/ciol9txOtfdduwmioHPJk3HHwWY9sTsE1DIlsQ1YeqeeUa/G3tns2byvbFVq1bTylWraNiwEXRXszsEWM83b07JqSk0buw4AQ34zmZ30tAhX0i0fw1rKnwy9JWXXzWfrrqC2r7XjjIyM2ngJ4MESPj+7MiRo0QTBgeH0LjxE6jF66/L+Y2vuZbGfP+9fAhGAVQ2aZ+K5NuzAwOi6IwOrDkALCMXf4AMrOPuzst+GRMGIafn86q3/bStdOiI/e6JWwuDDNCUNK+abdjivfS3nvO1QFOBVAJ2bPuHjSBN6OO894Op/fgtFJOIBYICCoPBfxR3yFjSLlHGsWPy09M3mO/N4lflHnn4YfmcKD5SjHAHvtwz5vsfxJTu3buXNdDTAiT4bo2vaUQP3v8APfbIY9Ts1tsElIjHNW3SlGbMnCU/Wf3Rx5+Io48b6Ph+BwCNW1n2q5CI4b3d8m35JKkFmfU4S6fjLpBd0HUey0B9JU8ZOQHnC+B5C2HIwo3Tc94PoU6/MMjgQ7smOCyMu2/yOwPuHe6TMlmzjV6+n/7ea4ExmSgc5hMVVEcwF22AyUA+kC7kznWYuFnB5uqcsjvvJnzpMeZALH388UCJm0Hz2G+dId/kpib08UcDKfbgIRGWPO2xOpRatHiDGl17rQALYAHo6tepJ/ctH2SQ/vjjWEo5coTNZAF9+NHHeh6XJ18HQr7OFXLbC/dSe3TvTuHh4XKv1AKteCtLEnzSgYFR9GcGmWgVAKqYlSnJPgGalxAGts/lceg+cyclpONTXegNJjymD7s2po8gAzQ7PHxA/8uf9Jx8GrU0mv7aQzWbdJQH26Vh/Mwyg6z6Zr6AfZUO4zfLatStG9BR5HRL/yoVsb+Er24vXLyEBg/5krp27UHdunWnIWwWFy1ZQikpyXwOFhiqHRHn2h8TQ4G8kBjEK8ru3XtSxy7dqX//j2jcuAm8Ot3GK9hjAmI8rbti9Voaz/vHj58o/CPnx06YSNOm/SqPEaFuGztztcvZQA/C6nJQcBRd3FW/M2z949JA5tRqVc2qYEz9DDpg4Zz3Z1PXGTsonjWu+x0Q7ZsTZCAX0LwSn5uRU8gLhD10WXcDNqnQW+gDjYBTqA6iv/hMrr/bpK2Ukc1awgW24p10kezGAqFAwg1w0sHIw3H3Rla72fPxkT98FstbsBWOP/aX5OKz25O8HcnNK6Jv5kWLWbIA8mRv8qgMawgj0HsIQ87BcQ1hAGStfmbHPx0hpxNTmUDTAooYbOx/hETSpd14ZuERIqnY3QBVo4zydoiv+Tv0we1h0PdisGVmsTbiRivgrI+gAEJO94HKIxp/EhptVtFMOey2/LAwhmojhIEB9wGovLFYLF5Jypi2U8ulZhpKBHkcC2ZzOZvenriRDqZqEL08dEKNJl1ntQgz2jsggv7cjR1SVG7AVd2hDwE7t6U2D0afKRGUnI4vV5v4mstEQRjMsst2qiYRGgRm35g183cL9jPI3JpM+unI+4pri0XiOsoIYZzD4H913HqKSdEvjpdXlCfQaFYAWtzRnAIaIJoNYEPjgHbbeQVftYU+uN5z2wdTj8nbKC7ZfiYdfw3AsM0kfSrDjFUHoTXQtmkZeTRs7j46v7P5nXuZRAowX4MMrOPnzst+7DPHz2Gf+M2Jm2i/BZlM5PLJshxAU7KgS8/Oo0/m7KK/dDdgMw2TxoEd2/5gF9BN6OPiTiHUZ2oEHUrWVZD+U7ApwMonGP/ScQHZiHn76DKJX8IXMv1zAMwJOF8AT00jUrZMtn4xmUF0NvuK7/4EkGn8T/CAAGU55Vm26RTiIqUsKZq5iFKz8mnwPCwQeMldIvTh+5lXguUXQFhIEA4PwCWsEXpO3aarUdes8+SaQ0d5dTls7l4JkotWAaCMtSgNUD4BWikhDICszdSttD8507QYExdSLXuR46RyAA1kBkv/C/CSM3Ppk5AousSYUREQD7ZttL9YgY1BYS1g1T7zhR1DqN/U7RIigGBUHNJ6wzWDcnh1+d3C/XQpJq30SQfb1S8PQAkIfQAysCoKU78JYeDG/TuTt1A03BFZsEB6OnUrQuUEWkkC2KDZPgiKpD/Z9w6koVh1YkYyY7stttF47PMvEM9uH0LvjdlMI2dG0oiZUZKOnLGb87s4D8Y+P/MMrhfM+RG/RVGfSZvVJ4N8DIiEjQy99asy7A5h4JlDO0nZGsjY4Rwc1xAGXnB5ZdxG2sduSDkVV6l08kATTPNqlH2296dv0+eiJPRhGi6CQsfQeN4noQ/fzMTSWMxPKwY6nnLgtiHFtz9qu/b5kaVOtIEZebCACqs5pMVlo5O0eH+qgq3lkbGREAbqtyYTY4ZjwQKyZ0avNeay/L5YaXTSQEO9UjU7hEd4Sd7+ly10IYNN1b0Rkgl5uEMftkP+YwGbaxCdAjXH/MUGOAIqZwoWwDnY7md29qUqGCEMmfCusAXqQZ7bKKDH839B9MQ3YbQ7CXGyykJMqZIazTLRkaw86jpzO13cpXjoozan2gl0qPis9TXLABvQC7C4fh28agA82mHYc59r2wk+aXPVy0vqFBmYPPbblPls1mTPf7+O9iTpzwxVJIRRFlUCaG6yoDuckUu9Zu2gP3dVn636Qx8mbY2ZrMCXZbsRtt8ZbZHUDahi7bXneeyvSramEewMYSA9q0MIvfrjeopMyHQDrAIhjLLo5E2nAZc6iQZq3Cjc++o9ayddghvBjuWyCNAHM7Qsdg2o1OsULFLVtP5k1V7IayrAs21ygAws+1wmv+q4mBuDCWfqx+oSjv/OuKPykAAetMTgViSEURZVAmiWFGT4I2DjCQCw9fxth7w8Kp1Dh3gmOTvsD8bKyeXzAHQYXCxWZBsD7U/2MIuWpV1uRrt9ATDLWqeCXWTBdZ3J5vKlsRsoIj6TiopOPoRRFlUB0EoSJsDhzDxqN20rndfBgE06qI6oW+jYRqex7ySBCCBhIG1qB0v24Ry7Tx3dWhLc1RmNp1Bc11n/0RzHEt9dHrZNWZzWlq8h6WDJPu6LzesdCq4LfbPnyWocx80K05wvdUu5WqZMDOyX47b8k2GUG1hGCAPHNYRxRrtgemRUGEUm4nEnM4A+IN8ADf8YbalZufTGpI1yj6xk6IPzdvAqEfoQ4RmQoDwZWCNQK1w5Zs/F4LoEjjYAEJxnP84OkLSLBwDHcbNeFhFyDNejHL1G9rULpNo4jmukTGbjMmgduAbXM4Dx8CbAJ21CysDjFZ7tg7ttuKGO9ORkAlY5Q7aYOAC4BS7awvuZT+c+3vvlKtqVgPdm7Ys+viGfAM3VXrajKcfy6Y0JG+Q9Px1YFWxt4ysU8xk8hFUulkGE4LTMixjUf+0YQudiAEWoQfS3ziFUt/t8+nfXeXQ+mwlcJwPaGvUH0lk8GP/sOp/q9pzP586RciywBDSyjXO1vos7BtPfOs3mOkxZfB4WG/gY9KVc9186zuYyAVLtE647g9vzt05z5GFNV18NOHHdxe+H0EXMtQVcga42yHkVZrUc7hAGAKz12hAG2nPPV6toR5y9reRb8p1GE7Qp4pJ4Ndpm2haXzyYdZmG4Qh8QhtFKFWW51miCsznfcnQ4jQiIohs/WCL77vtqDU1adIAWbkiggNWHqPPkrfR3Bl0tMWuB9A8GX5vJW2jm6liatyGOJi/ZT8+wKdGPCnMdBgwAGEzgTQOW0rDgKC4zmtqN30x/62ZW2Hz83s9W0Ji5e2nMvL307PAwOh+g4uvPZvC9OX4TTVocQ32nR1LdfosYSGou0YZ/dptPH/66g1p+v4GBaLU7HwOwUfZJsL1WNaPJm/Qs7tvjo9bS9kMKMnX2fafNQL7RaMWIO8AdiT2SJW/JXNTFgM0IQmeue/tkWMEWROdzGd8yCCIPZNBjQ1dTow+W0vrdRyg+OYuWbo6nnfszKPFINnWZwr4ja7YzmL8M3C3fFNvHMzs0IoWSjuRSdPwxeuH7jcUGCGD+a+d5NH9jojzHHxGdTgcSs6jzpC10PmuvOj3m0/rIFC4/h/YlZNKmPWl0w6crGJwB9NKYzRR/OIt2x2ZSTEIWDQ3aTRcjuM3HzmNgdWXwJ6fl0riF++gyaH6RxUlqeGE7gTXFPgs8OP5PfRtGGw+km9UlqGpCGGWRj4CmM0T7oTe0i9iM4sZs26kMNnwqCybJCMX6QG5BlZ8FDEbrnM9+ydc8iDtijtIjg1dS+7EbKZ1N9yfTttO13efRqyP1e7lBaw7RPzrPpXs/Wcmgyae1DManh4fSzf0WU5uxm+TrPPjeR4MeC1WToY5Ws6j5l+voWE4efR0YRc8MWU2hO1IYwIlUtxtrxe820LHsAho0Yyd1mbiZQXhMtOc5DMLVEcm0MyGD7hkWRj+uPEC7D2ZSfda4Z7KpHPTbLoo1wdEf50ez2dWJCHlY03tybEAGjWbkg9tK//l2HYXvT6VC8fwdIQwZJd+RzzSaNts0n/8gPc6dw/NMraZskbdn0HlV7ScvUDW5uno9n8H7ddAuBloaPcxA6zxuk7x0+/PiWLqh1wKp88aBK6jRJyt4ZgfTl2zGMrLzqOuErXQGDyxAC2BMXBAj7yC8PSqcAYZ6eDIw4HpN3EqZOfn0wpehdDH7ON8u2kcHk45R44HL6JvAPXQkI48eYy12x4AlFL4rhX6Ys5cu7raAjmTm0/xtSfLtss6/bOc2FVDjL1ayCV0iGnTFlkT5tsjYBazROkEuKo9KmU5XGdr209mffPTrMAqPSaeCouIvkkjOpd18Q34wncUJ/Yk/mksvj1vPDqkBm2g0dlLtDWYWsIY+rNDUqS2NBax8zfmcAmgRDLRHPl9FzVhrxKVkU15BAR1m0zR91UG694s1VBtOPJ8fyJotmdvyCGs2DIYAqlUAtf9uE2XlFtKH0yIEfNiPG/Fdftwsj1q/yZrpUm7zmCX75D2FW4auoqnLDlAy+6J3frCYbuqziFYwsH5ZeoAa9V9G2Xn5NGP1QXHOW7O2S2VAPv/1OjqXfcWW34bT7ezbbYxKZaDtpb+Yj7a4Fh8efXUzy0najBCGTjRZrcq19riGMOCeNBmykjYdtMFY/5P/gWZmz+GMHHr6+3WiWSAwmXlg0SzYB2EhPAGQlW5W7YDg/As4PypwL/ti6fQoD/5pvKp8hRcDm/al0VE2a3n5BZTG9cInOo8d9aWbkyiRAXh7f144mBAAynl1RCiDo1D8N/XP+Bj7U80+XC7+2fKtydSPAbOLfcGsrAK6ddhamrUmToB2G2upG/ospGXb4mnWqli67ePlUtava2KlvS3ZnMMfe+Ob9XS6ebLjpg+X0SY232Pn7xUfTT+iY0yfo6+eXFoIQ9qM/Xwci46bPl1G2w6ms/B9G8Ioi/wONFc/2WdLxMz+IYxNGvwSFSxAgxmoeStsFWBpbJfs57cLoFFBUbSTzcMjQ9bQJexo/5P9wbPYiX/tq7U0YfF+NlV5bNZSqR5rnQDRaNn08KcrxRcTDdIqkDr9sIGyWaN9NG0Hl62aQwaPtVh/1nLR7OzHJGZSfGoWa6ccuplB/csKlJVDzViD3dh3Ia3YnkTTl8XSdR8sp5y8AprOQIRGe5dXn6msRV8bxUBjUKPsGz9eyouHVPoRGo1XqPqyNNfJ5tlbf5Ux+ZhFRlqODWHItcyn87FbB6+gTQfcP9ZRXVQ9Gk3QpoiL4cFqMXEjXWCcYAFYRUIf0HzQaGxqL+B0FPtKEazRHmZnvRP7XjNXHKArei6kWu/8Rv9gszSNnXE4+40+XEJD2Uc7yqaw55RtWk7rIDq3fRD9vDRGHPs3R4SzKeWypR4M/Gy6sscCem7IKnpu6Boavzianf5suu7jJTRm9l4xiY8MXE63sfkMi0ymcfP20Z+6L5BHtedtSWAfLZjen7qN0tlne/CrUCkTmuimj5bSlt1prNF0MaCuhN6Z8Npnw9a0qp9r8iaFpbh/+Gpax7KAtfRHCKMs8jPQ3J21YMOLu7sSM6jFhI3y5UIRVjsWNA+CK/RRBstxOS+AV51YDABoRwVog9lfg2YaFbyXmvRdTE8yQJbuOCzfxr2q/2K6nX0zDPqa3an01PC1ck6bCVsojoEYFZtB9XjV6dJobIb/wdtTV8ZSbwbLXezwz90Qz2Y0iYE8jzr/uEkWEL0nbqF38eHA+GPUjx1/xNIQ6ohg03UXa87RvICANryKtZiuLIPoRgbaZj4HPtplskji/gD4JwAaWOWD/nMbMeH4OtxWeoBBtnJ3ChWY3zPQF3T+MEADKcC0z7r6wUfxdsRn0hsTNtF5bDqKhT6MGfAUsGX16yDwYNZowRpHiz1Kjw9dTdd/yJpi31EBU3hUCvtuR3kFmEffzt1Ll/Lq7nReBY7i8zN4FbgvLoPW80oxITWXfag8av3jRtViZrDRhku6zKGte9MpOT2X1jM4DyRkUeepEfJVyrq9F9Ge2EyJwe2ITaed7L/dO3iVPNHb56fNvLgooM3sK8anZovGvKyL+/H3mwYupW370mncQvXRLMBONMn0PGZoNAGmguz+4aG0dFcy5QvIEMLAf9+HMMqiagCaQs2CDH+QFhUdlyc6m/+wXoKKEJpG7y3ovDM0AlIA4Rz2aRDPGhW8m24ZsJRO5/1NP19BPy2IobU7UmnZxkT2uyKoYe/FdAau4Wv/jwe8A/tNc9YeotCIZPrvshj6z4gwCehCk0nZMFEwZwyaxp+vpOBVcbRscyK1n7KVLpbXDtmpbzObbv0ylIJCD9Lc8Dh65btw8T0Blr92mkuD/xtJy7ck0oQF0dy2JXKf0fbhyp4LaMSsXdTuh4100fvqZ1mzWBa7JgEmm1iA2dSUV5er9h5hkHk+hYHJrbnqoGoBWmkEORw4kkOPjwplH82ATfwVdvbh8CMP8+AIfdjZbxkfWD6fzQ9+iQXbuCl+Hvsrf2KzfBFry7P5erlRbkAErXUml3sBDzDOgamz15bGOPciPhf3M7Ftzas9doHUr+fa/edyu3AN2na6B4hwrxPHz0Z5piwX8wSqLf3VPgNc2AeZiNMvIQytoyFr8NDoNBOMrVlUo4BmZ11CejY9MHKNfLtWhI0ZCxYBYx8PEM9eNbEGMKWwHTDntrfjdr/ncU/2dq7dV9oxpGWx89oSbEI82lfvIQwshhoOWEQb9h9hEVZfCKMsqlkazaQIfezn1ejj34TSOXKTGcIF2LyFPrwP3v8GA6SsuUzYAhNMQxh6DBMPIYzrP1lGq/akWuHVQJjVRI0mYlLNtiMhg577PpzOkzgbhIsZrKEPnc12MOzA+J7VdEOb8EA7U2Zv51eOFUzIC8jMfnX8g0Xj3z5kBS2JTBFzqT6YfVm6ZlENApoVlJ2TvE4qKqINB9KoOYNN740yuEzoQ0MazkGpGEsZZWyXxv4FmrIFmbtOfWjxjqGrKGRbIuWan/qxIYxTQDshKcAUbzozcQN4U2w6PfPdOjob3wtzmQ4ADeAoH0Cqii2ovHGJcw14ywtib6zlcl8BNtFkQWIumwxeSfMikignHyADwCAzDWFU5+qyNKphQDPy8gh9QLNFxGXQwyN5NSq+GYQOoNVsH63qgIYUYNOV59UfLqGFO5MpD1+SdP1TgdVEkIFqHNBKI8gvOpkXCKPW0kWd58kzbRd1nmsY+T8G3zhoBS3ffbhGhjDKot8N0E7R75mI/h9DmkGzfdy+6AAAAABJRU5ErkJggg=="/>
+      <TextObject Name="Text69" Top="28.35" Width="754.11" Height="37.8" CanGrow="true" Text="重盈陽成工業股份有限公司" HorzAlign="Center" VertAlign="Center" Font="新細明體, 20pt, style=Bold"/>
+      <TextObject Name="Text70" Top="66.15" Width="754.11" Height="37.8" CanGrow="true" Text="金  相   報  告  書" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text1" Top="122.85" Width="141.75" Height="37.8" Border.Lines="All" Text="客戶名稱" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text83" Top="160.65" Width="141.75" Height="37.8" Border.Lines="All" Text="工令號碼" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text84" Top="198.45" Width="141.75" Height="37.8" Border.Lines="All" Text="加工方式" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text85" Top="236.25" Width="141.75" Height="37.8" Border.Lines="All" Text="產品名稱" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text86" Top="274.05" Width="141.75" Height="37.8" Border.Lines="All" Text="桶數重量" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text87" Top="311.85" Width="141.75" Height="37.8" Border.Lines="All" Text="試樣浸蝕類型" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text88" Left="444.15" Top="122.85" Width="141.75" Height="37.8" Border.Lines="All" Text="製造日期" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text89" Left="444.15" Top="160.65" Width="141.75" Height="37.8" Border.Lines="All" Text="產品批號" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text90" Left="444.15" Top="198.45" Width="141.75" Height="37.8" Border.Lines="All" Text="表面處理" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text91" Left="444.15" Top="236.25" Width="141.75" Height="37.8" Border.Lines="All" Text="規格" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text92" Left="444.15" Top="274.05" Width="141.75" Height="37.8" Border.Lines="All" Text="材質" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text93" Left="444.15" Top="311.85" Width="141.75" Height="37.8" Border.Lines="All" Text="取樣方向" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text94" Left="141.75" Top="122.85" Width="302.4" Height="37.8" Border.Lines="All" Text="[主檔.客戶公司名稱]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text95" Left="141.75" Top="160.65" Width="302.4" Height="37.8" Border.Lines="All" Text="[RepKey]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text96" Left="141.75" Top="198.45" Width="302.4" Height="37.8" Border.Lines="All" Text="[主檔.加工方式代碼]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text97" Left="141.75" Top="236.25" Width="302.4" Height="37.8" Border.Lines="All" Text="[主檔.產品名稱]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text98" Left="274.05" Top="274.05" Width="170.1" Height="37.8" Border.Lines="Right, Top, Bottom" Text="[主檔.數量1][主檔.單位代號1] [主檔.數量2][主檔.單位代號2] [主檔.數量3][主檔.單位代號3] [主檔.數量4][主檔.單位代號4]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text99" Left="141.75" Top="311.85" Width="302.4" Height="37.8" Border.Lines="All" Text="3%硝酸＋酒精溶液" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text100" Left="585.9" Top="122.85" Width="170.1" Height="37.8" Border.Lines="All" Text="[Replace([主檔.製造日期1],&quot;-&quot;,&quot;/&quot;)]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text101" Left="585.9" Top="160.65" Width="170.1" Height="37.8" Border.Lines="All" Text="[主檔.客戶批號] [主檔.客戶單號]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text102" Left="585.9" Top="198.45" Width="170.1" Height="37.8" Border.Lines="All" Text="[主檔.表面處理代碼]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text103" Left="585.9" Top="236.25" Width="170.1" Height="37.8" Border.Lines="All" Text="[主檔.規格代碼]X[主檔.長度代碼][主檔.長度說明]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text104" Left="585.9" Top="274.05" Width="170.1" Height="37.8" Border.Lines="All" Text="[主檔.材質代碼] " VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text105" Left="585.9" Top="311.85" Width="170.1" Height="37.8" Border.Lines="All" Text="縱向切面" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text106" Left="141.75" Top="274.05" Width="132.3" Height="37.8" Border.Lines="Left, Top, Bottom" Text="[主檔.淨重]KG" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text107" Top="349.65" Width="141.75" Height="37.8" Border.Lines="All" Text="試驗類型" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text108" Left="141.75" Top="349.65" Width="614.25" Height="37.8" Border.Lines="All" Text="顯微組織" HorzAlign="Center" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text109" Top="387.45" Width="756" Height="37.8" Border.Lines="All" Text="金相圖片" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <PictureObject Name="Picture1" Top="425.25" Width="255.15" Height="189" Border.Lines="All" SizeMode="StretchImage" DataColumn="金相1.金相圖檔"/>
+      <PictureObject Name="Picture3" Left="255.15" Top="425.25" Width="255.15" Height="189" Border.Lines="All" SizeMode="StretchImage" DataColumn="金相2.金相圖檔"/>
+      <PictureObject Name="Picture4" Left="510.3" Top="425.25" Width="245.7" Height="189" Border.Lines="All" SizeMode="StretchImage" DataColumn="金相3.金相圖檔"/>
+      <TextObject Name="Text110" Top="614.25" Width="85.05" Height="37.8" Border.Lines="All" Text="1圖倍率" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text111" Left="85.05" Top="614.25" Width="170.1" Height="37.8" Border.Lines="All" Text="[主檔.圖倍率1]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text112" Left="255.15" Top="614.25" Width="85.05" Height="37.8" Border.Lines="All" Text="2圖倍率" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text113" Left="340.2" Top="614.25" Width="170.1" Height="37.8" Border.Lines="All" Text="[主檔.圖倍率2]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text114" Left="510.3" Top="614.25" Width="85.05" Height="37.8" Border.Lines="All" Text="3圖倍率" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text115" Left="595.35" Top="614.25" Width="160.65" Height="37.8" Border.Lines="All" Text="[主檔.圖倍率3]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <PictureObject Name="Picture5" Top="652.05" Width="255.15" Height="189" Border.Lines="All" SizeMode="StretchImage" DataColumn="金相4.金相圖檔"/>
+      <PictureObject Name="Picture6" Left="255.15" Top="652.05" Width="255.15" Height="189" Border.Lines="All" SizeMode="StretchImage" DataColumn="金相5.金相圖檔"/>
+      <PictureObject Name="Picture7" Left="510.3" Top="652.05" Width="245.7" Height="189" Border.Lines="All" SizeMode="StretchImage" DataColumn="金相6.金相圖檔"/>
+      <TextObject Name="Text116" Top="841.05" Width="85.05" Height="37.8" Border.Lines="All" Text="4圖倍率" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text117" Left="85.05" Top="841.05" Width="170.1" Height="37.8" Border.Lines="All" Text="[主檔.圖倍率4]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text118" Left="255.15" Top="841.05" Width="85.05" Height="37.8" Border.Lines="All" Text="5圖倍率" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text119" Left="340.2" Top="841.05" Width="170.1" Height="37.8" Border.Lines="All" Text="[主檔.圖倍率5]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text120" Left="510.3" Top="841.05" Width="85.05" Height="37.8" Border.Lines="All" Text="6圖倍率" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text121" Left="595.35" Top="841.05" Width="160.65" Height="37.8" Border.Lines="All" Text="[主檔.圖倍率6]" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text122" Top="878.85" Width="141.75" Height="94.5" Border.Lines="All" Text="結果判定" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text123" Left="141.75" Top="878.85" Width="614.25" Height="47.25" Border.Lines="All" Text="[主檔.金相結果判定說明]" HorzAlign="Center" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text126" Left="141.75" Top="926.1" Width="614.25" Height="47.25" Border.Lines="All" Text="[主檔.金相結果判定]" HorzAlign="Center" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text127" Top="973.35" Width="94.5" Height="75.6" Border.Lines="All" Text="審核" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text128" Left="94.5" Top="973.35" Width="94.5" Height="75.6" Border.Lines="All" Text="[主檔.金相審核姓名]" HorzAlign="Center" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text129" Left="189" Top="973.35" Width="94.5" Height="75.6" Border.Lines="All" Text="審核日期" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text130" Left="283.5" Top="973.35" Width="94.5" Height="75.6" Border.Lines="All" Text="[主檔.金相審核日期]" HorzAlign="Center" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text131" Left="378" Top="973.35" Width="94.5" Height="75.6" Border.Lines="All" Text="檢驗員" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text132" Left="472.5" Top="973.35" Width="94.5" Height="75.6" Border.Lines="All" Text="[主檔.金相檢驗姓名]" HorzAlign="Center" VertAlign="Center" Font="新細明體, 12pt"/>
+      <TextObject Name="Text133" Left="567" Top="973.35" Width="94.5" Height="75.6" Border.Lines="All" Text="檢驗日期" HorzAlign="Center" VertAlign="Center" Font="新細明體, 14pt, style=Bold"/>
+      <TextObject Name="Text134" Left="661.5" Top="973.35" Width="94.5" Height="75.6" Border.Lines="All" Text="[主檔.金相檢驗日期]" HorzAlign="Center" VertAlign="Center" Font="新細明體, 12pt"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="1062.4" Width="756" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table"/>
+  </ReportPage>
+</Report>

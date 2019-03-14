@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates simple list report. To create it:&#13;&#10;&#13;&#10;- go to &quot;Data&quot; menu and select &quot;Choose Report Data...&quot; item to select datasource;&#13;&#10;&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu to create the band structure;&#13;&#10;&#13;&#10;- return to the report page, doubleclick the data band to show its editor;&#13;&#10;&#13;&#10;- choose the datasource;&#13;&#10;&#13;&#10;- drag data from the Data Dictionary window to the band." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="03/26/2017 20:22:13" ReportInfo.CreatorVersion="1.4.42.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport                                             
+{
+  public class ReportScript
+  {
+    private Int32 sum;
+    private double sum1;
+    private void Data1_BeforePrint(object sender, EventArgs e)
+    {                                     
+      //sum +=  ((Int32)Report.GetColumnValue(&quot;主資料.標準產量&quot;));
+      sum1 += (double)Report.GetColumnValue(&quot;主資料.S重量&quot;);
+      Report.SetParameterValue(&quot;A1&quot;,((Int32)Report.GetVariableValue(&quot;Row#&quot;)) );
+      /*
+      if ((String)Report.GetColumnValue(&quot;主資料.分類&quot;)==&quot;I&quot;)
+      Report.SetParameterValue(&quot;A1&quot;, &quot;進貨&quot;);
+      else
+      Report.SetParameterValue(&quot;A1&quot;, &quot;出貨&quot;);
+      
+      string V=&quot;&quot;;
+      DataSourceBase ds = Report.GetDataSource(&quot;明細資料&quot;);
+      ds.Init();
+      while (ds.HasMoreRows)
+      {
+        string V1 = (string)Report.GetColumnValue(&quot;明細資料.簡稱&quot;);
+        string V2 = (string)Report.GetColumnValue(&quot;明細資料.簡稱1&quot;);
+        
+        V=V+V1+&quot;-&quot;+V2+&quot;,&quot;;
+          
+        // do something with it...
+        // ...
+        // go next data row
+        ds.Next();
+      }
+      Report.SetParameterValue(&quot;A2&quot;, V);
+       */
+    } 
+  }  
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq3SypJm9OlKHhPO4T3+EIehQQ3YzI53kGd6MPIY/2BinUl9bn4B+W7YO5MV43ouoZOhJ+wRn4S0bMmsiyiqIr5w==" ConnectionStringExpression="[ConnStr]">
+      <TableDataSource Name="Table" Alias="主資料" DataType="System.Int32" Enabled="true" SelectCommand="select 客戶.簡稱,SUM(T重量) as S重量 from  (&#13;&#10;select 製造日期1 as T製造日期,客戶代號,製造重量1 as T重量 from 進貨單主檔&#13;&#10;union &#13;&#10;select 製造日期2 as T製造日期,客戶代號,製造重量2 as T重量 from 進貨單主檔&#13;&#10;union &#13;&#10;select 製造日期3 as T製造日期,客戶代號,製造重量3 as T重量 from 進貨單主檔 ) as m&#13;&#10;LEFT JOIN 客戶主檔 AS 客戶 ON m.客戶代號 = 客戶.客戶代號 &#13;&#10;where  m.T製造日期 &gt;=@RepKey1 and m.T製造日期 &lt;=@RepKey2&#13;&#10;and isnull(m.客戶代號,'')&lt;&gt;''&#13;&#10;group by 客戶.簡稱">
+        <Column Name="S重量" DataType="System.Double"/>
+        <Column Name="簡稱" DataType="System.String"/>
+        <CommandParameter Name="RepKey1" DataType="22" Expression="[RepKey1]"/>
+        <CommandParameter Name="RepKey2" DataType="22" Expression="[RepKey2]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="ConnStr" DataType="System.String" Expression="&quot;server=JWISDON-SEVER;database=ERP;uid=sa;pwd=@j3842680&quot;"/>
+    <Parameter Name="RepKey" DataType="System.String" Expression="&quot;A&quot;"/>
+    <Parameter Name="RepKey1" DataType="System.String" Expression="&quot;2015-01-01&quot;"/>
+    <Parameter Name="RepKey2" DataType="System.String" Expression="&quot;2015-12-31&quot;"/>
+    <Parameter Name="RepKey3" DataType="System.String"/>
+    <Parameter Name="RepKey4" DataType="System.String"/>
+    <Parameter Name="A1" DataType="System.String"/>
+    <Parameter Name="A2" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" TopMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="66.15">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Text="空桶欠缺明細表" HorzAlign="Center" VertAlign="Center" Font="標楷體, 20pt, style=Bold, Underline"/>
+      <TextObject Name="Text12" Left="189" Top="47.25" Width="283.5" Height="18.9" Text="出貨日期：[RepKey1]-[RepKey2]" Font="標楷體, 12pt, style=Bold"/>
+      <TextObject Name="Text13" Left="642.6" Top="47.25" Width="75.6" Height="18.9" Text="頁次：[TotalPages#]" HorzAlign="Right" Font="標楷體, 12pt, style=Bold"/>
+      <TextObject Name="Text25" Left="472.5" Top="47.25" Width="170.1" Height="18.9" Text="列印日期：[Date]" Format="Date" Format.Format="MM/dd/yy" WordWrap="false" Font="標楷體, 12pt, style=Bold"/>
+    </PageHeaderBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="69.09" Width="718.2" Height="18.9">
+      <TextObject Name="Text14" Width="160.65" Height="18.9" Border.Lines="All" Text="爐號" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text17" Left="160.65" Width="151.2" Height="18.9" Border.Lines="All" Text="實際產量" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" Top="90.93" Width="718.2" Height="32.35" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+      <TextObject Name="Text2" Top="9.45" Width="160.65" Height="18.9" Text="[主資料.簡稱]" Font="標楷體, 10pt"/>
+      <TextObject Name="Text4" Left="160.65" Top="9.45" Width="151.2" Height="18.9" Text="[主資料.S重量]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <DataFooterBand Name="DataFooter1" Top="126.22" Width="718.2" Height="37.8">
+        <LineObject Name="Line1" Width="718.2"/>
+        <TextObject Name="Text43" Left="160.65" Top="9.45" Width="151.2" Height="18.9" Text="[sum1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="標楷體, 12pt, style=Bold"/>
+      </DataFooterBand>
+    </DataBand>
+  </ReportPage>
+</Report>

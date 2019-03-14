@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+    <PublishUrlHistory>D:\wwwroot\陽成ERP\|Z:\陽成ERP\|ftp://60.249.192.91/erp/|publish\</PublishUrlHistory>
+    <InstallUrlHistory>\\192.168.254.250\Users\ERP\|\\192.168.254.3\hd_i\ERP\|\\192.168.254.250\Users\|\\192.168.254.250\共用區\陽成ERP\|\\192.168.254.250\陽成ERP\</InstallUrlHistory>
+    <SupportUrlHistory />
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>zh-TW</FallbackCulture>
+    <VerifyUploadedFiles>true</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+</Project>

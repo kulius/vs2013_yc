@@ -1,0 +1,940 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF8D26E7-C7B6-460F-9FF1-D8E686158C6D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>ERP企業資源規劃系統.My.MyApplication</StartupObject>
+    <RootNamespace>ERP企業資源規劃系統</RootNamespace>
+    <AssemblyName>ERP企業資源規劃系統</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\wwwroot\陽成ERP\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\192.168.254.250\Users\ERP\</InstallUrl>
+    <TargetCulture>zh-TW</TargetCulture>
+    <ProductName>ERP企業資源規劃系統</ProductName>
+    <PublisherName>陽成</PublisherName>
+    <SuiteName>ERP企業資源規劃系統</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>Default.htm</WebPage>
+    <ApplicationRevision>302</ApplicationRevision>
+    <ApplicationVersion>2.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <ExcludeDeploymentUrl>true</ExcludeDeploymentUrl>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ERP企業資源規劃系統.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ERP企業資源規劃系統.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>001.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E29ACC40B1713A7AA635892CB0C78B1140771309</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ERP企業資源規劃系統_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FastReport, Version=1.4.42.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL" />
+    <Reference Include="FastReport.Bars, Version=1.4.42.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL" />
+    <Reference Include="FastReport.Editor, Version=1.4.42.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="NPOI, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Data.Sql" />
+    <Import Include="System.Data.SqlClient" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="報表\R01N0009.Designer.vb">
+      <DependentUpon>R01N0009.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0009.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\BaseReport.Designer.vb">
+      <DependentUpon>BaseReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\BaseReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\PreviewReport.Designer.vb">
+      <DependentUpon>PreviewReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\PreviewReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\R01N0001.Designer.vb">
+      <DependentUpon>R01N0001.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0001.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\R01N0002.Designer.vb">
+      <DependentUpon>R01N0002.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0002.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\R01N0003.Designer.vb">
+      <DependentUpon>R01N0003.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0003.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\R01N0004.Designer.vb">
+      <DependentUpon>R01N0004.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0004.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\R01N0005.Designer.vb">
+      <DependentUpon>R01N0005.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0005.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\R01N0006.Designer.vb">
+      <DependentUpon>R01N0006.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0006.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\R01N0007.Designer.vb">
+      <DependentUpon>R01N0007.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0007.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="報表\R01N0008.Designer.vb">
+      <DependentUpon>R01N0008.vb</DependentUpon>
+    </Compile>
+    <Compile Include="報表\R01N0008.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="模組\ERP.vb" />
+    <Compile Include="模組\vbdataio.vb" />
+    <Compile Include="模組\工具\INI.vb" />
+    <Compile Include="模組\系統\SystemChecked.vb" />
+    <Compile Include="模組\系統\SystemControl.vb" />
+    <Compile Include="模組\系統\SystemValue.vb" />
+    <Compile Include="模組\資料\ADOODBC.vb" />
+    <Compile Include="模組\資料\DataChecked.vb" />
+    <Compile Include="模組\資料\variableChange.vb" />
+    <Compile Include="表單\A_財務\S06N0100.Designer.vb">
+      <DependentUpon>S06N0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06N0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\A_財務\S06N0120.Designer.vb">
+      <DependentUpon>S06N0120.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06N0120.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0100.Designer.vb">
+      <DependentUpon>S06R0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0200.Designer.vb">
+      <DependentUpon>S06R0200.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0200.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0300.Designer.vb">
+      <DependentUpon>S06R0300.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0300.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0400.Designer.vb">
+      <DependentUpon>S06R0400.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0400.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0500.Designer.vb">
+      <DependentUpon>S06R0500.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0500.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0600.Designer.vb">
+      <DependentUpon>S06R0600.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0600.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0700.Designer.vb">
+      <DependentUpon>S06R0700.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\A_財務\S06R0700.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0100.Designer.vb">
+      <DependentUpon>S02N0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0201.Designer.vb">
+      <DependentUpon>S02N0201.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0201.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0202.Designer.vb">
+      <DependentUpon>S02N0202.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0202.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0400.Designer.vb">
+      <DependentUpon>S02N0400.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0400.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0100.Designer.vb">
+      <DependentUpon>S_S02N0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0300.Designer.vb">
+      <DependentUpon>S02N0300.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\S02N0300.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0300.Designer.vb">
+      <DependentUpon>S_S02N0300.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0300.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0400.Designer.vb">
+      <DependentUpon>S_S02N0400.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0400.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0201.Designer.vb">
+      <DependentUpon>S_S02N0201.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0201.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0202.Designer.vb">
+      <DependentUpon>S_S02N0202.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\B_業務\查詢\S_S02N0202.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0011.Designer.vb">
+      <DependentUpon>S03N0011.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0011.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0110.Designer.vb">
+      <DependentUpon>S03N0110.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0110.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0120.Designer.vb">
+      <DependentUpon>S03N0120.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0120.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0190.Designer.vb">
+      <DependentUpon>S03N0190.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0190.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0191.Designer.vb">
+      <DependentUpon>S03N0191.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0191.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0200.Designer.vb">
+      <DependentUpon>S03N0200.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0200.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0310.Designer.vb">
+      <DependentUpon>S03N0310.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0310.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0320.Designer.vb">
+      <DependentUpon>S03N0320.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0320.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0330.Designer.vb">
+      <DependentUpon>S03N0330.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0330.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0390.Designer.vb">
+      <DependentUpon>S03N0390.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0390.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0400.Designer.vb">
+      <DependentUpon>S03N0400.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0400.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0410.Designer.vb">
+      <DependentUpon>S03N0410.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0410.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0500.Designer.vb">
+      <DependentUpon>S03N0500.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\S03N0500.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\報表\S03N9904.Designer.vb">
+      <DependentUpon>S03N9904.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\報表\S03N9904.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\查詢\S_S03N0110.Designer.vb">
+      <DependentUpon>S_S03N0110.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\查詢\S_S03N0110.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\查詢\S_S03N0120.Designer.vb">
+      <DependentUpon>S_S03N0120.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\查詢\S_S03N0120.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\查詢\S_S03N0120_1.Designer.vb">
+      <DependentUpon>S_S03N0120_1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\查詢\S_S03N0120_1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\C_生產\查詢\S_S03N0120_2.Designer.vb">
+      <DependentUpon>S_S03N0120_2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\C_生產\查詢\S_S03N0120_2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\F_製程\S05N0100.Designer.vb">
+      <DependentUpon>S05N0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\F_製程\S05N0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\F_製程\S05N0200.Designer.vb">
+      <DependentUpon>S05N0200.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\F_製程\S05N0200.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04N0005.designer.vb">
+      <DependentUpon>S04N0005.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04N0005.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04N0200.Designer.vb">
+      <DependentUpon>S04N0200.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04N0200.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04N0300.Designer.vb">
+      <DependentUpon>S04N0300.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04N0300.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04R0100.Designer.vb">
+      <DependentUpon>S04R0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04R0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Q_品質\查詢\S_S04N0100.Designer.vb">
+      <DependentUpon>S_S04N0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Q_品質\查詢\S_S04N0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\fmAbout.Designer.vb">
+      <DependentUpon>fmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\fmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\fmBase1.Designer.vb">
+      <DependentUpon>fmBase1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\fmBase1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\fmBase2.Designer.vb">
+      <DependentUpon>fmBase2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\fmBase2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\fmBuy.Designer.vb">
+      <DependentUpon>fmBuy.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\fmBuy.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\fmLogin.Designer.vb">
+      <DependentUpon>fmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\fmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\fmMain.Designer.vb">
+      <DependentUpon>fmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\fmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\P_人事薪資\S01N0100.Designer.vb">
+      <DependentUpon>S01N0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\P_人事薪資\S01N0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\P_人事薪資\S01N0200.Designer.vb">
+      <DependentUpon>S01N0200.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\P_人事薪資\S01N0200.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\P_人事薪資\查詢\S_S01N0100.Designer.vb">
+      <DependentUpon>S_S01N0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\P_人事薪資\查詢\S_S01N0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\P_人事薪資\查詢\S_S01N0200.Designer.vb">
+      <DependentUpon>S_S01N0200.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\P_人事薪資\查詢\S_S01N0200.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04N0100.Designer.vb">
+      <DependentUpon>S04N0100.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Q_品質\S04N0100.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\S_系統\S99N0101.Designer.vb">
+      <DependentUpon>S99N0101.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\S_系統\S99N0101.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\S_系統\S99N0201.Designer.vb">
+      <DependentUpon>S99N0201.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\S_系統\S99N0201.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\S_系統\S99N9999.Designer.vb">
+      <DependentUpon>S99N9999.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\S_系統\S99N9999.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\S_系統\查詢\S_S99N0101.Designer.vb">
+      <DependentUpon>S_S99N0101.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\S_系統\查詢\S_S99N0101.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Z_共用\frmLevel1.Designer.vb">
+      <DependentUpon>frmLevel1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Z_共用\frmLevel1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Z_共用\frmLevel12.Designer.vb">
+      <DependentUpon>frmLevel12.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Z_共用\frmLevel12.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表單\Z_共用\RecMove.Designer.vb">
+      <DependentUpon>RecMove.vb</DependentUpon>
+    </Compile>
+    <Compile Include="表單\Z_共用\RecMove.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0009.resx">
+      <DependentUpon>R01N0009.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\BaseReport.resx">
+      <DependentUpon>BaseReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\PreviewReport.resx">
+      <DependentUpon>PreviewReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0001.resx">
+      <DependentUpon>R01N0001.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0002.resx">
+      <DependentUpon>R01N0002.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0003.resx">
+      <DependentUpon>R01N0003.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0004.resx">
+      <DependentUpon>R01N0004.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0005.resx">
+      <DependentUpon>R01N0005.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0006.resx">
+      <DependentUpon>R01N0006.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0007.resx">
+      <DependentUpon>R01N0007.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="報表\R01N0008.resx">
+      <DependentUpon>R01N0008.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06N0100.resx">
+      <DependentUpon>S06N0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06N0120.resx">
+      <DependentUpon>S06N0120.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06R0100.resx">
+      <DependentUpon>S06R0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06R0200.resx">
+      <DependentUpon>S06R0200.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06R0300.resx">
+      <DependentUpon>S06R0300.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06R0400.resx">
+      <DependentUpon>S06R0400.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06R0500.resx">
+      <DependentUpon>S06R0500.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06R0600.resx">
+      <DependentUpon>S06R0600.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\A_財務\S06R0700.resx">
+      <DependentUpon>S06R0700.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\S02N0100.resx">
+      <DependentUpon>S02N0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\S02N0201.resx">
+      <DependentUpon>S02N0201.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\S02N0202.resx">
+      <DependentUpon>S02N0202.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\S02N0400.resx">
+      <DependentUpon>S02N0400.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\查詢\S_S02N0100.resx">
+      <DependentUpon>S_S02N0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\S02N0300.resx">
+      <DependentUpon>S02N0300.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\查詢\S_S02N0300.resx">
+      <DependentUpon>S_S02N0300.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\查詢\S_S02N0400.resx">
+      <DependentUpon>S_S02N0400.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\查詢\S_S02N0201.resx">
+      <DependentUpon>S_S02N0201.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\B_業務\查詢\S_S02N0202.resx">
+      <DependentUpon>S_S02N0202.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0011.resx">
+      <DependentUpon>S03N0011.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0110.resx">
+      <DependentUpon>S03N0110.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0120.resx">
+      <DependentUpon>S03N0120.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0190.resx">
+      <DependentUpon>S03N0190.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0191.resx">
+      <DependentUpon>S03N0191.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0200.resx">
+      <DependentUpon>S03N0200.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0310.resx">
+      <DependentUpon>S03N0310.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0320.resx">
+      <DependentUpon>S03N0320.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0330.resx">
+      <DependentUpon>S03N0330.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0390.resx">
+      <DependentUpon>S03N0390.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0400.resx">
+      <DependentUpon>S03N0400.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0410.resx">
+      <DependentUpon>S03N0410.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\S03N0500.resx">
+      <DependentUpon>S03N0500.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\報表\S03N9904.resx">
+      <DependentUpon>S03N9904.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\查詢\S_S03N0110.resx">
+      <DependentUpon>S_S03N0110.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\查詢\S_S03N0120.resx">
+      <DependentUpon>S_S03N0120.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\查詢\S_S03N0120_1.resx">
+      <DependentUpon>S_S03N0120_1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\C_生產\查詢\S_S03N0120_2.resx">
+      <DependentUpon>S_S03N0120_2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\F_製程\S05N0100.resx">
+      <DependentUpon>S05N0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\F_製程\S05N0200.resx">
+      <DependentUpon>S05N0200.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Q_品質\S04N0005.resx">
+      <DependentUpon>S04N0005.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Q_品質\S04N0200.resx">
+      <DependentUpon>S04N0200.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Q_品質\S04N0300.resx">
+      <DependentUpon>S04N0300.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Q_品質\S04R0100.resx">
+      <DependentUpon>S04R0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Q_品質\查詢\S_S04N0100.resx">
+      <DependentUpon>S_S04N0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\fmAbout.resx">
+      <DependentUpon>fmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\fmBase1.resx">
+      <DependentUpon>fmBase1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\fmBase2.resx">
+      <DependentUpon>fmBase2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\fmBuy.resx">
+      <DependentUpon>fmBuy.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\fmLogin.resx">
+      <DependentUpon>fmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\fmMain.resx">
+      <DependentUpon>fmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\P_人事薪資\S01N0100.resx">
+      <DependentUpon>S01N0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\P_人事薪資\S01N0200.resx">
+      <DependentUpon>S01N0200.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\P_人事薪資\查詢\S_S01N0100.resx">
+      <DependentUpon>S_S01N0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\P_人事薪資\查詢\S_S01N0200.resx">
+      <DependentUpon>S_S01N0200.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Q_品質\S04N0100.resx">
+      <DependentUpon>S04N0100.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\S_系統\S99N0101.resx">
+      <DependentUpon>S99N0101.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\S_系統\S99N0201.resx">
+      <DependentUpon>S99N0201.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\S_系統\S99N9999.resx">
+      <DependentUpon>S99N9999.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\S_系統\查詢\S_S99N0101.resx">
+      <DependentUpon>S_S99N0101.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Z_共用\frmLevel1.resx">
+      <DependentUpon>frmLevel1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Z_共用\frmLevel12.resx">
+      <DependentUpon>frmLevel12.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表單\Z_共用\RecMove.resx">
+      <DependentUpon>RecMove.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SYS\Upgrade.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ERP企業資源規劃系統_TemporaryKey.pfx" />
+    <Content Include="INI\BASIC.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="INI\CONFIG.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="INI\VERIFY.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Fakes Include="Fakes\Microsoft.VisualBasic.PowerPacks.Vs.fakes" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="REP\base.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="REP\Chinese %28Traditional%29.frl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="REP\客戶加工單.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="REP\R01N0001.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="表單\I_產量統計\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="001.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="FastReport">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="FastReport.Bars">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="FastReport.Editor">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Windows.Forms.DataVisualization">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

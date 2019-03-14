@@ -1,0 +1,41 @@
+set sysmenu to
+set resource off
+set exclusive off
+set status bar off
+set deleted on
+set safety off
+set multilocks on
+set collate to "machine"
+set notify  off
+set talk off
+set optimize on
+set century on
+set exact on
+set date to taiwan
+set escape off  &&關閉執行遠端sql指令的等待訊息
+
+M_IP = "x\sql2008"
+M_PASSNAME = "sa"
+M_PASSWORD = "2iriulai"
+M_DBFNAME = "重盈陽成"
+M_IPCHAR = 'driver=sql server;server='+M_IP+';uid='+M_PASSNAME+';pwd='+M_PASSWORD+';database='+M_DBFNAME
+
+M_CONNECT = sqlstringconnec( M_IPCHAR )
+if M_CONNECT > 0    &&要先設定為使用後端
+	do proc_3
+	&&do proc_4
+	&&do proc_5
+	&&do proc_6
+	&&do proc_7
+	&&do proc_8
+	&&do proc_9
+	
+	=sqldisconnect(M_CONNECT)
+	=messagebox( "頭部記號匯入完成",0,"提示訊息" )
+else
+	=messagebox( "找不到主機",0,"提示訊息" )	
+endif
+
+read event
+set sysmenu to default
+return

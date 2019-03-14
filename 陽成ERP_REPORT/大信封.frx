@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates simple list report. To create it:&#13;&#10;&#13;&#10;- go to &quot;Data&quot; menu and select &quot;Choose Report Data...&quot; item to select datasource;&#13;&#10;&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu to create the band structure;&#13;&#10;&#13;&#10;- return to the report page, doubleclick the data band to show its editor;&#13;&#10;&#13;&#10;- choose the datasource;&#13;&#10;&#13;&#10;- drag data from the Data Dictionary window to the band." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="06/30/2015 01:42:57" ReportInfo.CreatorVersion="1.4.42.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport                                             
+{
+  public class ReportScript
+  {
+  
+
+  }  
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqJKod1bZKcGrds90PWq0g4oLG9I6Qzoc0HaYZ0wDsTIVIiWGz27JL5LOHaLUohDrJ7KzI+HFsU20RgycmjEWpaw==" ConnectionStringExpression="[ConnStr]">
+      <TableDataSource Name="Table" Alias="主資料" DataType="System.Int32" Enabled="true" SelectCommand="select *&#13;&#10;from 客戶主檔  &#13;&#10;where  客戶代號=@RepKey">
+        <Column Name="客戶代號" DataType="System.String"/>
+        <Column Name="建立人員" DataType="System.String"/>
+        <Column Name="建立日期" DataType="System.String"/>
+        <Column Name="修改人員" DataType="System.String"/>
+        <Column Name="修改日期" DataType="System.String"/>
+        <Column Name="分類代碼" DataType="System.String"/>
+        <Column Name="統一編號" DataType="System.String"/>
+        <Column Name="負責人" DataType="System.String"/>
+        <Column Name="公司名稱" DataType="System.String"/>
+        <Column Name="公司抬頭" DataType="System.String"/>
+        <Column Name="簡稱" DataType="System.String"/>
+        <Column Name="公司郵遞區號" DataType="System.String"/>
+        <Column Name="公司地址" DataType="System.String"/>
+        <Column Name="帳單郵遞區號" DataType="System.String"/>
+        <Column Name="帳單地址" DataType="System.String"/>
+        <Column Name="電話1" DataType="System.String"/>
+        <Column Name="電話2" DataType="System.String"/>
+        <Column Name="電話3" DataType="System.String"/>
+        <Column Name="傳真1" DataType="System.String"/>
+        <Column Name="傳真2" DataType="System.String"/>
+        <Column Name="網址" DataType="System.String"/>
+        <Column Name="E_Mail" DataType="System.String"/>
+        <Column Name="備註1" DataType="System.String"/>
+        <Column Name="備註2" DataType="System.String"/>
+        <Column Name="備註3" DataType="System.String"/>
+        <Column Name="備註4" DataType="System.String"/>
+        <Column Name="備註5" DataType="System.String"/>
+        <Column Name="備註6" DataType="System.String"/>
+        <Column Name="備註7" DataType="System.String"/>
+        <Column Name="備註8" DataType="System.String"/>
+        <Column Name="備註9" DataType="System.String"/>
+        <Column Name="備註10" DataType="System.String"/>
+        <Column Name="試片否" DataType="System.String"/>
+        <Column Name="往來否" DataType="System.String"/>
+        <Column Name="其他郵遞區號1" DataType="System.String"/>
+        <Column Name="其他地址1" DataType="System.String"/>
+        <Column Name="其他郵遞區號2" DataType="System.String"/>
+        <Column Name="其他地址2" DataType="System.String"/>
+        <Column Name="其他郵遞區號3" DataType="System.String"/>
+        <Column Name="其他地址3" DataType="System.String"/>
+        <CommandParameter Name="RepKey" DataType="22" Expression="[RepKey]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="ConnStr" DataType="System.String"/>
+    <Parameter Name="RepKey" DataType="System.String"/>
+    <Parameter Name="RepKey1" DataType="System.String"/>
+    <Parameter Name="RepKey2" DataType="System.String"/>
+    <Parameter Name="RepKey3" DataType="System.String"/>
+    <Parameter Name="RepKey4" DataType="System.String"/>
+    <Parameter Name="A1" DataType="System.String"/>
+    <Parameter Name="A2" DataType="System.String"/>
+    <Parameter Name="RepKey5" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="291.5" PaperHeight="178" TopMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15">
+    <DataBand Name="Data1" Width="1026.27" Height="340.2" StartNewPage="true" DataSource="Table">
+      <TextObject Name="Text2" Left="302.4" Top="321.3" Width="538.65" Height="18.9" Text="[主資料.公司名稱]" Font="標楷體, 14pt"/>
+      <TextObject Name="Text3" Left="302.4" Top="292.95" Width="538.65" Height="18.9" Text="[主資料.其他地址2]" Font="標楷體, 14pt"/>
+      <TextObject Name="Text4" Left="302.4" Top="255.15" Width="94.5" Height="18.9" Text="[主資料.其他郵遞區號2]" Font="標楷體, 14pt"/>
+    </DataBand>
+  </ReportPage>
+</Report>

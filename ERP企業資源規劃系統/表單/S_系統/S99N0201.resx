@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RichTextBox1.Text" xml:space="preserve">
+    <value>20150811
+1.新增不合品處理作業
+2.新增出貨退回作業
+
+
+-------------------------------------------------------------------------------------------------
+
+20150724
+1.修正狀態，讓重做品不會一直回到出貨中
+2.產量，新增清除按鈕，可清空選擇的數據列
+3.應收帳款，修正明細表
+4.過碼，修正改過磅時會出現的錯誤訊息
+
+-------------------------------------------------------------------------------------------------
+
+20150723
+1.出貨單價設定、 AC074 重量與報表不一致
+2.出貨統計表，要 有司機、沒司機的差別
+3.製造，一進入打工令出錯，下拉出錯
+4.製造，品管，產量，工令號碼可按ENTER
+5.過碼 車輛號碼可修改
+
+-------------------------------------------------------------------------------------------------
+20150722
+財務
+1.單價設定、沒有司機姓名，不要出現在出貨單價還有出貨統計表
+
+品管
+1.品管、心部硬度不能存
+2.拉力機清空後要存檔
+3.存檔不用判斷檢驗員
+4.檢驗報告、47HT1080 抗拉強度，的值X錯資料
+
+進貨
+1.進貨、機械性質 規格起迄 新增後進貨單蒐尋不到
+2.進貨、找不到扭力要清空
+3.進貨、扭力要能為空白
+
+綜合
+1.製造、品管、產量 加上 線材爐號
+
+-------------------------------------------------------------------------------------------------
+20150722
+1.品管，選擇檢驗人員後，即可存檔，未選整體判定時，檢驗狀態還是未檢驗
+2.進貨，修正按修改時，客戶會跑掉的問題
+
+-------------------------------------------------------------------------------------------------
+20150721
+一、進貨相關
+1.機械性質蒐尋調整，先比對(品名分類+強度+規格)，找不到再找(品名分類+規格)
+2.新增進貨備註，進貨的9個備註自動完成都是讀取進貨備註
+3.在進貨單中的備註旁，有一個+號，按下後即可進入新增備註的畫面
+4.長度目前由於舊資料無建檔，所以不能顯示，臨時新增一個欄位，來顯示舊系統長度
+    同時修改 分爐、製造、品管及產量 相關程式，以顯示舊有系統長度
+
+二、品管數據登錄
+1.若讀取無 50T,100T 的副檔名，拉力機不會點選
+2.新增一個刪除拉力機的按鈕，如果不小心點到可以點選刪除
+3.袛要是值為0，自動清空為 空白
+4.開放輸入 長度說明、扭力強度、回火爐溫度
+
+三、分爐排程
+1.熱處理加工最終檢驗記錄表 加熱爐 第8個有值則出現，如沒有出現第6個值
+   回火爐溫度 第6個有值則出現，如沒有出現第4個值
+
+四、出貨
+1.調整預備單及出貨單排序
+
+五、過磅
+1.修改時可以改車號
+
+五、其他
+製造、品管、產量，工令輸入後查詢後，相關工令號清空清空</value>
+  </data>
+</root>

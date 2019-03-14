@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates simple list report. To create it:&#13;&#10;&#13;&#10;- go to &quot;Data&quot; menu and select &quot;Choose Report Data...&quot; item to select datasource;&#13;&#10;&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu to create the band structure;&#13;&#10;&#13;&#10;- return to the report page, doubleclick the data band to show its editor;&#13;&#10;&#13;&#10;- choose the datasource;&#13;&#10;&#13;&#10;- drag data from the Data Dictionary window to the band." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="08/16/2015 07:51:49" ReportInfo.CreatorVersion="1.4.42.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport                                             
+{
+  public class ReportScript
+  {
+    private Int32 sum;
+    private double sum1;
+    private void Data1_BeforePrint(object sender, EventArgs e)
+    {                                     
+      //sum +=  ((Int32)Report.GetColumnValue(&quot;主資料.標準產量&quot;));
+   //   sum1 += (double)Report.GetColumnValue(&quot;主資料.S重量&quot;);
+   //   Report.SetParameterValue(&quot;A1&quot;,((Int32)Report.GetVariableValue(&quot;Row#&quot;)) );
+      /*
+      if ((String)Report.GetColumnValue(&quot;主資料.分類&quot;)==&quot;I&quot;)
+      Report.SetParameterValue(&quot;A1&quot;, &quot;進貨&quot;);
+      else
+      Report.SetParameterValue(&quot;A1&quot;, &quot;出貨&quot;);
+      
+      string V=&quot;&quot;;
+      DataSourceBase ds = Report.GetDataSource(&quot;明細資料&quot;);
+      ds.Init();
+      while (ds.HasMoreRows)
+      {
+        string V1 = (string)Report.GetColumnValue(&quot;明細資料.簡稱&quot;);
+        string V2 = (string)Report.GetColumnValue(&quot;明細資料.簡稱1&quot;);
+        
+        V=V+V1+&quot;-&quot;+V2+&quot;,&quot;;
+          
+        // do something with it...
+        // ...
+        // go next data row
+        ds.Next();
+      }
+      Report.SetParameterValue(&quot;A2&quot;, V);
+       */
+    } 
+  }  
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqJKod1bZKcGrds90PWq0g4oLG9I6Qzoc0HaYZ0wDsTIVIiWGz27JL5LOHaLUohDrJlPyA7WG7mrAWNKHL6f2Q9Q==" ConnectionStringExpression="[ConnStr]">
+      <TableDataSource Name="Table" Alias="主資料" DataType="System.Int32" Enabled="true" SelectCommand="select m.*,操作.姓名,組長.姓名   from (&#13;&#10;select 工令號碼,預排爐號,製造日期1 ,操作人員1 ,班別1,桶數1,組長1,磅後總重 from 進貨單主檔 &#13;&#10;where isnull(製造時間1,'')&lt;&gt;'' and 磅後總重&gt;0 and (isnull(操作人員1,'')=''  or 桶數1&lt;=0 or isnull(組長1,'')='')&#13;&#10;union all&#13;&#10;select 工令號碼,預排爐號,製造日期2 ,操作人員2 ,班別2,桶數2,組長2,磅後總重 from 進貨單主檔 &#13;&#10;where isnull(製造時間2,'')&lt;&gt;'' and 磅後總重&gt;0 and (isnull(操作人員2,'')=''  or 桶數2&lt;=0 or isnull(組長2,'')='')&#13;&#10;union all&#13;&#10;select 工令號碼,預排爐號,製造日期3 ,操作人員3 ,班別3,桶數3,組長3,磅後總重 from 進貨單主檔&#13;&#10;where isnull(製造時間3,'')&lt;&gt;'' and 磅後總重&gt;0 and (isnull(操作人員3,'')=''  or 桶數3&lt;=0 or isnull(組長3,'')='')&#13;&#10;) as m&#13;&#10;LEFT JOIN 員工主檔 AS  操作 ON m.操作人員1 = 操作.員工代號&#13;&#10;LEFT JOIN 員工主檔 AS  組長 ON m.組長1 = 組長.員工代號&#13;&#10;where  m.製造日期1  &gt;=@RepKey1 and m.製造日期1  &lt;=@RepKey2&#13;&#10;ORDER BY 工令號碼 DESC&#13;&#10;&#13;&#10;">
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="製造日期1" DataType="System.String"/>
+        <Column Name="操作人員1" DataType="System.String"/>
+        <Column Name="班別1" DataType="System.String"/>
+        <Column Name="桶數1" DataType="System.Double"/>
+        <Column Name="組長1" DataType="System.String"/>
+        <Column Name="磅後總重" DataType="System.Double"/>
+        <Column Name="預排爐號" DataType="System.String"/>
+        <Column Name="姓名" DataType="System.String"/>
+        <Column Name="姓名1" DataType="System.String"/>
+        <CommandParameter Name="RepKey1" DataType="22" Expression="[RepKey1]"/>
+        <CommandParameter Name="RepKey2" DataType="22" Expression="[RepKey2]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="ConnStr" DataType="System.String" Expression="&quot;server=60.249.192.91;database=ERPALL;uid=erp;pwd=erp&quot;"/>
+    <Parameter Name="RepKey" DataType="System.String" Expression="&quot;A&quot;"/>
+    <Parameter Name="RepKey1" DataType="System.String" Expression="&quot;2015-01-01&quot;"/>
+    <Parameter Name="RepKey2" DataType="System.String" Expression="&quot;2015-12-31&quot;"/>
+    <Parameter Name="RepKey3" DataType="System.String"/>
+    <Parameter Name="RepKey4" DataType="System.String"/>
+    <Parameter Name="A1" DataType="System.String"/>
+    <Parameter Name="A2" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" TopMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="66.15">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Text="產量資料異常資料" HorzAlign="Center" VertAlign="Center" Font="標楷體, 20pt, style=Bold, Underline"/>
+      <TextObject Name="Text12" Top="47.25" Width="283.5" Height="18.9" Text="製造日期：[RepKey1]-[RepKey2]" Font="標楷體, 12pt, style=Bold"/>
+      <TextObject Name="Text13" Left="642.6" Top="47.25" Width="75.6" Height="18.9" Text="頁次：[Page#]" HorzAlign="Right" Font="標楷體, 12pt, style=Bold"/>
+      <TextObject Name="Text25" Left="472.5" Top="47.25" Width="170.1" Height="18.9" Text="列印日期：[Date]" Format="Date" Format.Format="MM/dd/yy" WordWrap="false" Font="標楷體, 12pt, style=Bold"/>
+    </PageHeaderBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="70.15" Width="718.2" Height="18.9">
+      <TextObject Name="Text14" Width="75.6" Height="18.9" Border.Lines="All" Text=" 工令號碼" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text15" Left="75.6" Width="47.25" Height="18.9" Border.Lines="All" Text="爐號" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text17" Left="122.85" Width="85.05" Height="18.9" Border.Lines="All" Text="製造日期" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text19" Left="207.9" Width="103.95" Height="18.9" Border.Lines="All" Text="操作人員" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text45" Left="311.85" Width="103.95" Height="18.9" Border.Lines="All" Text="班別" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text46" Left="415.8" Width="66.15" Height="18.9" Border.Lines="All" Text="桶數" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text47" Left="481.95" Width="103.95" Height="18.9" Border.Lines="All" Text="組長" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text52" Left="585.9" Width="103.95" Height="18.9" Border.Lines="All" Text="磅後總重" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" Top="93.05" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+      <TextObject Name="Text2" Width="75.6" Height="18.9" Text="[主資料.工令號碼]" Font="標楷體, 10pt"/>
+      <TextObject Name="Text3" Left="75.6" Width="47.25" Height="18.9" Text="[主資料.預排爐號]" HorzAlign="Center" Font="標楷體, 10pt"/>
+      <TextObject Name="Text4" Left="122.85" Width="85.05" Height="18.9" Text="[主資料.製造日期1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text44" Left="207.9" Width="103.95" Height="18.9" Text="[主資料.姓名]" HorzAlign="Center" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text48" Left="311.85" Width="103.95" Height="18.9" Text="[主資料.班別1]" HorzAlign="Center" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text49" Left="415.8" Width="66.15" Height="18.9" Text="[主資料.桶數1]" Format="Number" Format.UseLocale="true" HorzAlign="Right" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text50" Left="481.95" Width="103.95" Height="18.9" Text="[主資料.姓名1]" HorzAlign="Center" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text51" Left="585.9" Width="103.95" Height="18.9" Text="[主資料.磅後總重]" Format="Number" Format.UseLocale="true" HorzAlign="Right" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <DataFooterBand Name="DataFooter1" Top="115.95" Width="718.2" Height="37.8"/>
+    </DataBand>
+  </ReportPage>
+</Report>

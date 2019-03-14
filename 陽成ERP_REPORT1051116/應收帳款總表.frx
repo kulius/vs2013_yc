@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates simple list report. To create it:&#13;&#10;&#13;&#10;- go to &quot;Data&quot; menu and select &quot;Choose Report Data...&quot; item to select datasource;&#13;&#10;&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu to create the band structure;&#13;&#10;&#13;&#10;- return to the report page, doubleclick the data band to show its editor;&#13;&#10;&#13;&#10;- choose the datasource;&#13;&#10;&#13;&#10;- drag data from the Data Dictionary window to the band." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="08/14/2015 21:23:39" ReportInfo.CreatorVersion="1.4.42.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport                                             
+{
+  public class ReportScript
+  {
+    private double sum1;
+    private double sum2;
+    private double sum3;
+    private void Data1_BeforePrint(object sender, EventArgs e)
+    {                                     
+      //sum +=  ((Int32)Report.GetColumnValue(&quot;主資料.標準產量&quot;));
+      sum1 += (double)Report.GetColumnValue(&quot;主資料.金額&quot;);
+      sum2 += (double)Report.GetColumnValue(&quot;主資料.含稅&quot;);
+      sum3 += (double)Report.GetColumnValue(&quot;主資料.總計&quot;);
+      /*
+      if ((String)Report.GetColumnValue(&quot;主資料.分類&quot;)==&quot;I&quot;)
+      Report.SetParameterValue(&quot;A1&quot;, &quot;進貨&quot;);
+      else
+      Report.SetParameterValue(&quot;A1&quot;, &quot;出貨&quot;);
+      
+      string V=&quot;&quot;;
+      DataSourceBase ds = Report.GetDataSource(&quot;明細資料&quot;);
+      ds.Init();
+      while (ds.HasMoreRows)
+      {
+        string V1 = (string)Report.GetColumnValue(&quot;明細資料.簡稱&quot;);
+        string V2 = (string)Report.GetColumnValue(&quot;明細資料.簡稱1&quot;);
+        
+        V=V+V1+&quot;-&quot;+V2+&quot;,&quot;;
+          
+        // do something with it...
+        // ...
+        // go next data row
+        ds.Next();
+      }
+      Report.SetParameterValue(&quot;A2&quot;, V);
+       */
+    } 
+
+    private void Text17_Click(object sender, EventArgs e)
+    {
+   //   Data1.Sort(&quot;主資料.客戶代號&quot;);
+      
+    }
+
+    private void ComboBox1_Click(object sender, EventArgs e)
+    {
+      
+    }
+
+    private void btnOk_Click(object sender, EventArgs e)
+    {               
+     
+      if (ComboBox1.Text==&quot;憑單號碼&quot;)
+        Data1.Sort.Add(new Sort(&quot;主資料.憑單號碼&quot;));
+      
+      if (ComboBox1.Text==&quot;客戶代號&quot;)
+        Data1.Sort.Add(new Sort(&quot;主資料.客戶代號&quot;));
+    
+    }
+  }  
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqJKod1bZKcGrds90PWq0g4oLG9I6Qzoc0HaYZ0wDsTIVIiWGz27JL5LOHaLUohDrJw/HG7SrSYAzmxMjTe4tQ0g==" ConnectionStringExpression="[ConnStr]">
+      <TableDataSource Name="Table" Alias="主資料" DataType="System.Int32" Enabled="true" SelectCommand="select 客戶主檔.公司名稱 as 客戶公司名稱,客戶主檔.簡稱 as 客戶簡稱&#13;&#10;,m.* &#13;&#10;from 應收帳款主檔 m&#13;&#10;LEFT JOIN 客戶主檔  ON m.客戶代號 = 客戶主檔.客戶代號 &#13;&#10;where  m.請款日期 &gt;=@RepKey1 and m.請款日期 &lt;=@RepKey2&#13;&#10;order by m.憑單號碼&#13;&#10;">
+        <Column Name="客戶公司名稱" DataType="System.String"/>
+        <Column Name="憑單號碼" DataType="System.String"/>
+        <Column Name="客戶代號" DataType="System.String"/>
+        <Column Name="出貨日期起" DataType="System.String"/>
+        <Column Name="出貨日期迄" DataType="System.String"/>
+        <Column Name="請款日期" DataType="System.String"/>
+        <Column Name="金額" DataType="System.Double"/>
+        <Column Name="含稅" DataType="System.Double"/>
+        <Column Name="總計" DataType="System.Double"/>
+        <Column Name="CK含稅" DataType="System.String"/>
+        <Column Name="建立人員" DataType="System.String"/>
+        <Column Name="建立日期" DataType="System.String"/>
+        <Column Name="修改人員" DataType="System.String"/>
+        <Column Name="修改日期" DataType="System.String"/>
+        <Column Name="客戶簡稱" DataType="System.String"/>
+        <Column Name="所屬年月" DataType="System.String"/>
+        <Column Name="收款日期" DataType="System.String"/>
+        <Column Name="本期應收帳款" DataType="System.Double"/>
+        <Column Name="預收金額" DataType="System.Double"/>
+        <Column Name="扣款" DataType="System.Double"/>
+        <Column Name="折讓" DataType="System.Double"/>
+        <Column Name="現金" DataType="System.Double"/>
+        <Column Name="票據" DataType="System.Double"/>
+        <Column Name="郵票" DataType="System.Double"/>
+        <Column Name="未收餘額" DataType="System.Double"/>
+        <Column Name="前期累計帳款" DataType="System.Double"/>
+        <Column Name="重量" DataType="System.Double"/>
+        <Column Name="關聯序號" DataType="System.String"/>
+        <CommandParameter Name="RepKey1" DataType="22" Expression="[RepKey1]"/>
+        <CommandParameter Name="RepKey2" DataType="22" Expression="[RepKey2]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="ConnStr" DataType="System.String" Expression="&quot;server=JWISDON-SEVER;database=ERP;uid=sa;pwd=@j3842680&quot;"/>
+    <Parameter Name="RepKey" DataType="System.String" Expression="&quot;A&quot;"/>
+    <Parameter Name="RepKey1" DataType="System.String" Expression="&quot;2015-01-01&quot;"/>
+    <Parameter Name="RepKey2" DataType="System.String" Expression="&quot;2015-12-31&quot;"/>
+    <Parameter Name="RepKey3" DataType="System.String"/>
+    <Parameter Name="RepKey4" DataType="System.String"/>
+    <Parameter Name="A1" DataType="System.String"/>
+    <Parameter Name="A2" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" TopMargin="15">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="66.15">
+      <TextObject Name="Text1" Width="718.2" Height="47.25" Text="應收帳款總表" HorzAlign="Center" VertAlign="Center" Font="標楷體, 20pt, style=Bold, Underline"/>
+      <TextObject Name="Text12" Left="9.45" Top="47.25" Width="283.5" Height="18.9" Text="請款日期：[RepKey1]-[RepKey2]" Font="標楷體, 12pt, style=Bold"/>
+      <TextObject Name="Text13" Left="614.25" Top="47.25" Width="75.6" Height="18.9" Text="頁次：[Page#]" HorzAlign="Right" Font="標楷體, 12pt, style=Bold"/>
+      <TextObject Name="Text25" Left="415.8" Top="47.25" Width="170.1" Height="18.9" Text="列印日期：[Date]" Format="Date" Format.Format="MM/dd/yy" WordWrap="false" Font="標楷體, 12pt, style=Bold"/>
+    </PageHeaderBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="70.15" Width="718.2" Height="18.9">
+      <TextObject Name="Text14" Width="103.95" Height="18.9" Border.Lines="All" Text="憑單號碼" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text17" Left="103.95" Width="75.6" Height="18.9" Border.Lines="All" ClickEvent="Text17_Click" Text="客戶編號" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text44" Left="179.55" Width="94.5" Height="18.9" Border.Lines="All" Text="客戶簡稱" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text45" Left="274.05" Width="94.5" Height="18.9" Border.Lines="All" Text="請款日期" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text46" Left="368.55" Width="113.4" Height="18.9" Border.Lines="All" Text="稅前金額" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text47" Left="481.95" Width="103.95" Height="18.9" Border.Lines="All" Text="營業稅" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+      <TextObject Name="Text48" Left="585.9" Width="113.4" Height="18.9" Border.Lines="All" Text="總計" HorzAlign="Center" Font="標楷體, 10pt, style=Bold"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" Top="93.05" Width="718.2" Height="32.35" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+      <TextObject Name="Text2" Top="9.45" Width="103.95" Height="18.9" Text="[主資料.憑單號碼]" Font="標楷體, 10pt"/>
+      <TextObject Name="Text49" Left="368.55" Top="9.45" Width="113.4" Height="18.9" Text="[主資料.金額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text50" Left="103.95" Top="9.45" Width="75.6" Height="18.9" Text="[主資料.客戶代號]" Font="標楷體, 10pt"/>
+      <TextObject Name="Text51" Left="179.55" Top="9.45" Width="94.5" Height="18.9" Text="[主資料.客戶簡稱]" Font="標楷體, 12pt"/>
+      <TextObject Name="Text52" Left="274.05" Top="9.45" Width="94.5" Height="18.9" Text="[主資料.請款日期]" HorzAlign="Center" Font="標楷體, 10pt"/>
+      <TextObject Name="Text53" Left="481.95" Top="9.45" Width="103.95" Height="18.9" Text="[主資料.含稅]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text54" Left="585.9" Top="9.45" Width="113.4" Height="18.9" Text="[主資料.總計]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="標楷體, 10pt" Trimming="EllipsisCharacter"/>
+      <DataFooterBand Name="DataFooter1" Top="129.4" Width="718.2" Height="37.8">
+        <LineObject Name="Line1" Width="718.2"/>
+        <TextObject Name="Text43" Left="368.55" Top="9.45" Width="113.4" Height="18.9" Text="[sum1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="標楷體, 10pt, style=Bold"/>
+        <TextObject Name="Text55" Left="481.95" Top="9.45" Width="103.95" Height="18.9" Text="[sum2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="標楷體, 10pt, style=Bold"/>
+        <TextObject Name="Text56" Left="585.9" Top="9.45" Width="113.4" Height="18.9" Text="[sum3]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="標楷體, 10pt, style=Bold"/>
+      </DataFooterBand>
+    </DataBand>
+  </ReportPage>
+  <DialogPage Name="Form1" Width="298" Height="298" AcceptButton="btnOk" CancelButton="btnCancel">
+    <ButtonControl Name="btnCancel" Left="209" Top="235" Anchor="Bottom, Right" Font="Tahoma, 8pt" TabIndex="0" Text="取消" DialogResult="Cancel"/>
+    <ButtonControl Name="btnOk" Left="126" Top="235" Anchor="Bottom, Right" Font="Tahoma, 8pt" TabIndex="1" Text="確定" ClickEvent="btnOk_Click" DialogResult="OK"/>
+    <ComboBoxControl Name="ComboBox1" Left="120" Top="92" Font="Tahoma, 8pt" TabIndex="1" Text="憑單號碼" ClickEvent="ComboBox1_Click" ItemHeight="13" ItemsText="憑單號碼&#13;&#10;客戶代號"/>
+    <LabelControl Name="Label1" Left="60" Top="96" Width="55" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="排序依據"/>
+  </DialogPage>
+</Report>

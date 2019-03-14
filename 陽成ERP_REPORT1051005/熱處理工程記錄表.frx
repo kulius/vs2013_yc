@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" TextQuality="Regular" StartReportEvent="_StartReport" ReportInfo.Description="Demonstrates simple list report. To create it:&#13;&#10;&#13;&#10;- go to &quot;Data&quot; menu and select &quot;Choose Report Data...&quot; item to select datasource;&#13;&#10;&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu to create the band structure;&#13;&#10;&#13;&#10;- return to the report page, doubleclick the data band to show its editor;&#13;&#10;&#13;&#10;- choose the datasource;&#13;&#10;&#13;&#10;- drag data from the Data Dictionary window to the band." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="07/02/2015 17:03:39" ReportInfo.CreatorVersion="1.4.42.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq5n6nTIJ8BhAN4C6aFdKi6AaMhjY2ObBR2q03yfMr98DyzhQSMcJkoAlHbI+W2eQP6OFUfIyUexhv6BTtUeUR7w==" ConnectionStringExpression="[ConnStr]">
+      <TableDataSource Name="Table1" Alias="主檔" DataType="System.Int32" Enabled="true" SelectCommand="SELECT 客戶.簡稱 as 客戶簡稱,前加工廠.簡稱 as 前加工廠簡稱,次加工廠.簡稱 as 次加工廠簡稱,&#13;&#10;產品.一層名稱 AS 品名, 頭部記號.頭部記號,員工1.姓名 AS 操作人員姓名1,&#13;&#10;m.*&#13;&#10;FROM 進貨單主檔 AS m &#13;&#10;LEFT JOIN 客戶主檔 AS 客戶 ON m.客戶代號 = 客戶.客戶代號 &#13;&#10;LEFT JOIN 加工廠主檔 AS  前加工廠 ON m.加工廠代號 = 前加工廠.加工廠代號 &#13;&#10;LEFT JOIN 加工廠主檔 AS  次加工廠 ON m.次加工廠代號1 = 次加工廠.加工廠代號 &#13;&#10;LEFT JOIN 加工廠主檔 AS  二次加工廠 ON m.次加工廠代號2 = 二次加工廠.加工廠代號 &#13;&#10;LEFT JOIN (select * from s_一層代碼檔 where 類別 = 'S03N0001') AS 產品 ON m.產品代碼 = 產品.一層代碼 &#13;&#10;LEFT JOIN (select * from s_一層代碼檔 where 類別 = '狀態') AS 狀態 ON m.狀態 = 狀態.一層代碼&#13;&#10;LEFT JOIN 進貨單頭部記號檔 AS 頭部記號 ON m.工令號碼 = 頭部記號.工令號碼 &#13;&#10;LEFT JOIN 員工主檔 AS 員工1 ON m.操作人員1 = 員工1.員工代號 &#13;&#10; where ((製造日期1=@製造日期 and 製造時間1&lt;&gt;'') &#13;&#10;or (製造日期2=@製造日期 and 製造時間2&lt;&gt;'') &#13;&#10;or ( 製造日期3=@製造日期 and 製造時間3&lt;&gt;''))&#13;&#10;and 預排爐號=@預排爐號&#13;&#10;and (組長1=@組長  or 組長2=@組長 or  組長3=@組長 )&#13;&#10;order by 序號&#13;&#10;">
+        <Column Name="客戶簡稱" DataType="System.String"/>
+        <Column Name="前加工廠簡稱" DataType="System.String"/>
+        <Column Name="次加工廠簡稱" DataType="System.String"/>
+        <Column Name="品名" DataType="System.String"/>
+        <Column Name="工令號碼" DataType="System.String"/>
+        <Column Name="前工令號碼" DataType="System.String"/>
+        <Column Name="日期" DataType="System.String"/>
+        <Column Name="進貨日期" DataType="System.String"/>
+        <Column Name="時間" DataType="System.String"/>
+        <Column Name="車次序號" DataType="System.String"/>
+        <Column Name="客戶代號" DataType="System.String"/>
+        <Column Name="加工廠代號" DataType="System.String"/>
+        <Column Name="開單人員" DataType="System.String"/>
+        <Column Name="司機代號" DataType="System.String"/>
+        <Column Name="客戶單號" DataType="System.String"/>
+        <Column Name="客戶批號" DataType="System.String"/>
+        <Column Name="產品代碼" DataType="System.String"/>
+        <Column Name="規格代碼" DataType="System.String"/>
+        <Column Name="長度代碼" DataType="System.String"/>
+        <Column Name="長度說明" DataType="System.String"/>
+        <Column Name="品名分類代碼" DataType="System.String"/>
+        <Column Name="加工方式代碼" DataType="System.String"/>
+        <Column Name="材質代碼" DataType="System.String"/>
+        <Column Name="規範分類" DataType="System.String"/>
+        <Column Name="強度級數" DataType="System.String"/>
+        <Column Name="表面處理代碼" DataType="System.String"/>
+        <Column Name="電鍍別代碼" DataType="System.String"/>
+        <Column Name="次加工廠代號1" DataType="System.String"/>
+        <Column Name="次加工廠代號2" DataType="System.String"/>
+        <Column Name="數量1" DataType="System.Double"/>
+        <Column Name="單位代號1" DataType="System.String"/>
+        <Column Name="數量2" DataType="System.Double"/>
+        <Column Name="單位代號2" DataType="System.String"/>
+        <Column Name="數量3" DataType="System.Double"/>
+        <Column Name="單位代號3" DataType="System.String"/>
+        <Column Name="數量4" DataType="System.Double"/>
+        <Column Name="單位代號4" DataType="System.String"/>
+        <Column Name="淨重" DataType="System.Double"/>
+        <Column Name="線材爐號" DataType="System.String"/>
+        <Column Name="依據標準" DataType="System.String"/>
+        <Column Name="表面硬度" DataType="System.String"/>
+        <Column Name="心部硬度" DataType="System.String"/>
+        <Column Name="抗拉強度" DataType="System.String"/>
+        <Column Name="滲碳層" DataType="System.String"/>
+        <Column Name="扭力" DataType="System.String"/>
+        <Column Name="華司材質" DataType="System.String"/>
+        <Column Name="華司硬度" DataType="System.String"/>
+        <Column Name="試片" DataType="System.String"/>
+        <Column Name="存放位置" DataType="System.String"/>
+        <Column Name="運費種類" DataType="System.String"/>
+        <Column Name="回火溫度" DataType="System.Double"/>
+        <Column Name="以前爐號" DataType="System.String"/>
+        <Column Name="預排爐號" DataType="System.String"/>
+        <Column Name="注意事項1" DataType="System.String"/>
+        <Column Name="注意事項2" DataType="System.String"/>
+        <Column Name="注意事項3" DataType="System.String"/>
+        <Column Name="注意事項4" DataType="System.String"/>
+        <Column Name="狀態" DataType="System.String"/>
+        <Column Name="過磅狀態" DataType="System.String"/>
+        <Column Name="檢驗狀態" DataType="System.String"/>
+        <Column Name="進爐狀態" DataType="System.String"/>
+        <Column Name="製造日期" DataType="System.String"/>
+        <Column Name="製造時間" DataType="System.String"/>
+        <Column Name="操作人員" DataType="System.String"/>
+        <Column Name="品管人員" DataType="System.String"/>
+        <Column Name="班別" DataType="System.String"/>
+        <Column Name="流量" DataType="System.String"/>
+        <Column Name="CP值" DataType="System.String"/>
+        <Column Name="氨值1" DataType="System.String"/>
+        <Column Name="氨值2" DataType="System.String"/>
+        <Column Name="氨值3" DataType="System.String"/>
+        <Column Name="氨值4" DataType="System.String"/>
+        <Column Name="加熱爐1" DataType="System.String"/>
+        <Column Name="加熱爐2" DataType="System.String"/>
+        <Column Name="加熱爐3" DataType="System.String"/>
+        <Column Name="加熱爐4" DataType="System.String"/>
+        <Column Name="加熱爐5" DataType="System.String"/>
+        <Column Name="加熱爐6" DataType="System.String"/>
+        <Column Name="加熱爐7" DataType="System.String"/>
+        <Column Name="加熱爐8" DataType="System.String"/>
+        <Column Name="加熱爐油溫" DataType="System.String"/>
+        <Column Name="加熱爐速度" DataType="System.String"/>
+        <Column Name="回火爐1" DataType="System.String"/>
+        <Column Name="回火爐2" DataType="System.String"/>
+        <Column Name="回火爐3" DataType="System.String"/>
+        <Column Name="回火爐4" DataType="System.String"/>
+        <Column Name="回火爐5" DataType="System.String"/>
+        <Column Name="回火爐6" DataType="System.String"/>
+        <Column Name="回火爐速度" DataType="System.String"/>
+        <Column Name="斷面積" DataType="System.Double"/>
+        <Column Name="最大負荷值1" DataType="System.Double"/>
+        <Column Name="最大負荷值2" DataType="System.Double"/>
+        <Column Name="最大負荷值3" DataType="System.Double"/>
+        <Column Name="最大負荷值4" DataType="System.Double"/>
+        <Column Name="最大負荷值5" DataType="System.Double"/>
+        <Column Name="最大負荷值6" DataType="System.Double"/>
+        <Column Name="最大負荷值7" DataType="System.Double"/>
+        <Column Name="最大負荷值8" DataType="System.Double"/>
+        <Column Name="抗拉強度值1" DataType="System.Double"/>
+        <Column Name="抗拉強度值2" DataType="System.Double"/>
+        <Column Name="抗拉強度值3" DataType="System.Double"/>
+        <Column Name="抗拉強度值4" DataType="System.Double"/>
+        <Column Name="抗拉強度值5" DataType="System.Double"/>
+        <Column Name="抗拉強度值6" DataType="System.Double"/>
+        <Column Name="抗拉強度值7" DataType="System.Double"/>
+        <Column Name="抗拉強度值8" DataType="System.Double"/>
+        <Column Name="降伏點值1" DataType="System.Double"/>
+        <Column Name="降伏點值2" DataType="System.Double"/>
+        <Column Name="降伏點值3" DataType="System.Double"/>
+        <Column Name="降伏點值4" DataType="System.Double"/>
+        <Column Name="降伏點值5" DataType="System.Double"/>
+        <Column Name="降伏點值6" DataType="System.Double"/>
+        <Column Name="降伏點值7" DataType="System.Double"/>
+        <Column Name="降伏點值8" DataType="System.Double"/>
+        <Column Name="降伏強度值1" DataType="System.Double"/>
+        <Column Name="降伏強度值2" DataType="System.Double"/>
+        <Column Name="降伏強度值3" DataType="System.Double"/>
+        <Column Name="降伏強度值4" DataType="System.Double"/>
+        <Column Name="降伏強度值5" DataType="System.Double"/>
+        <Column Name="降伏強度值6" DataType="System.Double"/>
+        <Column Name="降伏強度值7" DataType="System.Double"/>
+        <Column Name="降伏強度值8" DataType="System.Double"/>
+        <Column Name="伸長率值1" DataType="System.Double"/>
+        <Column Name="伸長率值2" DataType="System.Double"/>
+        <Column Name="伸長率值3" DataType="System.Double"/>
+        <Column Name="伸長率值4" DataType="System.Double"/>
+        <Column Name="伸長率值5" DataType="System.Double"/>
+        <Column Name="伸長率值6" DataType="System.Double"/>
+        <Column Name="伸長率值7" DataType="System.Double"/>
+        <Column Name="伸長率值8" DataType="System.Double"/>
+        <Column Name="脫碳層值1" DataType="System.Double"/>
+        <Column Name="脫碳層值2" DataType="System.Double"/>
+        <Column Name="脫碳層值3" DataType="System.Double"/>
+        <Column Name="脫碳層值4" DataType="System.Double"/>
+        <Column Name="脫碳層值5" DataType="System.Double"/>
+        <Column Name="脫碳層值6" DataType="System.Double"/>
+        <Column Name="脫碳層值7" DataType="System.Double"/>
+        <Column Name="脫碳層值8" DataType="System.Double"/>
+        <Column Name="華司硬度值1" DataType="System.Double"/>
+        <Column Name="華司硬度值2" DataType="System.Double"/>
+        <Column Name="華司硬度值3" DataType="System.Double"/>
+        <Column Name="華司硬度值4" DataType="System.Double"/>
+        <Column Name="華司硬度值5" DataType="System.Double"/>
+        <Column Name="華司硬度值6" DataType="System.Double"/>
+        <Column Name="華司硬度值7" DataType="System.Double"/>
+        <Column Name="華司硬度值8" DataType="System.Double"/>
+        <Column Name="國際標準" DataType="System.String"/>
+        <Column Name="拉力機編號" DataType="System.String"/>
+        <Column Name="表面硬度規格" DataType="System.String"/>
+        <Column Name="表面硬度值" DataType="System.String"/>
+        <Column Name="表面硬度值1" DataType="System.Double"/>
+        <Column Name="表面硬度值2" DataType="System.Double"/>
+        <Column Name="表面硬度值3" DataType="System.Double"/>
+        <Column Name="表面硬度值4" DataType="System.Double"/>
+        <Column Name="表面硬度值5" DataType="System.Double"/>
+        <Column Name="表面硬度值6" DataType="System.Double"/>
+        <Column Name="表面硬度值7" DataType="System.Double"/>
+        <Column Name="表面硬度值8" DataType="System.Double"/>
+        <Column Name="心部硬度規格" DataType="System.String"/>
+        <Column Name="心部硬度值" DataType="System.String"/>
+        <Column Name="心部硬度值1" DataType="System.Double"/>
+        <Column Name="心部硬度值2" DataType="System.Double"/>
+        <Column Name="心部硬度值3" DataType="System.Double"/>
+        <Column Name="心部硬度值4" DataType="System.Double"/>
+        <Column Name="心部硬度值5" DataType="System.Double"/>
+        <Column Name="心部硬度值6" DataType="System.Double"/>
+        <Column Name="心部硬度值7" DataType="System.Double"/>
+        <Column Name="心部硬度值8" DataType="System.Double"/>
+        <Column Name="抗拉強度值" DataType="System.String"/>
+        <Column Name="抗拉強度值起迄" DataType="System.String"/>
+        <Column Name="降伏強度值" DataType="System.String"/>
+        <Column Name="降伏強度值起迄" DataType="System.String"/>
+        <Column Name="伸長率值" DataType="System.String"/>
+        <Column Name="伸長率值起迄" DataType="System.String"/>
+        <Column Name="降伏點值起迄" DataType="System.String"/>
+        <Column Name="最大負荷值起迄" DataType="System.String"/>
+        <Column Name="斷面積值起迄" DataType="System.String"/>
+        <Column Name="扭力強度值" DataType="System.String"/>
+        <Column Name="扭力強度值1" DataType="System.Double"/>
+        <Column Name="扭力強度值2" DataType="System.Double"/>
+        <Column Name="扭力強度值3" DataType="System.Double"/>
+        <Column Name="扭力強度值4" DataType="System.Double"/>
+        <Column Name="扭力強度值5" DataType="System.Double"/>
+        <Column Name="扭力強度值6" DataType="System.Double"/>
+        <Column Name="扭力強度值7" DataType="System.Double"/>
+        <Column Name="扭力強度值8" DataType="System.Double"/>
+        <Column Name="滲碳層1值" DataType="System.String"/>
+        <Column Name="滲碳層1值1" DataType="System.Double"/>
+        <Column Name="滲碳層1值2" DataType="System.Double"/>
+        <Column Name="滲碳層1值3" DataType="System.Double"/>
+        <Column Name="滲碳層1值4" DataType="System.Double"/>
+        <Column Name="滲碳層1值5" DataType="System.Double"/>
+        <Column Name="滲碳層1值6" DataType="System.Double"/>
+        <Column Name="滲碳層1值7" DataType="System.Double"/>
+        <Column Name="滲碳層1值8" DataType="System.Double"/>
+        <Column Name="滲碳層2值1" DataType="System.Double"/>
+        <Column Name="滲碳層2值2" DataType="System.Double"/>
+        <Column Name="滲碳層2值3" DataType="System.Double"/>
+        <Column Name="滲碳層2值4" DataType="System.Double"/>
+        <Column Name="滲碳層2值5" DataType="System.Double"/>
+        <Column Name="滲碳層2值6" DataType="System.Double"/>
+        <Column Name="滲碳層2值7" DataType="System.Double"/>
+        <Column Name="滲碳層2值8" DataType="System.Double"/>
+        <Column Name="斷面收縮率值" DataType="System.String"/>
+        <Column Name="斷面收縮率值1" DataType="System.Double"/>
+        <Column Name="斷面收縮率值2" DataType="System.Double"/>
+        <Column Name="斷面收縮率值3" DataType="System.Double"/>
+        <Column Name="斷面收縮率值4" DataType="System.Double"/>
+        <Column Name="斷面收縮率值5" DataType="System.Double"/>
+        <Column Name="斷面收縮率值6" DataType="System.Double"/>
+        <Column Name="斷面收縮率值7" DataType="System.Double"/>
+        <Column Name="斷面收縮率值8" DataType="System.Double"/>
+        <Column Name="安全負荷值" DataType="System.String"/>
+        <Column Name="安全負荷值1" DataType="System.Double"/>
+        <Column Name="安全負荷值2" DataType="System.Double"/>
+        <Column Name="安全負荷值3" DataType="System.Double"/>
+        <Column Name="安全負荷值4" DataType="System.Double"/>
+        <Column Name="安全負荷值5" DataType="System.Double"/>
+        <Column Name="安全負荷值6" DataType="System.Double"/>
+        <Column Name="安全負荷值7" DataType="System.Double"/>
+        <Column Name="安全負荷值8" DataType="System.Double"/>
+        <Column Name="HV1" DataType="System.Double"/>
+        <Column Name="HV2" DataType="System.Double"/>
+        <Column Name="HV3" DataType="System.Double"/>
+        <Column Name="HV12" DataType="System.Double"/>
+        <Column Name="HV12OK" DataType="System.String"/>
+        <Column Name="HV13" DataType="System.Double"/>
+        <Column Name="HV13OK" DataType="System.String"/>
+        <Column Name="頭部敲擊5" DataType="System.String"/>
+        <Column Name="頭部敲擊10" DataType="System.String"/>
+        <Column Name="頭部敲擊15" DataType="System.String"/>
+        <Column Name="彎曲度5" DataType="System.String"/>
+        <Column Name="彎曲度15" DataType="System.String"/>
+        <Column Name="整體判定" DataType="System.String"/>
+        <Column Name="外觀判定" DataType="System.String"/>
+        <Column Name="檢驗人員" DataType="System.String"/>
+        <Column Name="單支重" DataType="System.Double"/>
+        <Column Name="不合格桶數" DataType="System.Double"/>
+        <Column Name="不合格特急處理動作" DataType="System.String"/>
+        <Column Name="品管備註1" DataType="System.String"/>
+        <Column Name="品管備註2" DataType="System.String"/>
+        <Column Name="製造日期1" DataType="System.String"/>
+        <Column Name="班別1" DataType="System.String"/>
+        <Column Name="操作人員1" DataType="System.String"/>
+        <Column Name="桶數1" DataType="System.Double"/>
+        <Column Name="組長1" DataType="System.String"/>
+        <Column Name="製造日期2" DataType="System.String"/>
+        <Column Name="班別2" DataType="System.String"/>
+        <Column Name="操作人員2" DataType="System.String"/>
+        <Column Name="桶數2" DataType="System.Double"/>
+        <Column Name="組長2" DataType="System.String"/>
+        <Column Name="製造日期3" DataType="System.String"/>
+        <Column Name="班別3" DataType="System.String"/>
+        <Column Name="操作人員3" DataType="System.String"/>
+        <Column Name="桶數3" DataType="System.Double"/>
+        <Column Name="組長3" DataType="System.String"/>
+        <Column Name="裝袋合計" DataType="System.Double"/>
+        <Column Name="磅後桶數" DataType="System.Double"/>
+        <Column Name="桶數差" DataType="System.Double"/>
+        <Column Name="進貨重量" DataType="System.Double"/>
+        <Column Name="磅後總重" DataType="System.Double"/>
+        <Column Name="重量差" DataType="System.Double"/>
+        <Column Name="現在爐號" DataType="System.String"/>
+        <Column Name="品管備註3" DataType="System.String"/>
+        <Column Name="製造備註1" DataType="System.String"/>
+        <Column Name="製造備註2" DataType="System.String"/>
+        <Column Name="製造備註3" DataType="System.String"/>
+        <Column Name="序號" DataType="System.Double"/>
+        <Column Name="應對交期" DataType="System.String"/>
+        <Column Name="製造時間1" DataType="System.String"/>
+        <Column Name="製造時間2" DataType="System.String"/>
+        <Column Name="製造時間3" DataType="System.String"/>
+        <Column Name="產量操作人員" DataType="System.String"/>
+        <Column Name="產量過磅人員" DataType="System.String"/>
+        <Column Name="產量備註" DataType="System.String"/>
+        <Column Name="建立人員" DataType="System.String"/>
+        <Column Name="建立日期" DataType="System.String"/>
+        <Column Name="修改人員" DataType="System.String"/>
+        <Column Name="修改日期" DataType="System.String"/>
+        <Column Name="牙分類" DataType="System.String"/>
+        <Column Name="CK抗拉強度" DataType="System.String"/>
+        <Column Name="CK表面硬度" DataType="System.String"/>
+        <Column Name="CK心部硬度" DataType="System.String"/>
+        <Column Name="CK滲碳層" DataType="System.String"/>
+        <Column Name="CK表面硬度值" DataType="System.String"/>
+        <Column Name="CK心部硬度值" DataType="System.String"/>
+        <Column Name="CK抗拉強度值" DataType="System.String"/>
+        <Column Name="CK降伏強度值" DataType="System.String"/>
+        <Column Name="CK伸長率值" DataType="System.String"/>
+        <Column Name="CK扭力強度值" DataType="System.String"/>
+        <Column Name="CK滲碳層1值" DataType="System.String"/>
+        <Column Name="CK斷面收縮率值" DataType="System.String"/>
+        <Column Name="CK安全負荷值" DataType="System.String"/>
+        <Column Name="CK降伏點值起迄" DataType="System.String"/>
+        <Column Name="CK最大負荷值起迄" DataType="System.String"/>
+        <Column Name="CK斷面積值起迄" DataType="System.String"/>
+        <Column Name="品管備註" DataType="System.String"/>
+        <Column Name="製造重量1" DataType="System.Double"/>
+        <Column Name="製造重量2" DataType="System.Double"/>
+        <Column Name="製造重量3" DataType="System.Double"/>
+        <Column Name="頭部記號" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CK脫碳層" DataType="System.String"/>
+        <Column Name="CK滲碳層2值" DataType="System.String"/>
+        <Column Name="CK華司硬度" DataType="System.String"/>
+        <Column Name="華司硬度規格" DataType="System.String"/>
+        <Column Name="完爐日期" DataType="System.String"/>
+        <Column Name="完爐時間" DataType="System.String"/>
+        <Column Name="CK滲碳層值" DataType="System.String"/>
+        <Column Name="入料桶數" DataType="System.Double"/>
+        <Column Name="入料總重" DataType="System.Double"/>
+        <Column Name="產品名稱" DataType="System.String"/>
+        <Column Name="對照" DataType="System.Double"/>
+        <Column Name="出貨桶數" DataType="System.Double"/>
+        <Column Name="出貨重量" DataType="System.Double"/>
+        <Column Name="斷面收縮率值起迄" DataType="System.String"/>
+        <Column Name="安全負荷值起迄" DataType="System.String"/>
+        <Column Name="CK頭部敲擊" DataType="System.String"/>
+        <Column Name="CK彎曲度" DataType="System.String"/>
+        <Column Name="CK最大負荷" DataType="System.String"/>
+        <Column Name="最大負荷" DataType="System.String"/>
+        <Column Name="操作人員姓名1" DataType="System.String"/>
+        <CommandParameter Name="預排爐號" DataType="22" Expression="[RepKey]"/>
+        <CommandParameter Name="製造日期" DataType="22" Expression="[RepKey2]"/>
+        <CommandParameter Name="組長" DataType="22" Expression="[RepKey1]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="ConnStr" DataType="System.String" Expression="&quot;server=192.168.254.250;database=ERPALL;uid=erp;pwd=erp&quot;"/>
+    <Parameter Name="RepKey" DataType="System.String"/>
+    <Parameter Name="RepKey1" DataType="System.String"/>
+    <Parameter Name="RepKey2" DataType="System.String"/>
+    <Parameter Name="RepKey3" DataType="System.String"/>
+    <Parameter Name="RepKey4" DataType="System.String"/>
+    <Parameter Name="RepKey5" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="298" PaperHeight="210" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="1050.84" Height="142.13">
+      <TextObject Name="Text39" Left="156.87" Top="51.03" Width="207.9" Height="28.35" Text="[RepKey4]" VertAlign="Center" Font="標楷體, 14pt"/>
+      <TextObject Name="Text48" Left="304.29" Width="207.9" Height="28.35" Text="爐號：[RepKey]" VertAlign="Center" Font="標楷體, 14pt"/>
+      <TextObject Name="Text49" Left="357.21" Top="51.03" Width="207.9" Height="28.35" Text="班別：[RepKey3]" VertAlign="Center" Font="標楷體, 14pt"/>
+      <TextObject Name="Text50" Left="718.2" Top="51.03" Width="162.54" Height="28.35" Text="[RepKey5]" VertAlign="Center" Font="標楷體, 14pt"/>
+      <TextObject Name="Text51" Left="678.51" Top="3.78" Width="207.9" Height="28.35" Text="製造日期：[RepKey2]" VertAlign="Center" Font="標楷體, 14pt"/>
+      <TextObject Name="Text93" Left="886.41" Top="3.78" Width="136.08" Height="28.35" Text="頁數：[Page#]" VertAlign="Center" Font="標楷體, 14pt"/>
+      <TextObject Name="Text94" Left="888.3" Top="51.03" Width="162.54" Height="28.35" Text="[主檔.操作人員姓名1]" VertAlign="Center" Font="標楷體, 14pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="144.8" Width="1050.84" Height="57.46" DataSource="Table1">
+      <TextObject Name="Text21" Left="-7.56" Width="79.38" Height="28.73" Text="[主檔.工令號碼]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 11pt"/>
+      <TextObject Name="Text22" Left="-7.56" Top="28.73" Width="79.38" Height="28.73" Text="[主檔.客戶簡稱]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 12pt"/>
+      <TextObject Name="Text24" Left="71.82" Top="28.73" Width="122.85" Height="28.73" Text="[主檔.規格代碼]X[主檔.長度代碼][主檔.長度說明]" VertAlign="Bottom" WordWrap="false" Font="新細明體, 10pt"/>
+      <TextObject Name="Text26" Left="275.94" Width="60.48" Height="28.73" Text="[主檔.表面處理代碼]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text27" Left="275.94" Top="28.73" Width="60.48" Height="28.73" Text="[主檔.材質代碼]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text29" Left="336.42" Top="28.73" Width="86.94" Height="28.73" Text="[主檔.線材爐號]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text76" Left="423.36" Width="37.8" Height="28.73" Text="[主檔.加熱爐2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text77" Left="561.33" Width="35.91" Height="28.73" Text="[ToInt32([主檔.氨值1])]" HideZeros="true" Format="Custom" Format.Format="#" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 12pt"/>
+      <TextObject Name="Text78" Left="491.4" Width="34.02" Height="28.73" Text="[主檔.回火爐2]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text23" Left="71.82" Width="122.85" Height="28.73" Text="[主檔.產品名稱]" VertAlign="Bottom" WordWrap="false" Font="新細明體, 10pt"/>
+      <TextObject Name="Text3" Left="727.65" Top="28.73" Width="115.29" Height="28.73" Text="[主檔.滲碳層]" VertAlign="Bottom" Font="新細明體, 12pt"/>
+      <TextObject Name="Text33" Left="238.14" Width="37.8" Height="28.73" Text="[主檔.淨重]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text36" Left="238.14" Top="28.73" Width="37.8" Height="28.73" Text="[主檔.數量1][主檔.單位代號1][主檔.數量2][主檔.單位代號2][主檔.數量3][主檔.單位代號3][主檔.數量4][主檔.單位代號4]" HideZeros="true" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text80" Left="461.16" Width="30.24" Height="28.73" Text="[主檔.預排爐號]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text81" Left="423.36" Top="28.73" Width="37.8" Height="28.73" Text="[主檔.加熱爐速度]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text82" Left="457.38" Top="28.73" Width="37.8" Height="28.73" Text="[主檔.加熱爐油溫]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 8pt"/>
+      <TextObject Name="Text83" Left="491.4" Top="28.73" Width="34.02" Height="28.73" Text="[主檔.回火爐速度]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text84" Left="525.42" Top="28.73" Width="35.91" Height="28.73" Text="[主檔.CP值]" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text85" Left="525.42" Width="35.91" Height="28.73" Text="[主檔.流量]" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text86" Left="646.38" Width="34.02" Height="28.73" Text="[ToInt32([主檔.氨值3])]" HideZeros="true" Format="Custom" Format.Format="#" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 12pt"/>
+      <TextObject Name="Text87" Left="557.55" Top="28.73" Width="92.61" Height="28.73" Text="[主檔.表面硬度]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 8pt"/>
+      <TextObject Name="Text88" Left="650.16" Top="28.73" Width="81.27" Height="28.73" Text="[主檔.心部硬度]&#13;&#10;" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text89" Left="842.94" Width="136.08" Height="28.73" Text="[主檔.加工方式代碼]" VertAlign="Bottom" Font="新細明體, 12pt"/>
+      <TextObject Name="Text90" Left="842.94" Top="28.73" Width="236.25" Height="28.73" Text="[主檔.磅後總重]" VertAlign="Bottom" Font="新細明體, 12pt"/>
+      <TextObject Name="Text91" Left="597.24" Width="49.14" Height="28.73" Text="[ToInt32([主檔.氨值2])]" HideZeros="true" Format="Custom" Format.Format="#" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 12pt"/>
+      <TextObject Name="Text92" Left="684.18" Width="47.25" Height="28.73" Text="[ToInt32([主檔.氨值4])]" HideZeros="true" Format="Custom" Format.Format="#" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 12pt"/>
+      <PictureObject Name="Picture1" Left="194.67" Width="43.47" Height="57.46" SizeMode="StretchImage" DataColumn="主檔.頭部記號"/>
+      <TextObject Name="Text34" Left="727.65" Width="115.29" Height="28.73" Text="[Replace(substring([主檔.製造日期1],5,5),&quot;-&quot;,&quot;/&quot;)]-[主檔.製造時間1]-[主檔.完爐時間]" Format="Date" Format.Format="MM/dd/yy" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 10pt"/>
+      <TextObject Name="Text28" Left="336.42" Width="86.94" Height="28.73" Text="[主檔.客戶批號]" HorzAlign="Center" VertAlign="Bottom" Font="新細明體, 9pt"/>
+    </DataBand>
+  </ReportPage>
+</Report>

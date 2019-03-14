@@ -1,0 +1,236 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ERP企業資源規劃系統
+</name>
+</assembly>
+<members>
+<member name="M:ERP企業資源規劃系統.SystemChecked.FileIsExist">
+	<summary>
+ 重要檔案是否存在
+ </summary>
+	<returns>系統訊息(Boolean)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemChecked.NetworkConnection(System.String)">
+	<summary>
+ 伺服器連線是否正常開啟檢測
+ </summary>
+	<param name="strIP">檢測IP</param>
+	<returns>系統訊息(Boolean)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemValue.NowDate(System.String)">
+	<summary>
+ 日期(yyyy-mm-dd;yyy-mm-dd)
+ </summary>
+	<param name="type">顯示種類(AD：西元年(預設) CD：民國年)(可省略)</param>
+	<returns>年月日(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemValue.NowTime">
+	<summary>
+ 時間(24小時制)(hh:mm:ss)
+ </summary>
+	<returns>24小時制(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemValue.strSystemToDate(System.String,System.String)">
+	<summary>
+ 系統日期轉日期(yyyymmdd-&gt;yyyy-mm-dd)
+ </summary>
+	<param name="strDate">日期字串</param>
+	<param name="Kind">分隔符號(預設：/)(可省略)</param>
+	<returns>轉換後日期(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemValue.strStringToDate(System.String,System.String,System.String)">
+	<summary>
+ 字串日期轉日期(yyyymmdd-&gt;yyyy-mm-dd)
+ </summary>
+	<param name="strDate">日期字串</param>
+	<param name="type">顯示種類(AD：西元年(預設) CD：民國年)(可省略)</param>
+	<param name="Kind">分隔符號(預設：-)(可省略)</param>
+	<returns>轉換後日期(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemValue.strDateToString(System.String,System.String,System.String)">
+	<summary>
+ 日期轉字串日期(yyyy-mm-dd-&gt;yyyymmdd)
+ </summary>
+	<param name="strDate">日期字串</param>
+	<param name="type">顯示種類(AD：西元年(預設) CD：民國年)(可省略)</param>
+	<param name="Kind">分隔符號(預設：-)(可省略)</param>
+	<returns>轉換後日期(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemValue.strDateKindToDateKind(System.String,System.String,System.String)">
+	<summary>
+ 日期分隔符號轉換(yyyy-mm-dd-&gt;yyyy/mm/dd)
+ </summary>
+	<param name="strDate">日期字串</param>
+	<param name="Before">來源分隔符號</param>
+	<param name="After">異動後分隔符號</param>
+	<returns>轉換後日期(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemValue.strCPU">
+	<summary>
+ CPU序號
+ </summary>
+	<returns>系統值(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemValue.strMAC">
+	<summary>
+ MAC序號
+ </summary>
+	<returns>系統值(String)</returns>
+</member><member name="P:ERP企業資源規劃系統.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ERP企業資源規劃系統.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ERP企業資源規劃系統.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:ERP企業資源規劃系統.INI.INI_Read(System.String,System.String,System.String)">
+	<summary>
+ 讀取
+ </summary>
+	<param name="strFile">INI檔案名稱</param>
+	<param name="strBCol">項目</param>
+	<param name="strCol">欄位</param>
+	<returns>回傳值(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.INI.INI_Write(System.String,System.String,System.String,System.String)">
+	<summary>
+ 修改
+ </summary>
+	<param name="strFile">INI檔案名稱</param>
+	<param name="strBCol">項目</param>
+	<param name="strCol">欄位</param>
+	<param name="strChangeValue">異動值</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ERP企業資源規劃系統.variableChange.strZero(System.Int32,System.String)">
+	<summary>
+ 左補(0)
+ </summary>
+	<param name="intValue">需補位數</param>
+	<param name="strValue">字串</param>
+	<returns>補碼字串(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.variableChange.strEmpty(System.Int32,System.String)">
+	<summary>
+ 右補(空白)
+ </summary>
+	<param name="intValue">需補位數</param>
+	<param name="strValue">字串</param>
+	<returns>補碼字串(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.variableChange.AutoNumber(System.String,System.String,System.String,System.String,System.String,System.String)">
+	<summary>
+ 系統自動編號
+ </summary>
+	<param name="Type">種類前置代碼</param>
+	<param name="Length">數字位數長度</param>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">資料表</param>
+	<param name="strRow">編號欄位名</param>
+	<param name="strWhere">條件值(可省略)</param>
+	<returns>系統編號(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbConnectionTest(System.String)">
+	<summary>
+ 資料庫連結字串測試
+ </summary>
+	<param name="strDNS">連結字串</param>
+	<returns>是否成功連結</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbExecute(System.String,System.String)">
+	<summary>
+ 執行SQL語法
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strSQL">SQL語法</param>
+	<returns>True:執行成功 False:執行失敗</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbInsert(System.String,System.String,System.String,System.String)">
+	<summary>
+ 新增資料
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">寫入資料表</param>
+	<param name="strRowName">寫入欄位</param>
+	<param name="strRowValue">寫入資料</param>
+	<returns>True:寫入成功 False:寫入失敗</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbEdit(System.String,System.String,System.String,System.String)">
+	<summary>
+ 修改資料
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">修改資料表</param>
+	<param name="strEditRow">修改欄位</param>
+	<param name="strWhere">修改條件值</param>
+	<returns>True:修改成功 False:修改失敗</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbDelete(System.String,System.String,System.String)">
+	<summary>
+ 刪除資料
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">刪除資料表</param>
+	<param name="strWhere">刪除條件值</param>
+	<returns>True:刪除成功 False:刪除失敗</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbDataCheck(System.String,System.String,System.String)">
+	<summary>
+ 是否有相同關鍵值資料
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">查詢資料表</param>
+	<param name="strWhere">查詢條件值</param>
+	<returns>True:有相同資料 False:無相同資料</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbGetSingleRow(System.String,System.String,System.String,System.String,System.String)">
+	<summary>
+ 取得單一欄位
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">查詢資料表</param>
+	<param name="strRow">欄位值名稱</param>
+	<param name="strWhere">查詢條件值(可省略)</param>
+	<param name="strOrderBy">自訂排序(可省略)</param>
+	<returns>傳回欄位值(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbCount(System.String,System.String,System.String,System.String)">
+	<summary>
+ 數量計算(條件式)
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">查詢資料表</param>
+	<param name="strAsRow">計算後數值欄位名(預設：intCount)(可省略)</param>
+	<param name="strWhere">查詢條件值(可省略)</param>
+	<returns>傳回數量(Integer)</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbSum(System.String,System.String,System.String,System.String,System.String)">
+	<summary>
+ 加總計算(條件式)
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">查詢資料表</param>
+	<param name="strSumRow">欲加總欄位</param>
+	<param name="strAsRow">加總後數值欄位名(預設：intSum)(可省略)</param>
+	<param name="strWhere">查詢條件值(可省略)</param>
+	<returns>傳回加總值(Double)</returns>
+</member><member name="M:ERP企業資源規劃系統.ADOODBC.dbMaxMin(System.String,System.String,System.String,System.String,System.String,System.String)">
+	<summary>
+ 最大值、最小值計算(條件式)
+ </summary>
+	<param name="strDNS">資料庫連結字串</param>
+	<param name="strTable">查詢資料表</param>
+	<param name="strType">判斷種類(Max：最大值 Min：最小值)</param>
+	<param name="strMaxRow">欲判斷欄位</param>
+	<param name="strAsRow">判斷後欄位名(預設：strData)(可省略)</param>
+	<param name="strWhere">查詢條件值(可省略)</param>
+	<returns>傳回判斷值(String)</returns>
+</member><member name="M:ERP企業資源規劃系統.DataChecked.blnInputCheck(System.Object[],System.String[])">
+	<summary>
+ 必要欄位輸入防呆
+ </summary>
+	<param name="objArray">物件陣列(Object)</param>
+	<param name="strArray">說明文字陣列(String)</param>
+	<returns>是否驗證成功(Boolean)</returns>
+</member><member name="M:ERP企業資源規劃系統.DataChecked.blnInputNumeric(System.Object[],System.String[])">
+	<summary>
+ 輸入欄位數字防呆
+ </summary>
+	<param name="objArray">物件陣列(Object)</param>
+	<param name="strArray">說明文字陣列(String)</param>
+	<returns>是否驗證成功(Boolean)</returns>
+</member><member name="M:ERP企業資源規劃系統.SystemControl.ComputerShutdown(System.String)">
+	<summary>
+ 關閉電腦
+ </summary>
+	<param name="strFuntion">關閉種類(空白：只關閉程式(預設) CS：同時關閉電腦)(可省略)</param>
+</member>
+</members>
+</doc>

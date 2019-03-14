@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ERP企業資源規劃系統", "ERP企業資源規劃系統\ERP企業資源規劃系統.vbproj", "{EF8D26E7-C7B6-460F-9FF1-D8E686158C6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF8D26E7-C7B6-460F-9FF1-D8E686158C6D}.Debug|x86.ActiveCfg = Debug|x86
+		{EF8D26E7-C7B6-460F-9FF1-D8E686158C6D}.Debug|x86.Build.0 = Debug|x86
+		{EF8D26E7-C7B6-460F-9FF1-D8E686158C6D}.Release|x86.ActiveCfg = Release|x86
+		{EF8D26E7-C7B6-460F-9FF1-D8E686158C6D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
