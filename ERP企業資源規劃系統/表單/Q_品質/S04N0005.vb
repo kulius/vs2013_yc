@@ -205,8 +205,8 @@
 
         '防呆*****
         '必輸入
-        Dim objArray_Input() As Object = {品名分類, 強度級數, 直徑規格, 扭力值1, 扭力值2}
-        Dim strArray_Input() As String = {"品名分類", "強度級數", "直徑規格", "扭力值1", "扭力值2"}
+        Dim objArray_Input() As Object = {品名分類, 強度級數, 直徑規格, 扭力值1}
+        Dim strArray_Input() As String = {"品名分類", "強度級數", "直徑規格", "扭力值1"}
         blnCheck = blnInputCheck(objArray_Input, strArray_Input)
 
         '必數字
@@ -244,8 +244,8 @@
 
         '防呆*****
         '必輸入         
-        Dim objArray_Input() As Object = {品名分類, 強度級數, 直徑規格, 扭力值1, 扭力值2}
-        Dim strArray_Input() As String = {"品名分類", "強度級數", "直徑規格", "扭力值1", "扭力值2"}
+        Dim objArray_Input() As Object = {品名分類, 強度級數, 直徑規格, 扭力值1}
+        Dim strArray_Input() As String = {"品名分類", "強度級數", "直徑規格", "扭力值1"}
         blnCheck = blnInputCheck(objArray_Input, strArray_Input)
 
         '必數字

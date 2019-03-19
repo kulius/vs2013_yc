@@ -32,7 +32,7 @@
     <SuiteName>ERP企業資源規劃系統</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>Default.htm</WebPage>
-    <ApplicationRevision>302</ApplicationRevision>
+    <ApplicationRevision>303</ApplicationRevision>
     <ApplicationVersion>2.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
